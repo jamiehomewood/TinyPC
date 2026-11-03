@@ -1,0 +1,35 @@
+{
+  "id": "tpc_case_shell",
+  "name": "PC case interior",
+  "file": "tpc_case_shell.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "Case round the board (board coordinates): tray, panels, fans, PSU shroud, daylight panel.",
+  "scale": 1.0,
+  "polycount": 3340,
+  "bbox_mm": [
+    -450.0,
+    407.0,
+    -750.0,
+    250.0,
+    -7.0,
+    1500.0
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

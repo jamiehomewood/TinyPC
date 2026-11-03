@@ -1,0 +1,215 @@
+{
+  "version": 1,
+  "name": "TinyPC tour - B2 - RAM fitted",
+  "room": {
+    "preset": "igloo-main",
+    "width": 6.4,
+    "depth": 5.71,
+    "height": 2.244,
+    "eye": 1.12,
+    "projected": {
+      "walls": true,
+      "floor": true,
+      "ceiling": false
+    }
+  },
+  "style": "hospital",
+  "condition": "new",
+  "lighting": "day",
+  "features": [
+    {
+      "id": "bench-bay",
+      "type": "alcove",
+      "wall": "north",
+      "pos": 0,
+      "width": 6.4,
+      "depth": 0.8
+    },
+    {
+      "id": "example-bay",
+      "type": "alcove",
+      "wall": "east",
+      "pos": -0.6,
+      "width": 2.4,
+      "depth": 0.8
+    },
+    {
+      "id": "window",
+      "type": "window",
+      "wall": "west",
+      "pos": 0.3,
+      "width": 1.6,
+      "sill": 0.9,
+      "height": 1.2
+    },
+    {
+      "id": "door",
+      "type": "door",
+      "wall": "south",
+      "pos": 1.9,
+      "width": 0.9,
+      "height": 2.05,
+      "beyond": "corridor"
+    }
+  ],
+  "finishes": {
+    "walls": {
+      "type": "paint",
+      "colour": "#dfe3e4",
+      "sheen": "silk"
+    },
+    "lower": {
+      "type": "none"
+    },
+    "floor": {
+      "type": "vinyl",
+      "colour": "#6f7f88"
+    },
+    "ceiling": {
+      "type": "tiles"
+    },
+    "trim": {
+      "colour": "#8a9499",
+      "sheen": "silk"
+    }
+  },
+  "outside": {
+    "view": "college",
+    "rotation": 0
+  },
+  "items": [
+    {
+      "id": "bench",
+      "model": "tpc_workbench",
+      "x": 0,
+      "y": 3.26,
+      "z": 0,
+      "rot": 0,
+      "scale": 1
+    },
+    {
+      "id": "pc",
+      "model": "tpc_pc_tower_s2",
+      "x": -0.55,
+      "y": 3.31,
+      "z": 0.9025,
+      "rot": 0,
+      "scale": 1
+    },
+    {
+      "id": "monitor",
+      "model": "tpc_monitor",
+      "x": 0.3,
+      "y": 3.43,
+      "z": 0.9025,
+      "rot": 0,
+      "scale": 1
+    },
+    {
+      "id": "keyboard",
+      "model": "tpc_keyboard",
+      "x": 0.3,
+      "y": 3.09,
+      "z": 0.9025,
+      "rot": 0,
+      "scale": 1
+    },
+    {
+      "id": "mouse",
+      "model": "tpc_mouse",
+      "x": 0.66,
+      "y": 3.09,
+      "z": 0.9025,
+      "rot": -8,
+      "scale": 1
+    },
+    {
+      "id": "shelves",
+      "model": "wooden_display_shelves_01",
+      "x": -2.5,
+      "y": 3.3,
+      "z": 0,
+      "rot": 0,
+      "scale": 1
+    },
+    {
+      "id": "boxes1",
+      "model": "cardboard_box_01",
+      "x": 2.2,
+      "y": 3.35,
+      "z": 0,
+      "rot": 6,
+      "scale": 1
+    },
+    {
+      "id": "boxes2",
+      "model": "cardboard_box_01",
+      "x": 2.75,
+      "y": 3.38,
+      "z": 0,
+      "rot": -12,
+      "scale": 1
+    },
+    {
+      "id": "example-bench",
+      "model": "tpc_workbench",
+      "x": 3.605,
+      "y": -0.6,
+      "z": 0,
+      "rot": -90,
+      "scale": 1
+    },
+    {
+      "id": "example-pc",
+      "model": "tpc_pc_tower_on",
+      "x": 3.655,
+      "y": -0.05,
+      "z": 0.9025,
+      "rot": -90,
+      "scale": 1
+    },
+    {
+      "id": "example-monitor",
+      "model": "tpc_monitor_on",
+      "x": 3.775,
+      "y": -0.9,
+      "z": 0.9025,
+      "rot": -90,
+      "scale": 1
+    },
+    {
+      "id": "example-keyboard",
+      "model": "tpc_keyboard",
+      "x": 3.435,
+      "y": -0.9,
+      "z": 0.9025,
+      "rot": -90,
+      "scale": 1
+    },
+    {
+      "id": "example-mouse",
+      "model": "tpc_mouse",
+      "x": 3.435,
+      "y": -1.26,
+      "z": 0.9025,
+      "rot": -98,
+      "scale": 1
+    }
+  ],
+  "views": [
+    {
+      "name": "centre",
+      "x": 0,
+      "y": 0,
+      "yaw": 0
+    }
+  ],
+  "render": {
+    "quality": "standard",
+    "exposure": -0.3
+  },
+  "tinypc": {
+    "tour_room": "B2",
+    "note": "Made by tools/make_tour_rooms.py from specs/workbench/tpc_workbench.json."
+  }
+}

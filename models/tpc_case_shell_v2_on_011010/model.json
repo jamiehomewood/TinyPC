@@ -1,0 +1,35 @@
+{
+  "id": "tpc_case_shell_v2_on_011010",
+  "name": "PC case interior, on (011010)",
+  "file": "tpc_case_shell_v2_on_011010.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "Set 2 case lit; blades left out only where the tour spins a rotor (mask: front 0-2, top 0-1, rear).",
+  "scale": 1.0,
+  "polycount": 3774,
+  "bbox_mm": [
+    -450.0,
+    1150.0,
+    -750.0,
+    250.0,
+    -7.0,
+    1500.0
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

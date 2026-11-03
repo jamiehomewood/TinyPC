@@ -1,0 +1,35 @@
+{
+  "id": "tpc_cmos_battery",
+  "name": "CMOS battery in holder",
+  "file": "tpc_cmos_battery.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "CR2032 cell in its holder.",
+  "scale": 1.0,
+  "polycount": 162,
+  "bbox_mm": [
+    -11.5,
+    11.5,
+    -12.5,
+    11.5,
+    0.0,
+    5.5
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

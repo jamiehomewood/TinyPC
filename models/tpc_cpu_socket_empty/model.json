@@ -1,0 +1,35 @@
+{
+  "id": "tpc_cpu_socket_empty",
+  "name": "CPU socket, empty, open",
+  "file": "tpc_cpu_socket_empty.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "Socket with no CPU: spring-pin field showing, load plate and lever up.",
+  "scale": 1.0,
+  "polycount": 242,
+  "bbox_mm": [
+    -28.0,
+    33.0,
+    -54.69,
+    33.0,
+    0.0,
+    61.69
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

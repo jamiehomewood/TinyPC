@@ -1,0 +1,35 @@
+{
+  "id": "tpc_vrm_heatsink_l",
+  "name": "VRM heatsink (long)",
+  "file": "tpc_vrm_heatsink_l.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "86 x 17 x 34 mm finned heatsink on chokes.",
+  "scale": 1.0,
+  "polycount": 420,
+  "bbox_mm": [
+    -43.3,
+    43.3,
+    -8.8,
+    8.8,
+    0.0,
+    34.0
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "tpc_board",
+  "name": "Motherboard (TinyPC)",
+  "file": "tpc_board.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "Generic own-design motherboard, 330 x 325 mm, traces, pads, silkscreen and surface-mount parts. Board coordinates: anchor = top-rear corner.",
+  "scale": 1.0,
+  "polycount": 37902,
+  "bbox_mm": [
+    0.0,
+    330.0,
+    -325.0,
+    0.0,
+    0.0,
+    3.1
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

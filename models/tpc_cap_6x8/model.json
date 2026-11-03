@@ -1,0 +1,35 @@
+{
+  "id": "tpc_cap_6x8",
+  "name": "Polymer capacitor 6 x 8",
+  "file": "tpc_cap_6x8.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "Solid polymer capacitor, 6 mm, 8.5 tall.",
+  "scale": 1.0,
+  "polycount": 232,
+  "bbox_mm": [
+    -3.3,
+    3.3,
+    -3.3,
+    3.3,
+    0.0,
+    8.5
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

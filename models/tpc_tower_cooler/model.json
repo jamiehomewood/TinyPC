@@ -1,0 +1,35 @@
+{
+  "id": "tpc_tower_cooler",
+  "name": "Tower CPU cooler",
+  "file": "tpc_tower_cooler.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "Copper base, four heat pipes, 56 fins, 120 mm fan on +x. 158 mm tall.",
+  "scale": 1.0,
+  "polycount": 1510,
+  "bbox_mm": [
+    -38.6,
+    50.0,
+    -62.5,
+    62.5,
+    0.0,
+    158.0
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

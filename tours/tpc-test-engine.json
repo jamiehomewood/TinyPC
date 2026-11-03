@@ -1,0 +1,238 @@
+{
+ "version": 1,
+ "id": "tpc-test-engine",
+ "name": "TinyPC - engine test (fans, beeps, faults)",
+ "start": "r_off",
+ "description": "Test of the 3 Nov 2026 player additions: flags, requires on use, lockedGo, beep codes, fan hum, spinning rotors.",
+ "items": [
+  {
+   "id": "i_ram",
+   "name": "RAM stick",
+   "model": "tpc_dimm",
+   "pages": [
+    "Working memory: fast, and emptied when the power goes off."
+   ],
+   "description": ""
+  }
+ ],
+ "rooms": [
+  {
+   "id": "r_off",
+   "name": "Switched off",
+   "lib": "20261103-124108-tinypc-v2-off-1-by-the-24-pin-",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "front",
+   "end": false,
+   "endText": "",
+   "intro": "Engine test. Take the RAM, try to fit it (the clips must be opened first), then press power.",
+   "markers": [
+    {
+     "id": "m_ram",
+     "type": "item",
+     "item": "i_ram",
+     "take": true,
+     "yaw": -60,
+     "pitch": -5,
+     "label": "RAM stick",
+     "dist": 1.6,
+     "h": 0.0,
+     "turn": 30,
+     "size": 4,
+     "show3d": true
+    },
+    {
+     "id": "m_clips",
+     "type": "question",
+     "yaw": -100,
+     "pitch": 0,
+     "label": "Slot clips",
+     "text": "The slot clips are shut. Open them?",
+     "options": [
+      {
+       "text": "Open the clips",
+       "correct": true,
+       "feedback": "Clips open.",
+       "flag": "f_clips"
+      }
+     ],
+     "retry": false
+    },
+    {
+     "id": "m_slot",
+     "type": "use",
+     "yaw": -120,
+     "pitch": 0,
+     "label": "RAM slot",
+     "text": "An empty RAM slot.",
+     "accepts": [
+      {
+       "item": "i_ram",
+       "correct": true,
+       "consume": true,
+       "flag": "f_ram",
+       "requires": [
+        "f_clips"
+       ],
+       "notYet": "The clips are shut: open them first.",
+       "feedback": "Click! The RAM is seated and the clips have snapped shut.",
+       "sound": "yes"
+      }
+     ],
+     "wrongText": "That doesn't go here."
+    },
+    {
+     "id": "m_power",
+     "type": "go",
+     "yaw": 30,
+     "pitch": 0,
+     "label": "Power button",
+     "target": "r_on",
+     "requires": [
+      "f_ram"
+     ],
+     "lockedGo": {
+      "f_ram": "r_fault_ram"
+     },
+     "code": "",
+     "auto": false
+    }
+   ]
+  },
+  {
+   "id": "r_fault_ram",
+   "name": "No memory!",
+   "lib": "20261103-124108-tinypc-v2-off-1-by-the-24-pin-",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "front",
+   "end": false,
+   "endText": "",
+   "enterSound": "post:LLL",
+   "intro": "Three long beeps: the PC can't find any memory. Go back and fit the RAM.",
+   "markers": [
+    {
+     "id": "m_back",
+     "type": "go",
+     "yaw": 180,
+     "pitch": 0,
+     "label": "Back",
+     "target": "r_off",
+     "requires": [],
+     "code": "",
+     "auto": false
+    }
+   ]
+  },
+  {
+   "id": "r_on",
+   "name": "It's alive",
+   "lib": "20261103-124456-tinypc-v2-on-1-by-the-24-pin-p",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "front",
+   "end": true,
+   "endText": "One short beep: all checks passed. Fans spinning, lights on.",
+   "ambient": "fan",
+   "enterSound": "post:S",
+   "intro": "",
+   "props": [
+    {
+     "id": "case1",
+     "model": "tpc_fan_rotor_92",
+     "yaw": -3.45,
+     "dist": 8.731,
+     "h": -0.012,
+     "turn": -180.0,
+     "size": 35,
+     "spin": 70,
+     "axis": "z",
+     "_room": [
+      8.715,
+      0.525,
+      1.752,
+      1.4609,
+      "x"
+     ],
+     "_seen": 1.0
+    },
+    {
+     "id": "case2",
+     "model": "tpc_fan_rotor_92",
+     "yaw": 19.87,
+     "dist": 9.267,
+     "h": -0.012,
+     "turn": -180.0,
+     "size": 35,
+     "spin": 70,
+     "axis": "z",
+     "_room": [
+      8.715,
+      -3.15,
+      1.752,
+      1.4609,
+      "x"
+     ],
+     "_seen": 1.0
+    },
+    {
+     "id": "case4",
+     "model": "tpc_fan_rotor_92",
+     "yaw": -99.5,
+     "dist": 8.056,
+     "h": -0.012,
+     "turn": 90.0,
+     "size": 35,
+     "spin": 70,
+     "axis": "z",
+     "_room": [
+      -1.33,
+      7.945,
+      1.752,
+      1.4609,
+      "y"
+     ],
+     "_seen": 1.0
+    },
+    {
+     "id": "cooler0",
+     "model": "tpc_fan_rotor_120",
+     "yaw": -148.09,
+     "dist": 5.298,
+     "h": 1.508,
+     "turn": -180.0,
+     "size": 35,
+     "spin": 70,
+     "axis": "z",
+     "_room": [
+      -4.4975,
+      2.8,
+      3.733,
+      1.9215,
+      "x"
+     ],
+     "_seen": 0.89
+    }
+   ],
+   "markers": []
+  }
+ ]
+}

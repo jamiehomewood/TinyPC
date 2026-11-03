@@ -1,0 +1,35 @@
+{
+  "id": "tpc_rear_io",
+  "name": "Rear I/O with shroud",
+  "file": "tpc_rear_io.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "Port stack under a sculpted shroud, 150 mm long.",
+  "scale": 1.0,
+  "polycount": 240,
+  "bbox_mm": [
+    -11.6,
+    12.6,
+    -76.0,
+    76.0,
+    0.0,
+    42.0
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

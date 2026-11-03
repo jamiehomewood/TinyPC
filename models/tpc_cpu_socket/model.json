@@ -1,0 +1,35 @@
+{
+  "id": "tpc_cpu_socket",
+  "name": "CPU in socket, paste on",
+  "file": "tpc_cpu_socket.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "LGA socket, load plate shut, lever latched, CPU lid with thermal paste. Lid top 5.3 mm.",
+  "scale": 1.0,
+  "polycount": 3984,
+  "bbox_mm": [
+    -28.0,
+    35.5,
+    -33.3,
+    33.75,
+    0.0,
+    5.4
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

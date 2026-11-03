@@ -1,0 +1,35 @@
+{
+  "id": "tpc_board_dbg_boot",
+  "name": "Motherboard, BOOT debug light on",
+  "file": "tpc_board_dbg_boot.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "As tpc_board with the BOOT debug LED lit red.",
+  "scale": 1.0,
+  "polycount": 37902,
+  "bbox_mm": [
+    0.0,
+    330.0,
+    -325.0,
+    0.0,
+    0.0,
+    3.1
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

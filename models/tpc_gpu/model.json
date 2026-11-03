@@ -1,0 +1,35 @@
+{
+  "id": "tpc_gpu",
+  "name": "Graphics card (compact)",
+  "file": "tpc_gpu.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "200 mm two-fan card, fans towards -y, backplate +y.",
+  "scale": 1.0,
+  "polycount": 1380,
+  "bbox_mm": [
+    -118.0,
+    100.0,
+    -30.2,
+    25.0,
+    -15.0,
+    120.0
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

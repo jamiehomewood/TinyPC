@@ -1,0 +1,35 @@
+{
+  "id": "tpc_sata_ports",
+  "name": "SATA ports (4)",
+  "file": "tpc_sata_ports.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "Four right-angle SATA ports, facing +x.",
+  "scale": 1.0,
+  "polycount": 80,
+  "bbox_mm": [
+    -7.0,
+    7.1,
+    -15.0,
+    15.0,
+    0.0,
+    13.8
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

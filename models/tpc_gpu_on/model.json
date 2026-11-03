@@ -1,0 +1,35 @@
+{
+  "id": "tpc_gpu_on",
+  "name": "Graphics card, on (no blades)",
+  "file": "tpc_gpu_on.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "Graphics card with its fan blades left out (spun live by the tour).",
+  "scale": 1.0,
+  "polycount": 1336,
+  "bbox_mm": [
+    -118.0,
+    100.0,
+    -28.45,
+    25.0,
+    -15.0,
+    120.0
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

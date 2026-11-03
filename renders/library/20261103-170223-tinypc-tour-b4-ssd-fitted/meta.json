@@ -1,0 +1,34 @@
+{
+  "id": "20261103-170223-tinypc-tour-b4-ssd-fitted",
+  "name": "TinyPC tour - B4 - SSD fitted",
+  "created": "2026-11-03 17:02",
+  "style": "hospital",
+  "lighting": "day",
+  "quality": "standard",
+  "resolution": "6144x3072",
+  "samples": 256,
+  "room": {
+    "preset": "igloo-main",
+    "width": 6.4,
+    "depth": 5.71,
+    "height": 2.244
+  },
+  "views": [
+    "centre"
+  ],
+  "render_seconds": 171,
+  "models": [
+    "cardboard_box_01",
+    "tpc_keyboard",
+    "tpc_monitor",
+    "tpc_monitor_on",
+    "tpc_mouse",
+    "tpc_pc_tower_on",
+    "tpc_pc_tower_s4",
+    "tpc_workbench",
+    "wooden_display_shelves_01"
+  ],
+  "credit_required": [],
+  "outside": "cambridge",
+  "notes": ""
+}

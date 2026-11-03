@@ -1,0 +1,446 @@
+{
+  "version": 1,
+  "name": "TinyPC v2 - By the 24-pin power",
+  "room": {
+    "preset": "igloo-main",
+    "width": 6.4,
+    "depth": 5.71,
+    "height": 2.244,
+    "eye": 1.12,
+    "projected": {
+      "walls": true,
+      "floor": true,
+      "ceiling": false
+    },
+    "type": "outdoor"
+  },
+  "style": "outdoor",
+  "lighting": "night",
+  "outside": {
+    "view": "custom",
+    "hdri": null
+  },
+  "features": [],
+  "items": [
+    {
+      "id": "case",
+      "model": "tpc_case_shell_v2",
+      "x": 3.22,
+      "y": -2.45,
+      "z": 0.002,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "board",
+      "model": "tpc_board",
+      "x": -3.255,
+      "y": 0.6125,
+      "z": 0.247,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "rear_io",
+      "model": "tpc_rear_io",
+      "x": -8.6275,
+      "y": 2.52,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "eps8",
+      "model": "tpc_eps8",
+      "x": -7.63,
+      "y": 7.9975,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "vrm_top",
+      "model": "tpc_vrm_heatsink_l",
+      "x": -5.81,
+      "y": 5.04,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "vrm_left",
+      "model": "tpc_vrm_heatsink_s",
+      "x": -7.91,
+      "y": 2.87,
+      "z": 0.303,
+      "rot": 90,
+      "scale": 35
+    },
+    {
+      "id": "socket",
+      "model": "tpc_cpu_socket",
+      "x": -5.6788,
+      "y": 2.8079,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "cooler",
+      "model": "tpc_tower_cooler",
+      "x": -5.6105,
+      "y": 2.8,
+      "z": 0.4885,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "dimm_slot_a1",
+      "model": "tpc_dimm_slot",
+      "x": -3.57,
+      "y": 2.8,
+      "z": 0.303,
+      "rot": 90,
+      "scale": 35
+    },
+    {
+      "id": "dimm_slot_a2",
+      "model": "tpc_dimm_slot",
+      "x": -3.255,
+      "y": 2.8,
+      "z": 0.303,
+      "rot": 90,
+      "scale": 35
+    },
+    {
+      "id": "dimm_slot_b1",
+      "model": "tpc_dimm_slot",
+      "x": -2.73,
+      "y": 2.8,
+      "z": 0.303,
+      "rot": 90,
+      "scale": 35
+    },
+    {
+      "id": "dimm_slot_b2",
+      "model": "tpc_dimm_slot",
+      "x": -2.415,
+      "y": 2.8,
+      "z": 0.303,
+      "rot": 90,
+      "scale": 35
+    },
+    {
+      "id": "dimm_a2",
+      "model": "tpc_dimm",
+      "x": -3.255,
+      "y": 2.8,
+      "z": 0.345,
+      "rot": 90,
+      "scale": 35
+    },
+    {
+      "id": "dimm_b2",
+      "model": "tpc_dimm",
+      "x": -2.415,
+      "y": 2.8,
+      "z": 0.345,
+      "rot": 90,
+      "scale": 35
+    },
+    {
+      "id": "atx24",
+      "model": "tpc_atx24_v2",
+      "x": 2.94,
+      "y": 1.68,
+      "z": 0.037,
+      "rot": 90,
+      "scale": 35
+    },
+    {
+      "id": "sata",
+      "model": "tpc_sata_ports",
+      "x": 2.1718,
+      "y": -4.41,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "m2_ssd",
+      "model": "tpc_m2_ssd",
+      "x": -5.9553,
+      "y": -0.28,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "pcie1",
+      "model": "tpc_pcie_x16",
+      "x": -6.72,
+      "y": -1.33,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "pcie2",
+      "model": "tpc_pcie_x1",
+      "x": -7.98,
+      "y": -2.625,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "pcie3",
+      "model": "tpc_pcie_x16",
+      "x": -6.72,
+      "y": -3.99,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "gpu",
+      "model": "tpc_gpu",
+      "x": -5.635,
+      "y": -2.261,
+      "z": -0.152,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "chipset",
+      "model": "tpc_chipset_heatsink",
+      "x": -1.05,
+      "y": -3.703,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "cmos",
+      "model": "tpc_cmos_battery",
+      "x": 1.12,
+      "y": -2.6775,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "cap_8x10_52_33",
+      "model": "tpc_cap_8x10",
+      "x": -7.21,
+      "y": 4.445,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "cap_8x10_61_33",
+      "model": "tpc_cap_8x10",
+      "x": -6.895,
+      "y": 4.445,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "cap_8x10_70_33",
+      "model": "tpc_cap_8x10",
+      "x": -6.58,
+      "y": 4.445,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "cap_8x10_79_33",
+      "model": "tpc_cap_8x10",
+      "x": -6.265,
+      "y": 4.445,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "cap_8x10_88_33",
+      "model": "tpc_cap_8x10",
+      "x": -5.95,
+      "y": 4.445,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "cap_8x10_97_33",
+      "model": "tpc_cap_8x10",
+      "x": -5.635,
+      "y": 4.445,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "cap_8x10_106_33",
+      "model": "tpc_cap_8x10",
+      "x": -5.32,
+      "y": 4.445,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "cap_8x10_115_33",
+      "model": "tpc_cap_8x10",
+      "x": -5.005,
+      "y": 4.445,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "cap_8x10_46_42",
+      "model": "tpc_cap_8x10",
+      "x": -7.42,
+      "y": 4.13,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "cap_8x10_46_51",
+      "model": "tpc_cap_8x10",
+      "x": -7.42,
+      "y": 3.815,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "cap_8x10_46_60",
+      "model": "tpc_cap_8x10",
+      "x": -7.42,
+      "y": 3.5,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "cap_8x10_46_69",
+      "model": "tpc_cap_8x10",
+      "x": -7.42,
+      "y": 3.185,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "cap_8x10_46_78",
+      "model": "tpc_cap_8x10",
+      "x": -7.42,
+      "y": 2.87,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "cap_8x10_46_87",
+      "model": "tpc_cap_8x10",
+      "x": -7.42,
+      "y": 2.555,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "cap_6x8_310_92",
+      "model": "tpc_cap_6x8",
+      "x": 1.82,
+      "y": 2.38,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "cap_6x8_310_100",
+      "model": "tpc_cap_6x8",
+      "x": 1.82,
+      "y": 2.1,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "cap_6x8_310_108",
+      "model": "tpc_cap_6x8",
+      "x": 1.82,
+      "y": 1.82,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "cap_6x8_310_116",
+      "model": "tpc_cap_6x8",
+      "x": 1.82,
+      "y": 1.54,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "cap_6x8_196_250",
+      "model": "tpc_cap_6x8",
+      "x": -2.17,
+      "y": -3.15,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "cap_6x8_196_258",
+      "model": "tpc_cap_6x8",
+      "x": -2.17,
+      "y": -3.43,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    },
+    {
+      "id": "cap_6x8_196_266",
+      "model": "tpc_cap_6x8",
+      "x": -2.17,
+      "y": -3.71,
+      "z": 0.303,
+      "rot": 0,
+      "scale": 35
+    }
+  ],
+  "views": [
+    {
+      "name": "centre",
+      "x": 0,
+      "y": 0,
+      "z": 1.423,
+      "yaw": 90
+    }
+  ],
+  "render": {
+    "quality": "standard",
+    "exposure": 0.4
+  },
+  "tinypc": {
+    "set": "v2",
+    "stop": "tpc2_s1_arrival",
+    "scale": 35,
+    "stand_mm": [
+      258.0,
+      180.0
+    ],
+    "floor_mm": 0.0,
+    "note": "Made by tools/make_stop_specs.py from tools/board_layout.py: edit those, not this file."
+  }
+}

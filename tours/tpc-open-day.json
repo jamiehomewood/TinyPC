@@ -1,0 +1,1586 @@
+{
+ "version": 1,
+ "id": "tpc-open-day",
+ "name": "TinyPC - build a PC (open day)",
+ "start": "B0",
+ "description": "Collect the parts, build the PC in order, shrink inside to see them fitted, then switch on, find the fault and fix it.",
+ "items": [
+  {
+   "id": "i_cpu",
+   "name": "CPU (processor)",
+   "model": "tpc_cpu",
+   "description": "",
+   "pages": [
+    "The CPU (central processing unit) runs the program: it fetches each instruction from memory, decodes it, and carries it out. Billions of times a second.",
+    "This one has 8 cores (8 processors in one chip) running at 3.6 GHz: 3.6 billion clock ticks a second.",
+    "Underneath: over a thousand gold pads. Each one touches a spring pin in the socket on the motherboard."
+   ]
+  },
+  {
+   "id": "i_ram",
+   "name": "RAM (2 sticks)",
+   "model": "tpc_dimm",
+   "description": "",
+   "pages": [
+    "RAM is the computer's working memory: the programs and data the CPU is using right now.",
+    "It is fast, but it forgets everything when the power goes off (volatile).",
+    "Two 16 GB sticks = 32 GB. Fitted in the right pair of slots, the CPU can use both at once (dual channel)."
+   ]
+  },
+  {
+   "id": "i_paste",
+   "name": "Thermal paste",
+   "model": "tpc_paste_syringe",
+   "description": "",
+   "pages": [
+    "Thermal paste fills the tiny gaps between the CPU and its cooler, so heat can flow out of the chip.",
+    "A pea-sized dot in the middle is enough: the cooler squashes it flat."
+   ]
+  },
+  {
+   "id": "i_cooler",
+   "name": "CPU cooler",
+   "model": "tpc_tower_cooler",
+   "description": "",
+   "pages": [
+    "A busy CPU can make over 100 watts of heat. The copper base soaks it up, heat pipes carry it into the fins, and the fan blows it away.",
+    "Without a cooler the CPU would overheat within seconds and switch itself off."
+   ]
+  },
+  {
+   "id": "i_ssd",
+   "name": "SSD (storage)",
+   "model": "tpc_m2_ssd",
+   "description": "",
+   "pages": [
+    "The SSD (solid-state drive) keeps your files, programs and the operating system when the power is off (non-volatile).",
+    "It is slower than RAM but holds far more: this one is 1 TB. It plugs straight into the motherboard (M.2) and talks to the CPU over PCIe lanes."
+   ]
+  },
+  {
+   "id": "i_gpu",
+   "name": "Graphics card (GPU)",
+   "model": "tpc_gpu",
+   "description": "",
+   "pages": [
+    "The GPU (graphics processing unit) draws the picture on the screen.",
+    "It has thousands of small cores that work in parallel: great for graphics, video and AI. It plugs into the long PCIe x16 slot."
+   ]
+  },
+  {
+   "id": "i_cables",
+   "name": "Power cables",
+   "model": "tpc_atx24",
+   "description": "",
+   "pages": [
+    "From the power supply (PSU): the 24-pin cable powers the motherboard, and the 8-pin cable feeds the CPU's power circuits.",
+    "The PSU turns mains electricity into the low voltages the parts need (12 V, 5 V, 3.3 V)."
+   ]
+  }
+ ],
+ "rooms": [
+  {
+   "id": "B0",
+   "name": "The workbench",
+   "lib": "20261103-165057-tinypc-tour-b0-empty-case",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "left",
+   "end": false,
+   "endText": "",
+   "markers": [
+    {
+     "id": "m_i_cpu",
+     "type": "item",
+     "item": "i_cpu",
+     "take": true,
+     "yaw": -11.8,
+     "pitch": -4.1,
+     "label": "CPU (processor)",
+     "dist": 3.034,
+     "h": 0.9025,
+     "turn": -11.8,
+     "size": 1,
+     "show3d": true
+    },
+    {
+     "id": "m_i_ram",
+     "type": "item",
+     "item": "i_ram",
+     "take": true,
+     "yaw": -0.4,
+     "pitch": -4.2,
+     "label": "RAM (2 sticks)",
+     "dist": 2.97,
+     "h": 0.9025,
+     "turn": -0.4,
+     "size": 1,
+     "show3d": true
+    },
+    {
+     "id": "m_i_paste",
+     "type": "item",
+     "item": "i_paste",
+     "take": true,
+     "yaw": -6.1,
+     "pitch": -4.2,
+     "label": "Thermal paste",
+     "dist": 2.987,
+     "h": 0.9025,
+     "turn": -6.1,
+     "size": 1,
+     "show3d": true
+    },
+    {
+     "id": "m_i_cooler",
+     "type": "item",
+     "item": "i_cooler",
+     "take": true,
+     "yaw": -17.7,
+     "pitch": -4.0,
+     "label": "CPU cooler",
+     "dist": 3.118,
+     "h": 0.9025,
+     "turn": -17.7,
+     "size": 1,
+     "show3d": true
+    },
+    {
+     "id": "m_i_ssd",
+     "type": "item",
+     "item": "i_ssd",
+     "take": true,
+     "yaw": 84.0,
+     "pitch": -3.7,
+     "label": "SSD (storage)",
+     "dist": 3.343,
+     "h": 0.9025,
+     "turn": 84.0,
+     "size": 1,
+     "show3d": true
+    },
+    {
+     "id": "m_i_gpu",
+     "type": "item",
+     "item": "i_gpu",
+     "take": true,
+     "yaw": 97.2,
+     "pitch": -3.7,
+     "label": "Graphics card (GPU)",
+     "dist": 3.351,
+     "h": 0.9025,
+     "turn": 97.2,
+     "size": 1,
+     "show3d": true
+    },
+    {
+     "id": "m_i_cables",
+     "type": "item",
+     "item": "i_cables",
+     "take": true,
+     "yaw": 115.0,
+     "pitch": -3.4,
+     "label": "Power cables",
+     "dist": 3.669,
+     "h": 0.9025,
+     "turn": 115.0,
+     "size": 1,
+     "show3d": true
+    },
+    {
+     "id": "m_example",
+     "type": "info",
+     "yaw": 100.0,
+     "pitch": 16.0,
+     "label": "A finished PC",
+     "title": "What you're building",
+     "text": "This one is finished and switched on. Yours has the same parts: a motherboard, CPU, RAM, cooler, SSD, graphics card and power."
+    },
+    {
+     "id": "m_pc_B0",
+     "type": "use",
+     "yaw": -10.6,
+     "pitch": 4.5,
+     "label": "The PC",
+     "text": "Fit the next part: pick it from your bag.",
+     "accepts": [
+      {
+       "item": "i_cpu",
+       "correct": true,
+       "consume": true,
+       "flag": "f_cpu",
+       "requires": [],
+       "go": "T_cpu",
+       "feedback": "Line up the little gold triangle with the socket's corner, drop the CPU in (no pushing!), lower the plate and latch the lever. Let's shrink down and look."
+      },
+      {
+       "item": "i_ram",
+       "correct": true,
+       "consume": true,
+       "flag": "f_ram",
+       "requires": [
+        "f_cpu"
+       ],
+       "go": "T_ramq",
+       "notYet": "Not yet: the CPU goes in first.",
+       "feedback": "Before the RAM goes in, shrink down and pick the slots."
+      },
+      {
+       "item": "i_paste",
+       "correct": true,
+       "consume": true,
+       "flag": "f_paste",
+       "requires": [
+        "f_ram"
+       ],
+       "go": null,
+       "notYet": "Not yet: CPU and RAM first. (Paste goes on just before the cooler.)",
+       "feedback": "A pea-sized dot of paste on the middle of the CPU. Now the cooler can go on."
+      },
+      {
+       "item": "i_cooler",
+       "correct": true,
+       "consume": true,
+       "flag": "f_cooler",
+       "requires": [
+        "f_paste"
+       ],
+       "go": "B3",
+       "notYet": "Not yet: the cooler needs thermal paste on the CPU first, or the heat can't get across the gap.",
+       "feedback": "Cooler on, screwed down evenly, fan cable plugged into CPU_FAN."
+      },
+      {
+       "item": "i_ssd",
+       "correct": true,
+       "consume": true,
+       "flag": "f_ssd",
+       "requires": [
+        "f_cooler"
+       ],
+       "go": "B4",
+       "notYet": "Not yet: CPU, RAM, paste and cooler first.",
+       "feedback": "The SSD slots into M.2_1 at an angle, then one small screw holds it down."
+      },
+      {
+       "item": "i_gpu",
+       "correct": true,
+       "consume": true,
+       "flag": "f_gpu",
+       "requires": [
+        "f_ssd"
+       ],
+       "go": "B5",
+       "notYet": "Not yet: fit the SSD first. The graphics card covers its slot.",
+       "feedback": "Graphics card into the top PCIe x16 slot until the latch clicks, and screwed to the case."
+      },
+      {
+       "item": "i_cables",
+       "correct": true,
+       "consume": true,
+       "flag": "f_power",
+       "requires": [
+        "f_gpu"
+       ],
+       "go": "T_power",
+       "notYet": "Not yet: power goes in last, once everything else is fitted.",
+       "feedback": "24-pin and 8-pin plugged in until the latches click. Let's shrink down and look."
+      }
+     ],
+     "wrongText": "That doesn't go in a PC."
+    },
+    {
+     "id": "m_power_B0",
+     "type": "go",
+     "yaw": -5.3,
+     "pitch": 10.6,
+     "label": "Power button",
+     "target": "B6",
+     "requires": [
+      "f_power"
+     ],
+     "lockedText": "Nothing happens at all: no fans, no lights. Nothing can work until the power cables are in.",
+     "code": ""
+    }
+   ],
+   "intro": "Your team's job: build this PC and get it to start.\nThe parts are on the two benches. Pick each one up to find out what it does (it goes in your bag), then fit them into the PC, one at a time."
+  },
+  {
+   "id": "B1",
+   "name": "The workbench (1 of 6 fitted)",
+   "lib": "20261103-165348-tinypc-tour-b1-cpu-fitted",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "left",
+   "end": false,
+   "endText": "",
+   "markers": [
+    {
+     "id": "m_pc_B1",
+     "type": "use",
+     "yaw": -10.6,
+     "pitch": 4.5,
+     "label": "The PC",
+     "text": "Fit the next part: pick it from your bag.",
+     "accepts": [
+      {
+       "item": "i_cpu",
+       "correct": true,
+       "consume": true,
+       "flag": "f_cpu",
+       "requires": [],
+       "go": "T_cpu",
+       "feedback": "Line up the little gold triangle with the socket's corner, drop the CPU in (no pushing!), lower the plate and latch the lever. Let's shrink down and look."
+      },
+      {
+       "item": "i_ram",
+       "correct": true,
+       "consume": true,
+       "flag": "f_ram",
+       "requires": [
+        "f_cpu"
+       ],
+       "go": "T_ramq",
+       "notYet": "Not yet: the CPU goes in first.",
+       "feedback": "Before the RAM goes in, shrink down and pick the slots."
+      },
+      {
+       "item": "i_paste",
+       "correct": true,
+       "consume": true,
+       "flag": "f_paste",
+       "requires": [
+        "f_ram"
+       ],
+       "go": null,
+       "notYet": "Not yet: CPU and RAM first. (Paste goes on just before the cooler.)",
+       "feedback": "A pea-sized dot of paste on the middle of the CPU. Now the cooler can go on."
+      },
+      {
+       "item": "i_cooler",
+       "correct": true,
+       "consume": true,
+       "flag": "f_cooler",
+       "requires": [
+        "f_paste"
+       ],
+       "go": "B3",
+       "notYet": "Not yet: the cooler needs thermal paste on the CPU first, or the heat can't get across the gap.",
+       "feedback": "Cooler on, screwed down evenly, fan cable plugged into CPU_FAN."
+      },
+      {
+       "item": "i_ssd",
+       "correct": true,
+       "consume": true,
+       "flag": "f_ssd",
+       "requires": [
+        "f_cooler"
+       ],
+       "go": "B4",
+       "notYet": "Not yet: CPU, RAM, paste and cooler first.",
+       "feedback": "The SSD slots into M.2_1 at an angle, then one small screw holds it down."
+      },
+      {
+       "item": "i_gpu",
+       "correct": true,
+       "consume": true,
+       "flag": "f_gpu",
+       "requires": [
+        "f_ssd"
+       ],
+       "go": "B5",
+       "notYet": "Not yet: fit the SSD first. The graphics card covers its slot.",
+       "feedback": "Graphics card into the top PCIe x16 slot until the latch clicks, and screwed to the case."
+      },
+      {
+       "item": "i_cables",
+       "correct": true,
+       "consume": true,
+       "flag": "f_power",
+       "requires": [
+        "f_gpu"
+       ],
+       "go": "T_power",
+       "notYet": "Not yet: power goes in last, once everything else is fitted.",
+       "feedback": "24-pin and 8-pin plugged in until the latches click. Let's shrink down and look."
+      }
+     ],
+     "wrongText": "That doesn't go in a PC."
+    },
+    {
+     "id": "m_power_B1",
+     "type": "go",
+     "yaw": -5.3,
+     "pitch": 10.6,
+     "label": "Power button",
+     "target": "B6",
+     "requires": [
+      "f_power"
+     ],
+     "lockedText": "Nothing happens at all: no fans, no lights. Nothing can work until the power cables are in.",
+     "code": ""
+    }
+   ]
+  },
+  {
+   "id": "B2",
+   "name": "The workbench (2 of 6 fitted)",
+   "lib": "20261103-165640-tinypc-tour-b2-ram-fitted",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "left",
+   "end": false,
+   "endText": "",
+   "markers": [
+    {
+     "id": "m_pc_B2",
+     "type": "use",
+     "yaw": -10.6,
+     "pitch": 4.5,
+     "label": "The PC",
+     "text": "Fit the next part: pick it from your bag.",
+     "accepts": [
+      {
+       "item": "i_cpu",
+       "correct": true,
+       "consume": true,
+       "flag": "f_cpu",
+       "requires": [],
+       "go": "T_cpu",
+       "feedback": "Line up the little gold triangle with the socket's corner, drop the CPU in (no pushing!), lower the plate and latch the lever. Let's shrink down and look."
+      },
+      {
+       "item": "i_ram",
+       "correct": true,
+       "consume": true,
+       "flag": "f_ram",
+       "requires": [
+        "f_cpu"
+       ],
+       "go": "T_ramq",
+       "notYet": "Not yet: the CPU goes in first.",
+       "feedback": "Before the RAM goes in, shrink down and pick the slots."
+      },
+      {
+       "item": "i_paste",
+       "correct": true,
+       "consume": true,
+       "flag": "f_paste",
+       "requires": [
+        "f_ram"
+       ],
+       "go": null,
+       "notYet": "Not yet: CPU and RAM first. (Paste goes on just before the cooler.)",
+       "feedback": "A pea-sized dot of paste on the middle of the CPU. Now the cooler can go on."
+      },
+      {
+       "item": "i_cooler",
+       "correct": true,
+       "consume": true,
+       "flag": "f_cooler",
+       "requires": [
+        "f_paste"
+       ],
+       "go": "B3",
+       "notYet": "Not yet: the cooler needs thermal paste on the CPU first, or the heat can't get across the gap.",
+       "feedback": "Cooler on, screwed down evenly, fan cable plugged into CPU_FAN."
+      },
+      {
+       "item": "i_ssd",
+       "correct": true,
+       "consume": true,
+       "flag": "f_ssd",
+       "requires": [
+        "f_cooler"
+       ],
+       "go": "B4",
+       "notYet": "Not yet: CPU, RAM, paste and cooler first.",
+       "feedback": "The SSD slots into M.2_1 at an angle, then one small screw holds it down."
+      },
+      {
+       "item": "i_gpu",
+       "correct": true,
+       "consume": true,
+       "flag": "f_gpu",
+       "requires": [
+        "f_ssd"
+       ],
+       "go": "B5",
+       "notYet": "Not yet: fit the SSD first. The graphics card covers its slot.",
+       "feedback": "Graphics card into the top PCIe x16 slot until the latch clicks, and screwed to the case."
+      },
+      {
+       "item": "i_cables",
+       "correct": true,
+       "consume": true,
+       "flag": "f_power",
+       "requires": [
+        "f_gpu"
+       ],
+       "go": "T_power",
+       "notYet": "Not yet: power goes in last, once everything else is fitted.",
+       "feedback": "24-pin and 8-pin plugged in until the latches click. Let's shrink down and look."
+      }
+     ],
+     "wrongText": "That doesn't go in a PC."
+    },
+    {
+     "id": "m_power_B2",
+     "type": "go",
+     "yaw": -5.3,
+     "pitch": 10.6,
+     "label": "Power button",
+     "target": "B6",
+     "requires": [
+      "f_power"
+     ],
+     "lockedText": "Nothing happens at all: no fans, no lights. Nothing can work until the power cables are in.",
+     "code": ""
+    }
+   ]
+  },
+  {
+   "id": "B3",
+   "name": "The workbench (3 of 6 fitted)",
+   "lib": "20261103-165932-tinypc-tour-b3-cooler-fitted",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "left",
+   "end": false,
+   "endText": "",
+   "markers": [
+    {
+     "id": "m_pc_B3",
+     "type": "use",
+     "yaw": -10.6,
+     "pitch": 4.5,
+     "label": "The PC",
+     "text": "Fit the next part: pick it from your bag.",
+     "accepts": [
+      {
+       "item": "i_cpu",
+       "correct": true,
+       "consume": true,
+       "flag": "f_cpu",
+       "requires": [],
+       "go": "T_cpu",
+       "feedback": "Line up the little gold triangle with the socket's corner, drop the CPU in (no pushing!), lower the plate and latch the lever. Let's shrink down and look."
+      },
+      {
+       "item": "i_ram",
+       "correct": true,
+       "consume": true,
+       "flag": "f_ram",
+       "requires": [
+        "f_cpu"
+       ],
+       "go": "T_ramq",
+       "notYet": "Not yet: the CPU goes in first.",
+       "feedback": "Before the RAM goes in, shrink down and pick the slots."
+      },
+      {
+       "item": "i_paste",
+       "correct": true,
+       "consume": true,
+       "flag": "f_paste",
+       "requires": [
+        "f_ram"
+       ],
+       "go": null,
+       "notYet": "Not yet: CPU and RAM first. (Paste goes on just before the cooler.)",
+       "feedback": "A pea-sized dot of paste on the middle of the CPU. Now the cooler can go on."
+      },
+      {
+       "item": "i_cooler",
+       "correct": true,
+       "consume": true,
+       "flag": "f_cooler",
+       "requires": [
+        "f_paste"
+       ],
+       "go": "B3",
+       "notYet": "Not yet: the cooler needs thermal paste on the CPU first, or the heat can't get across the gap.",
+       "feedback": "Cooler on, screwed down evenly, fan cable plugged into CPU_FAN."
+      },
+      {
+       "item": "i_ssd",
+       "correct": true,
+       "consume": true,
+       "flag": "f_ssd",
+       "requires": [
+        "f_cooler"
+       ],
+       "go": "B4",
+       "notYet": "Not yet: CPU, RAM, paste and cooler first.",
+       "feedback": "The SSD slots into M.2_1 at an angle, then one small screw holds it down."
+      },
+      {
+       "item": "i_gpu",
+       "correct": true,
+       "consume": true,
+       "flag": "f_gpu",
+       "requires": [
+        "f_ssd"
+       ],
+       "go": "B5",
+       "notYet": "Not yet: fit the SSD first. The graphics card covers its slot.",
+       "feedback": "Graphics card into the top PCIe x16 slot until the latch clicks, and screwed to the case."
+      },
+      {
+       "item": "i_cables",
+       "correct": true,
+       "consume": true,
+       "flag": "f_power",
+       "requires": [
+        "f_gpu"
+       ],
+       "go": "T_power",
+       "notYet": "Not yet: power goes in last, once everything else is fitted.",
+       "feedback": "24-pin and 8-pin plugged in until the latches click. Let's shrink down and look."
+      }
+     ],
+     "wrongText": "That doesn't go in a PC."
+    },
+    {
+     "id": "m_power_B3",
+     "type": "go",
+     "yaw": -5.3,
+     "pitch": 10.6,
+     "label": "Power button",
+     "target": "B6",
+     "requires": [
+      "f_power"
+     ],
+     "lockedText": "Nothing happens at all: no fans, no lights. Nothing can work until the power cables are in.",
+     "code": ""
+    }
+   ]
+  },
+  {
+   "id": "B4",
+   "name": "The workbench (4 of 6 fitted)",
+   "lib": "20261103-170223-tinypc-tour-b4-ssd-fitted",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "left",
+   "end": false,
+   "endText": "",
+   "markers": [
+    {
+     "id": "m_pc_B4",
+     "type": "use",
+     "yaw": -10.6,
+     "pitch": 4.5,
+     "label": "The PC",
+     "text": "Fit the next part: pick it from your bag.",
+     "accepts": [
+      {
+       "item": "i_cpu",
+       "correct": true,
+       "consume": true,
+       "flag": "f_cpu",
+       "requires": [],
+       "go": "T_cpu",
+       "feedback": "Line up the little gold triangle with the socket's corner, drop the CPU in (no pushing!), lower the plate and latch the lever. Let's shrink down and look."
+      },
+      {
+       "item": "i_ram",
+       "correct": true,
+       "consume": true,
+       "flag": "f_ram",
+       "requires": [
+        "f_cpu"
+       ],
+       "go": "T_ramq",
+       "notYet": "Not yet: the CPU goes in first.",
+       "feedback": "Before the RAM goes in, shrink down and pick the slots."
+      },
+      {
+       "item": "i_paste",
+       "correct": true,
+       "consume": true,
+       "flag": "f_paste",
+       "requires": [
+        "f_ram"
+       ],
+       "go": null,
+       "notYet": "Not yet: CPU and RAM first. (Paste goes on just before the cooler.)",
+       "feedback": "A pea-sized dot of paste on the middle of the CPU. Now the cooler can go on."
+      },
+      {
+       "item": "i_cooler",
+       "correct": true,
+       "consume": true,
+       "flag": "f_cooler",
+       "requires": [
+        "f_paste"
+       ],
+       "go": "B3",
+       "notYet": "Not yet: the cooler needs thermal paste on the CPU first, or the heat can't get across the gap.",
+       "feedback": "Cooler on, screwed down evenly, fan cable plugged into CPU_FAN."
+      },
+      {
+       "item": "i_ssd",
+       "correct": true,
+       "consume": true,
+       "flag": "f_ssd",
+       "requires": [
+        "f_cooler"
+       ],
+       "go": "B4",
+       "notYet": "Not yet: CPU, RAM, paste and cooler first.",
+       "feedback": "The SSD slots into M.2_1 at an angle, then one small screw holds it down."
+      },
+      {
+       "item": "i_gpu",
+       "correct": true,
+       "consume": true,
+       "flag": "f_gpu",
+       "requires": [
+        "f_ssd"
+       ],
+       "go": "B5",
+       "notYet": "Not yet: fit the SSD first. The graphics card covers its slot.",
+       "feedback": "Graphics card into the top PCIe x16 slot until the latch clicks, and screwed to the case."
+      },
+      {
+       "item": "i_cables",
+       "correct": true,
+       "consume": true,
+       "flag": "f_power",
+       "requires": [
+        "f_gpu"
+       ],
+       "go": "T_power",
+       "notYet": "Not yet: power goes in last, once everything else is fitted.",
+       "feedback": "24-pin and 8-pin plugged in until the latches click. Let's shrink down and look."
+      }
+     ],
+     "wrongText": "That doesn't go in a PC."
+    },
+    {
+     "id": "m_power_B4",
+     "type": "go",
+     "yaw": -5.3,
+     "pitch": 10.6,
+     "label": "Power button",
+     "target": "B6",
+     "requires": [
+      "f_power"
+     ],
+     "lockedText": "Nothing happens at all: no fans, no lights. Nothing can work until the power cables are in.",
+     "code": ""
+    }
+   ]
+  },
+  {
+   "id": "B5",
+   "name": "The workbench (5 of 6 fitted)",
+   "lib": "20261103-170514-tinypc-tour-b5-graphics-card-f",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "left",
+   "end": false,
+   "endText": "",
+   "markers": [
+    {
+     "id": "m_pc_B5",
+     "type": "use",
+     "yaw": -10.6,
+     "pitch": 4.5,
+     "label": "The PC",
+     "text": "Fit the next part: pick it from your bag.",
+     "accepts": [
+      {
+       "item": "i_cpu",
+       "correct": true,
+       "consume": true,
+       "flag": "f_cpu",
+       "requires": [],
+       "go": "T_cpu",
+       "feedback": "Line up the little gold triangle with the socket's corner, drop the CPU in (no pushing!), lower the plate and latch the lever. Let's shrink down and look."
+      },
+      {
+       "item": "i_ram",
+       "correct": true,
+       "consume": true,
+       "flag": "f_ram",
+       "requires": [
+        "f_cpu"
+       ],
+       "go": "T_ramq",
+       "notYet": "Not yet: the CPU goes in first.",
+       "feedback": "Before the RAM goes in, shrink down and pick the slots."
+      },
+      {
+       "item": "i_paste",
+       "correct": true,
+       "consume": true,
+       "flag": "f_paste",
+       "requires": [
+        "f_ram"
+       ],
+       "go": null,
+       "notYet": "Not yet: CPU and RAM first. (Paste goes on just before the cooler.)",
+       "feedback": "A pea-sized dot of paste on the middle of the CPU. Now the cooler can go on."
+      },
+      {
+       "item": "i_cooler",
+       "correct": true,
+       "consume": true,
+       "flag": "f_cooler",
+       "requires": [
+        "f_paste"
+       ],
+       "go": "B3",
+       "notYet": "Not yet: the cooler needs thermal paste on the CPU first, or the heat can't get across the gap.",
+       "feedback": "Cooler on, screwed down evenly, fan cable plugged into CPU_FAN."
+      },
+      {
+       "item": "i_ssd",
+       "correct": true,
+       "consume": true,
+       "flag": "f_ssd",
+       "requires": [
+        "f_cooler"
+       ],
+       "go": "B4",
+       "notYet": "Not yet: CPU, RAM, paste and cooler first.",
+       "feedback": "The SSD slots into M.2_1 at an angle, then one small screw holds it down."
+      },
+      {
+       "item": "i_gpu",
+       "correct": true,
+       "consume": true,
+       "flag": "f_gpu",
+       "requires": [
+        "f_ssd"
+       ],
+       "go": "B5",
+       "notYet": "Not yet: fit the SSD first. The graphics card covers its slot.",
+       "feedback": "Graphics card into the top PCIe x16 slot until the latch clicks, and screwed to the case."
+      },
+      {
+       "item": "i_cables",
+       "correct": true,
+       "consume": true,
+       "flag": "f_power",
+       "requires": [
+        "f_gpu"
+       ],
+       "go": "T_power",
+       "notYet": "Not yet: power goes in last, once everything else is fitted.",
+       "feedback": "24-pin and 8-pin plugged in until the latches click. Let's shrink down and look."
+      }
+     ],
+     "wrongText": "That doesn't go in a PC."
+    },
+    {
+     "id": "m_power_B5",
+     "type": "go",
+     "yaw": -5.3,
+     "pitch": 10.6,
+     "label": "Power button",
+     "target": "B6",
+     "requires": [
+      "f_power"
+     ],
+     "lockedText": "Nothing happens at all: no fans, no lights. Nothing can work until the power cables are in.",
+     "code": ""
+    }
+   ]
+  },
+  {
+   "id": "B6",
+   "name": "The workbench: all fitted",
+   "lib": "20261103-170806-tinypc-tour-b6-power-cables-in",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "left",
+   "end": false,
+   "endText": "",
+   "markers": [
+    {
+     "id": "m_power_B6",
+     "type": "go",
+     "yaw": -5.3,
+     "pitch": 10.6,
+     "label": "Power button",
+     "target": "S_on",
+     "requires": [
+      "f_ramclick"
+     ],
+     "lockedGo": {
+      "f_ramclick": "F_dram"
+     },
+     "code": ""
+    }
+   ],
+   "intro": "Everything is in. Press the power button."
+  },
+  {
+   "id": "B_on",
+   "name": "It works!",
+   "lib": "20261103-171105-tinypc-tour-b-on-running",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "left",
+   "end": true,
+   "ambient": "fan",
+   "endText": "You built a working PC.\nCPU: runs the program. RAM: working memory. SSD: storage. GPU: the picture. Cooler: takes the heat away. Power supply: power for everything.",
+   "intro": "",
+   "markers": [
+    {
+     "id": "q_sum1",
+     "type": "question",
+     "set": "Summing up",
+     "yaw": -90,
+     "pitch": 5,
+     "label": "Summing up",
+     "retry": true,
+     "text": "Which part forgets everything when the power goes off?",
+     "options": [
+      {
+       "text": "The SSD",
+       "correct": false,
+       "feedback": "No: the SSD keeps your files with the power off."
+      },
+      {
+       "text": "The RAM",
+       "correct": true,
+       "feedback": "Yes: RAM is fast working memory, but volatile."
+      },
+      {
+       "text": "The CPU",
+       "correct": false,
+       "feedback": "The CPU has a little memory (cache) that forgets too, but the big one is RAM."
+      }
+     ]
+    },
+    {
+     "id": "q_sum2",
+     "type": "question",
+     "set": "Summing up",
+     "yaw": -90,
+     "pitch": 5,
+     "label": "Summing up",
+     "retry": true,
+     "text": "Three long beeps at switch-on usually mean...",
+     "options": [
+      {
+       "text": "a memory (RAM) problem",
+       "correct": true,
+       "feedback": "Yes. Like the stick that wasn't clicked in."
+      },
+      {
+       "text": "everything's fine",
+       "correct": false,
+       "feedback": "No: one short beep means all the checks passed."
+      },
+      {
+       "text": "the screen is unplugged",
+       "correct": false,
+       "feedback": "Not usually: that's normally a graphics code."
+      }
+     ]
+    },
+    {
+     "id": "q_sum3",
+     "type": "question",
+     "set": "Summing up",
+     "yaw": -90,
+     "pitch": 5,
+     "label": "Summing up",
+     "retry": true,
+     "text": "Why does the cooler need thermal paste?",
+     "options": [
+      {
+       "text": "To glue it on",
+       "correct": false,
+       "feedback": "No: screws hold it on."
+      },
+      {
+       "text": "To fill the tiny air gaps so heat flows into the cooler",
+       "correct": true,
+       "feedback": "Yes. Air is a poor conductor of heat."
+      },
+      {
+       "text": "To stop electricity leaking",
+       "correct": false,
+       "feedback": "No: it's about heat."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "T_cpu",
+   "name": "Standing on the CPU",
+   "lib": "20261103-171738-tinypc-tour-t-cpu-on-the-cpu-j",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "right",
+   "end": false,
+   "endText": "",
+   "intro": "You're a few millimetres tall, standing on the CPU's metal lid. The chip itself is underneath, smaller than a fingernail.",
+   "markers": [
+    {
+     "id": "i_lid",
+     "type": "info",
+     "yaw": 0,
+     "pitch": -45,
+     "label": "The lid",
+     "title": "The lid (heat spreader)",
+     "text": "The metal lid spreads the chip's heat out so the cooler can take it away. The markings say what it is: TPC-9, 8 cores, 3.6 GHz."
+    },
+    {
+     "id": "q_cpu",
+     "type": "question",
+     "yaw": -60,
+     "pitch": 3,
+     "label": "Question",
+     "retry": true,
+     "text": "3.6 GHz means the CPU's clock ticks...",
+     "options": [
+      {
+       "text": "3.6 million times a second",
+       "correct": false,
+       "feedback": "Bigger! Giga = billion."
+      },
+      {
+       "text": "3.6 billion times a second",
+       "correct": true,
+       "feedback": "Yes: 3,600,000,000 ticks every second."
+      },
+      {
+       "text": "3.6 times a second",
+       "correct": false,
+       "feedback": "Much, much faster than that."
+      }
+     ]
+    },
+    {
+     "id": "i_ramside",
+     "type": "info",
+     "yaw": 0,
+     "pitch": 4,
+     "label": "The RAM slots",
+     "title": "Next door: the memory slots",
+     "text": "Those four long slots are for the RAM. The CPU talks to the RAM through hundreds of copper traces in the board."
+    },
+    {
+     "id": "g_cpu_back",
+     "type": "go",
+     "yaw": 180,
+     "pitch": 0,
+     "label": "Back to full size",
+     "target": "B1",
+     "requires": [],
+     "code": ""
+    }
+   ]
+  },
+  {
+   "id": "T_ramq",
+   "name": "The RAM slots",
+   "lib": "20261103-172057-tinypc-tour-t-ramq-the-empty-r",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "right",
+   "end": false,
+   "endText": "",
+   "intro": "Four empty slots, clips open. You have two sticks.",
+   "markers": [
+    {
+     "id": "q_slots",
+     "type": "question",
+     "yaw": -33.4,
+     "pitch": -8.8,
+     "label": "Which slots?",
+     "retry": true,
+     "text": "The labels on the board say DIMM_A1, A2, B1, B2 (A and B are two channels). Where do two sticks go?",
+     "options": [
+      {
+       "text": "A1 and A2",
+       "correct": false,
+       "feedback": "Both on channel A: the CPU could only use one channel. Try again."
+      },
+      {
+       "text": "A2 and B2",
+       "correct": true,
+       "go": "T_ram",
+       "feedback": "Yes: one on each channel (dual channel), in the slots the board's manual recommends. Pushing them in now..."
+      },
+      {
+       "text": "B1 and B2",
+       "correct": false,
+       "feedback": "Both on channel B. Try again."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "T_ram",
+   "name": "RAM fitted",
+   "lib": "20261103-171951-tinypc-tour-t-ram-ram-fitted",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "right",
+   "end": false,
+   "endText": "",
+   "intro": "Both sticks are in slots A2 and B2. Each one should be pushed down until both of its clips snap shut.",
+   "markers": [
+    {
+     "id": "i_clips",
+     "type": "info",
+     "yaw": -33.4,
+     "pitch": -10.8,
+     "label": "The clips",
+     "title": "Clips",
+     "text": "The clips at each end of a slot snap shut when a stick is pushed fully home. Have a good look..."
+    },
+    {
+     "id": "g_ram_back",
+     "type": "go",
+     "yaw": 180,
+     "pitch": 0,
+     "label": "Back to full size",
+     "target": "B2",
+     "requires": [],
+     "code": ""
+    }
+   ]
+  },
+  {
+   "id": "T_power",
+   "name": "Power in",
+   "lib": "20261103-171845-tinypc-tour-t-power-power-plug",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "right",
+   "end": false,
+   "endText": "",
+   "intro": "The 24-pin cable is plugged in: power for the whole motherboard.",
+   "markers": [
+    {
+     "id": "i_24pin",
+     "type": "info",
+     "yaw": -36.4,
+     "pitch": -5.0,
+     "label": "24-pin power",
+     "title": "24-pin power",
+     "text": "24 wires: yellow = 12 V, red = 5 V, orange = 3.3 V, black = 0 V (ground). The green wire tells the power supply to switch on."
+    },
+    {
+     "id": "i_debug",
+     "type": "info",
+     "yaw": -15.8,
+     "pitch": -31.799999999999997,
+     "label": "Debug lights",
+     "title": "Debug lights",
+     "text": "Four little lights: CPU, DRAM, VGA, BOOT. At switch-on the board checks each part in turn. If it gets stuck, that light stays on."
+    },
+    {
+     "id": "g_power_back",
+     "type": "go",
+     "yaw": 180,
+     "pitch": 0,
+     "label": "Back to full size",
+     "target": "B6",
+     "requires": [],
+     "code": ""
+    }
+   ]
+  },
+  {
+   "id": "F_dram",
+   "name": "Something's wrong",
+   "lib": "20261103-171229-tinypc-tour-f-dram-switched-on",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "right",
+   "end": false,
+   "endText": "",
+   "ambient": "fan",
+   "enterSound": "post:LLL",
+   "props": [
+    {
+     "id": "case1",
+     "model": "tpc_fan_rotor_92",
+     "yaw": -3.45,
+     "dist": 8.731,
+     "h": -0.012,
+     "turn": -180.0,
+     "size": 35,
+     "spin": 70,
+     "axis": "z"
+    },
+    {
+     "id": "case2",
+     "model": "tpc_fan_rotor_92",
+     "yaw": 19.87,
+     "dist": 9.267,
+     "h": -0.012,
+     "turn": -180.0,
+     "size": 35,
+     "spin": 70,
+     "axis": "z"
+    },
+    {
+     "id": "case4",
+     "model": "tpc_fan_rotor_92",
+     "yaw": -99.5,
+     "dist": 8.056,
+     "h": -0.012,
+     "turn": 90.0,
+     "size": 35,
+     "spin": 70,
+     "axis": "z"
+    },
+    {
+     "id": "cooler0",
+     "model": "tpc_fan_rotor_120",
+     "yaw": -148.09,
+     "dist": 5.298,
+     "h": 1.694,
+     "turn": -180.0,
+     "size": 35,
+     "spin": 70,
+     "axis": "z"
+    }
+   ],
+   "intro": "The fans spun up... then three long beeps, and nothing on the screen.\nFind the light that's on.",
+   "markers": [
+    {
+     "id": "i_dbg_on",
+     "type": "info",
+     "yaw": -15.8,
+     "pitch": -31.799999999999997,
+     "label": "Debug lights",
+     "title": "The DRAM light is on",
+     "text": "The board got stuck checking the memory (DRAM = the RAM). Three long beeps say the same thing."
+    },
+    {
+     "id": "g_to_ram",
+     "type": "go",
+     "yaw": -50.8,
+     "pitch": 0,
+     "label": "Go and check the RAM",
+     "target": "F_ram",
+     "requires": [],
+     "code": ""
+    }
+   ]
+  },
+  {
+   "id": "F_ram",
+   "name": "The RAM",
+   "lib": "20261103-171355-tinypc-tour-f-ram-switched-on-",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "right",
+   "end": false,
+   "endText": "",
+   "ambient": "fan",
+   "props": [
+    {
+     "id": "case0",
+     "model": "tpc_fan_rotor_92",
+     "yaw": -177.13,
+     "dist": 8.376,
+     "h": -0.012,
+     "turn": 0.0,
+     "size": 35,
+     "spin": 70,
+     "axis": "z"
+    },
+    {
+     "id": "case1",
+     "model": "tpc_fan_rotor_92",
+     "yaw": -153.92,
+     "dist": 9.314,
+     "h": -0.012,
+     "turn": 0.0,
+     "size": 35,
+     "spin": 70,
+     "axis": "z"
+    },
+    {
+     "id": "case4",
+     "model": "tpc_fan_rotor_92",
+     "yaw": 63.19,
+     "dist": 3.725,
+     "h": -0.012,
+     "turn": -90.0,
+     "size": 35,
+     "spin": 70,
+     "axis": "z"
+    },
+    {
+     "id": "cooler0",
+     "model": "tpc_fan_rotor_120",
+     "yaw": -20.58,
+     "dist": 5.178,
+     "h": 1.694,
+     "turn": 0.0,
+     "size": 35,
+     "spin": 70,
+     "axis": "z"
+    }
+   ],
+   "intro": "Look closely at both sticks and their clips.",
+   "markers": [
+    {
+     "id": "q_whats_wrong",
+     "type": "question",
+     "yaw": -33.4,
+     "pitch": -8.8,
+     "label": "What's wrong?",
+     "retry": true,
+     "text": "What's wrong here?",
+     "options": [
+      {
+       "text": "The stick in B2 isn't pushed all the way in: its clip is still open",
+       "correct": true,
+       "flag": "f_found",
+       "feedback": "Well spotted. Its gold contacts aren't touching the slot's contacts properly."
+      },
+      {
+       "text": "The sticks are in the wrong slots",
+       "correct": false,
+       "feedback": "No: A2 and B2 is right. Look at the clips."
+      },
+      {
+       "text": "The RAM is too slow",
+       "correct": false,
+       "feedback": "No: it would still start. Look at the clips."
+      }
+     ]
+    },
+    {
+     "id": "q_safe",
+     "type": "question",
+     "yaw": 6.600000000000001,
+     "pitch": 3,
+     "label": "Fix it",
+     "retry": true,
+     "after": "flag:f_found",
+     "text": "Before you push the stick in, what do you do first?",
+     "options": [
+      {
+       "text": "Switch off and unplug at the wall",
+       "correct": true,
+       "flag": "f_ramclick",
+       "go": "R_fixed",
+       "feedback": "Yes: never fit or move parts with the power on."
+      },
+      {
+       "text": "Nothing: push it in while it's running",
+       "correct": false,
+       "feedback": "No! That can damage the RAM or the board. Switch off first."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "R_fixed",
+   "name": "Click!",
+   "lib": "20261103-171502-tinypc-tour-r-fixed-ram-pushed",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "right",
+   "end": false,
+   "endText": "",
+   "intro": "Switched off, stick pushed down firmly: click, both clips shut.\nBack to full size and try the power again.",
+   "markers": [
+    {
+     "id": "g_fixed_back",
+     "type": "go",
+     "yaw": 180,
+     "pitch": 0,
+     "label": "Back to full size",
+     "target": "B6",
+     "requires": [],
+     "code": ""
+    }
+   ]
+  },
+  {
+   "id": "S_on",
+   "name": "It's alive!",
+   "lib": "20261103-171626-tinypc-tour-s-on-switched-on-a",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "right",
+   "end": false,
+   "endText": "",
+   "ambient": "fan",
+   "enterSound": "post:S",
+   "props": [
+    {
+     "id": "case1",
+     "model": "tpc_fan_rotor_92",
+     "yaw": -3.45,
+     "dist": 8.731,
+     "h": -0.012,
+     "turn": -180.0,
+     "size": 35,
+     "spin": 70,
+     "axis": "z"
+    },
+    {
+     "id": "case2",
+     "model": "tpc_fan_rotor_92",
+     "yaw": 19.87,
+     "dist": 9.267,
+     "h": -0.012,
+     "turn": -180.0,
+     "size": 35,
+     "spin": 70,
+     "axis": "z"
+    },
+    {
+     "id": "case4",
+     "model": "tpc_fan_rotor_92",
+     "yaw": -99.5,
+     "dist": 8.056,
+     "h": -0.012,
+     "turn": 90.0,
+     "size": 35,
+     "spin": 70,
+     "axis": "z"
+    },
+    {
+     "id": "cooler0",
+     "model": "tpc_fan_rotor_120",
+     "yaw": -148.09,
+     "dist": 5.298,
+     "h": 1.694,
+     "turn": -180.0,
+     "size": 35,
+     "spin": 70,
+     "axis": "z"
+    }
+   ],
+   "intro": "One short beep: the start-up checks (the POST: power-on self-test) all passed.\nFans spinning, lights on, no debug light.",
+   "markers": [
+    {
+     "id": "i_dbg_off",
+     "type": "info",
+     "yaw": -15.8,
+     "pitch": -31.799999999999997,
+     "label": "Debug lights",
+     "title": "All clear",
+     "text": "No light on: CPU, memory, graphics and boot device all passed."
+    },
+    {
+     "id": "g_on_back",
+     "type": "go",
+     "yaw": 180,
+     "pitch": 0,
+     "label": "Back to full size",
+     "target": "B_on",
+     "requires": [],
+     "code": ""
+    }
+   ]
+  }
+ ]
+}

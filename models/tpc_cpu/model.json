@@ -1,0 +1,35 @@
+{
+  "id": "tpc_cpu",
+  "name": "CPU (loose)",
+  "file": "tpc_cpu.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "Loose CPU, 45 x 37.5 mm: gold pads underneath, generic etched lid.",
+  "scale": 1.0,
+  "polycount": 172,
+  "bbox_mm": [
+    -22.5,
+    22.5,
+    -18.75,
+    18.75,
+    0.0,
+    4.2
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

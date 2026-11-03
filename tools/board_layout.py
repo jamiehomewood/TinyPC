@@ -105,6 +105,13 @@ def _variant(stops, prefix, drop=()):
 STOPS_V2OFF = _variant(STOPS_V2, "tpc2off_", drop=("tpc2_s0_overview",))
 STOPS_V2ON = _variant(STOPS_V2, "tpc2on_", drop=("tpc2_s0_overview",))
 for _st in STOPS_V2OFF + STOPS_V2ON: _st["title"] = _st["title"] + (" (off)" if _st["id"].startswith("tpc2off") else " (on)")
+# Extra stops used only by the open-day tour (not part of the comparison sets), found by searching for clear spots at
+# that build step (3 Nov 2026). The GPU's fans face the PSU shroud, and there is no clear spot on that side, so the
+# graphics card is seen from the 24-pin side.
+STOPS_TOUR = [
+    dict(id="tpc2_s4_cooler", title="Behind the RAM, facing the cooler", x=296.0, y=28.0, k=25, omit=[], floor_z=0.0, yaw=251, exposure=0.4),
+    dict(id="tpc2_s5_gpu",    title="Beside the graphics card", x=260.0, y=178.0, k=35, omit=[], floor_z=0.0, yaw=247, exposure=0.4),
+]
 # Case fans for the live rotors (case/board model coordinates, mm: x, y = -board y, z above the board's underside),
 # and part fans relative to the part's anchor: (size, centre, axis)
 FANS_V2 = [(92, (507, -60 - k * 105, 43), "x") for k in range(3)] + [(92, (90 + k * 130, 47, 43), "y") for k in range(2)] + [(120, (-7, -100, 110), "x")]

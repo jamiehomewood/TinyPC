@@ -10,7 +10,8 @@ follow the parts if the layout changes.
 The story (20-30 minutes, groups of 5-10, one tablet passed round):
   Bench B0      look at and collect the seven parts
   B0..B6        fit them in order (wrong order: "not yet" with a reason); shrink in after the CPU, the RAM
-                (which two slots?) and the power cables; pressing power before the cables are in does nothing
+                (which two slots?), the cooler, the graphics card and the power cables; questions on the bench after
+                the paste and the SSD; pressing power before the cables are in does nothing
   B6 power      three long beeps: F_dram (DRAM debug light) -> F_ram (one stick not clicked in) -> switch off ->
                 R_fixed -> back to B6 -> power again -> S_on (one short beep, fans) -> B_on (setup screen, summing up)
 """
@@ -42,7 +43,7 @@ def stop_of(room):
 def board_point(room, bx, by, bz_mm):
     """(yaw, pitch) of a point on the board (board mm, bz_mm above the board's top) seen from a tiny room's stop."""
     sp = stop_of(room); t = sp["tinypc"]
-    st = next(s for s in L.STOPS_V2 if s["id"] == t["stop"]); k = st["k"] / 1000.0
+    st = next(s for s in L.STOPS_V2 + L.STOPS_TOUR if s["id"] == t["stop"]); k = st["k"] / 1000.0
     X, Y = (bx - st["x"]) * k, -(by - st["y"]) * k
     Z = 0.002 + (7.0 + L.BOARD_T + bz_mm) * k
     eye = sp["views"][0]["z"]
@@ -98,19 +99,35 @@ def pc_marker(mid, yaw, pitch):
         dict(item="i_ram", correct=True, consume=True, flag="f_ram", requires=["f_cpu"], go="T_ramq",
              notYet="Not yet: the CPU goes in first.", feedback="Before the RAM goes in, shrink down and pick the slots."),
         dict(item="i_paste", correct=True, consume=True, flag="f_paste", requires=["f_ram"], go=None,
-             notYet="Not yet: CPU and RAM first. (Paste goes on just before the cooler.)", feedback="A pea-sized dot of paste on the middle of the CPU. Now the cooler can go on."),
-        dict(item="i_cooler", correct=True, consume=True, flag="f_cooler", requires=["f_paste"], go="B3",
+             notYet="Not yet: CPU and RAM first. (Paste goes on just before the cooler.)", feedback="Paste on. There's a question on the PC: how much paste is right?"),
+        dict(item="i_cooler", correct=True, consume=True, flag="f_cooler", requires=["f_paste"], go="T_cooler",
              notYet="Not yet: the cooler needs thermal paste on the CPU first, or the heat can't get across the gap.",
-             feedback="Cooler on, screwed down evenly, fan cable plugged into CPU_FAN."),
+             feedback="Cooler on, screwed down evenly, fan cable plugged into CPU_FAN. Let's shrink down and look."),
         dict(item="i_ssd", correct=True, consume=True, flag="f_ssd", requires=["f_cooler"], go="B4",
-             notYet="Not yet: CPU, RAM, paste and cooler first.", feedback="The SSD slots into M.2_1 at an angle, then one small screw holds it down."),
-        dict(item="i_gpu", correct=True, consume=True, flag="f_gpu", requires=["f_ssd"], go="B5",
-             notYet="Not yet: fit the SSD first. The graphics card covers its slot.", feedback="Graphics card into the top PCIe x16 slot until the latch clicks, and screwed to the case."),
+             notYet="Not yet: CPU, RAM, paste and cooler first.", feedback="The SSD slots into M.2_1 at an angle, then one small screw holds it down. There's a question on the PC."),
+        dict(item="i_gpu", correct=True, consume=True, flag="f_gpu", requires=["f_ssd"], go="T_gpu",
+             notYet="Not yet: fit the SSD first. The graphics card covers its slot.", feedback="Graphics card into the top PCIe x16 slot until the latch clicks, and screwed to the case. Let's shrink down and look."),
         dict(item="i_cables", correct=True, consume=True, flag="f_power", requires=["f_gpu"], go="T_power",
              notYet="Not yet: power goes in last, once everything else is fitted.", feedback="24-pin and 8-pin plugged in until the latches click. Let's shrink down and look."),
     ]
     return {"id": mid, "type": "use", "yaw": yaw, "pitch": pitch, "label": "The PC", "text": "Fit the next part: pick it from your bag.",
             "accepts": acc, "wrongText": "That doesn't go in a PC."}
+
+# Questions that appear on the bench once a part is in (room number -> (flag that shows it, question)): the paste goes
+# on in B2 (no new picture), the SSD takes you to B4. Each is a one-question set: the player only checks "after" for
+# questions in a set (until then the hotspot is drawn faint).
+BENCH_Q = {
+    2: ("f_paste", {"id": "q_paste", "label": "How much paste?",
+         "text": "How much thermal paste goes on the CPU?",
+         "options": [{"text": "A pea-sized dot in the middle", "correct": True, "feedback": "Yes: the cooler squashes it into a thin, even layer."},
+                     {"text": "As much as possible: more paste, more cooling", "correct": False, "feedback": "No: paste is much worse at carrying heat than metal. Only enough to fill the gaps."},
+                     {"text": "None: the cooler is metal, so it touches the CPU anyway", "correct": False, "feedback": "Two flat metal surfaces still leave tiny air gaps, and air carries heat badly."}]}),
+    4: ("f_ssd", {"id": "q_ssd", "label": "Why now?",
+         "text": "Why does the SSD go in before the graphics card?",
+         "options": [{"text": "The graphics card covers the SSD's slot", "correct": True, "feedback": "Yes: once the card is in, you can't reach the M.2 slot."},
+                     {"text": "The SSD has to be powered on first", "correct": False, "feedback": "No: nothing is powered on yet. It's about space."},
+                     {"text": "The CPU checks it first", "correct": False, "feedback": "Not this one: it's about getting your fingers to the slot."}]}),
+}
 
 def bench_rooms():
     B = 2.855 + 0.8 - 0.375 - 0.02                      # bench centre (see specs/workbench)
@@ -136,6 +153,9 @@ def bench_rooms():
                           "dist": dist, "h": TOP, "turn": round(yaw, 1), "size": 1, "show3d": True})
             m.append({"id": "m_example", "type": "info", "yaw": ex_y, "pitch": ex_p + 4, "label": "A finished PC",
                       "title": "What you're building", "text": "This one is finished and switched on. Yours has the same parts: a motherboard, CPU, RAM, cooler, SSD, graphics card and power."})
+        if n in BENCH_Q:
+            fl, q = BENCH_Q[n]
+            m.append(dict(q, set=q["label"], yaw=round(pc_y - 16, 1), pitch=round(pc_p - 4, 1), after="flag:" + fl, retry=True, type="question"))
         if n < 7:
             if n < 6: m.append(pc_marker(f"m_pc_B{n}", pc_y, pc_p))
             if n < 6:
@@ -204,6 +224,32 @@ def tiny_rooms():
                   {"id": "i_clips", "type": "info", "yaw": sy, "pitch": sp + 4, "label": "The clips", "title": "Clips",
                    "text": "The clips at each end of a slot snap shut when a stick is pushed fully home. Have a good look..."},
                   back("g_ram_back", "B2", 0 if abs(sy) > 90 else 180)]})
+    # ---- the cooler fitted (seen from behind the RAM; the loose B2 stick is in the foreground)
+    fy_, fp_ = board_point("T_cooler", 130, 100, 98)
+    R.append({"id": "T_cooler", "name": "The cooler", "lib": lib("T_cooler"), "view": "centre", "dims": DIMS, "cardWall": "right", "end": False, "endText": "",
+              "intro": "Tiny again, behind the RAM. The tower in front of you is the CPU cooler, sitting on the CPU.",
+              "markers": [
+                  {"id": "i_fan", "type": "info", "yaw": fy_, "pitch": fp_, "label": "The fan", "title": "Fan and fins",
+                   "text": "Copper heat pipes carry the heat from the CPU up into dozens of thin metal fins. The fan pushes air through the fins and the heat goes with it."},
+                  {"id": "q_heat", "type": "question", "yaw": fy_ - 30, "pitch": 3, "label": "Question", "retry": True,
+                   "text": "Where does the CPU's heat end up?",
+                   "options": [{"text": "In the air, blown out of the case by the fans", "correct": True, "feedback": "Yes: CPU to paste to cooler to fins to air, then out of the case."},
+                               {"text": "Stored in the cooler", "correct": False, "feedback": "The cooler only passes it on: it would get hotter and hotter otherwise."},
+                               {"text": "Turned back into electricity", "correct": False, "feedback": "No: it just warms the air."}]},
+                  back("g_cooler_back", "B3")]})
+    # ---- the graphics card fitted
+    gy, gp = part_point("T_gpu", "gpu", 60)
+    R.append({"id": "T_gpu", "name": "The graphics card", "lib": lib("T_gpu"), "view": "centre", "dims": DIMS, "cardWall": "right", "end": False, "endText": "",
+              "intro": "That wall in front of you is the graphics card. The SSD you fitted is hidden underneath it.",
+              "markers": [
+                  {"id": "i_gpu", "type": "info", "yaw": gy, "pitch": gp, "label": "Graphics card", "title": "A computer in a computer",
+                   "text": "The card has its own processor (the GPU), its own fast memory and its own fans, which face the other way. It gets data from the CPU through the PCIe slot and sends the picture to the monitor."},
+                  {"id": "q_gpu", "type": "question", "yaw": gy - 30, "pitch": 3, "label": "Question", "retry": True,
+                   "text": "A CPU has a few big cores; a GPU has thousands of small ones. Why does that suit drawing pictures?",
+                   "options": [{"text": "Millions of pixels can be worked out at the same time", "correct": True, "feedback": "Yes: lots of simple jobs done in parallel. That's also why GPUs are used for AI."},
+                               {"text": "Small cores are faster than big ones", "correct": False, "feedback": "No: each GPU core is slower. There are just far more of them."},
+                               {"text": "The screen only needs one colour at a time", "correct": False, "feedback": "No: every pixel needs its own colour, many times a second."}]},
+                  back("g_gpu_back", "B5")]})
     # ---- power cables in
     ly, lp = board_point("T_power", 297, 169, 0.6)
     ay, ap = part_point("T_power", "atx24", 25)
@@ -228,13 +274,13 @@ def tiny_rooms():
     R.append({"id": "F_ram", "name": "The RAM", "lib": lib("F_ram"), "view": "centre", "dims": DIMS, "cardWall": "right", "end": False, "endText": "",
               "ambient": "fan", "props": props("F_ram"), "intro": "Look closely at both sticks and their clips.",
               "markers": [
-                  {"id": "q_whats_wrong", "type": "question", "yaw": fy, "pitch": fp + 6, "label": "What's wrong?", "retry": True,
+                  {"id": "q_whats_wrong", "type": "question", "set": "The RAM", "yaw": fy, "pitch": fp + 6, "label": "What's wrong?", "retry": True,
                    "text": "What's wrong here?",
                    "options": [{"text": "The stick in B2 isn't pushed all the way in: its clip is still open", "correct": True, "flag": "f_found",
                                 "feedback": "Well spotted. Its gold contacts aren't touching the slot's contacts properly."},
                                {"text": "The sticks are in the wrong slots", "correct": False, "feedback": "No: A2 and B2 is right. Look at the clips."},
                                {"text": "The RAM is too slow", "correct": False, "feedback": "No: it would still start. Look at the clips."}]},
-                  {"id": "q_safe", "type": "question", "yaw": fy + 40, "pitch": 3, "label": "Fix it", "retry": True, "after": "flag:f_found",
+                  {"id": "q_safe", "type": "question", "set": "The RAM", "yaw": fy + 40, "pitch": 3, "label": "Fix it", "retry": True, "after": "flag:f_found",
                    "text": "Before you push the stick in, what do you do first?",
                    "options": [{"text": "Switch off and unplug at the wall", "correct": True, "flag": "f_ramclick", "go": "R_fixed",
                                 "feedback": "Yes: never fit or move parts with the power on."},

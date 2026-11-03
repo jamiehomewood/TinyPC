@@ -241,7 +241,7 @@
        ],
        "go": null,
        "notYet": "Not yet: CPU and RAM first. (Paste goes on just before the cooler.)",
-       "feedback": "A pea-sized dot of paste on the middle of the CPU. Now the cooler can go on."
+       "feedback": "Paste on. There's a question on the PC: how much paste is right?"
       },
       {
        "item": "i_cooler",
@@ -251,9 +251,9 @@
        "requires": [
         "f_paste"
        ],
-       "go": "B3",
+       "go": "T_cooler",
        "notYet": "Not yet: the cooler needs thermal paste on the CPU first, or the heat can't get across the gap.",
-       "feedback": "Cooler on, screwed down evenly, fan cable plugged into CPU_FAN."
+       "feedback": "Cooler on, screwed down evenly, fan cable plugged into CPU_FAN. Let's shrink down and look."
       },
       {
        "item": "i_ssd",
@@ -265,7 +265,7 @@
        ],
        "go": "B4",
        "notYet": "Not yet: CPU, RAM, paste and cooler first.",
-       "feedback": "The SSD slots into M.2_1 at an angle, then one small screw holds it down."
+       "feedback": "The SSD slots into M.2_1 at an angle, then one small screw holds it down. There's a question on the PC."
       },
       {
        "item": "i_gpu",
@@ -275,9 +275,9 @@
        "requires": [
         "f_ssd"
        ],
-       "go": "B5",
+       "go": "T_gpu",
        "notYet": "Not yet: fit the SSD first. The graphics card covers its slot.",
-       "feedback": "Graphics card into the top PCIe x16 slot until the latch clicks, and screwed to the case."
+       "feedback": "Graphics card into the top PCIe x16 slot until the latch clicks, and screwed to the case. Let's shrink down and look."
       },
       {
        "item": "i_cables",
@@ -365,7 +365,7 @@
        ],
        "go": null,
        "notYet": "Not yet: CPU and RAM first. (Paste goes on just before the cooler.)",
-       "feedback": "A pea-sized dot of paste on the middle of the CPU. Now the cooler can go on."
+       "feedback": "Paste on. There's a question on the PC: how much paste is right?"
       },
       {
        "item": "i_cooler",
@@ -375,9 +375,9 @@
        "requires": [
         "f_paste"
        ],
-       "go": "B3",
+       "go": "T_cooler",
        "notYet": "Not yet: the cooler needs thermal paste on the CPU first, or the heat can't get across the gap.",
-       "feedback": "Cooler on, screwed down evenly, fan cable plugged into CPU_FAN."
+       "feedback": "Cooler on, screwed down evenly, fan cable plugged into CPU_FAN. Let's shrink down and look."
       },
       {
        "item": "i_ssd",
@@ -389,7 +389,7 @@
        ],
        "go": "B4",
        "notYet": "Not yet: CPU, RAM, paste and cooler first.",
-       "feedback": "The SSD slots into M.2_1 at an angle, then one small screw holds it down."
+       "feedback": "The SSD slots into M.2_1 at an angle, then one small screw holds it down. There's a question on the PC."
       },
       {
        "item": "i_gpu",
@@ -399,9 +399,9 @@
        "requires": [
         "f_ssd"
        ],
-       "go": "B5",
+       "go": "T_gpu",
        "notYet": "Not yet: fit the SSD first. The graphics card covers its slot.",
-       "feedback": "Graphics card into the top PCIe x16 slot until the latch clicks, and screwed to the case."
+       "feedback": "Graphics card into the top PCIe x16 slot until the latch clicks, and screwed to the case. Let's shrink down and look."
       },
       {
        "item": "i_cables",
@@ -450,6 +450,34 @@
    "endText": "",
    "markers": [
     {
+     "id": "q_paste",
+     "label": "How much paste?",
+     "text": "How much thermal paste goes on the CPU?",
+     "options": [
+      {
+       "text": "A pea-sized dot in the middle",
+       "correct": true,
+       "feedback": "Yes: the cooler squashes it into a thin, even layer."
+      },
+      {
+       "text": "As much as possible: more paste, more cooling",
+       "correct": false,
+       "feedback": "No: paste is much worse at carrying heat than metal. Only enough to fill the gaps."
+      },
+      {
+       "text": "None: the cooler is metal, so it touches the CPU anyway",
+       "correct": false,
+       "feedback": "Two flat metal surfaces still leave tiny air gaps, and air carries heat badly."
+      }
+     ],
+     "set": "How much paste?",
+     "yaw": -26.6,
+     "pitch": 0.5,
+     "after": "flag:f_paste",
+     "retry": true,
+     "type": "question"
+    },
+    {
      "id": "m_pc_B2",
      "type": "use",
      "yaw": -10.6,
@@ -488,7 +516,7 @@
        ],
        "go": null,
        "notYet": "Not yet: CPU and RAM first. (Paste goes on just before the cooler.)",
-       "feedback": "A pea-sized dot of paste on the middle of the CPU. Now the cooler can go on."
+       "feedback": "Paste on. There's a question on the PC: how much paste is right?"
       },
       {
        "item": "i_cooler",
@@ -498,9 +526,9 @@
        "requires": [
         "f_paste"
        ],
-       "go": "B3",
+       "go": "T_cooler",
        "notYet": "Not yet: the cooler needs thermal paste on the CPU first, or the heat can't get across the gap.",
-       "feedback": "Cooler on, screwed down evenly, fan cable plugged into CPU_FAN."
+       "feedback": "Cooler on, screwed down evenly, fan cable plugged into CPU_FAN. Let's shrink down and look."
       },
       {
        "item": "i_ssd",
@@ -512,7 +540,7 @@
        ],
        "go": "B4",
        "notYet": "Not yet: CPU, RAM, paste and cooler first.",
-       "feedback": "The SSD slots into M.2_1 at an angle, then one small screw holds it down."
+       "feedback": "The SSD slots into M.2_1 at an angle, then one small screw holds it down. There's a question on the PC."
       },
       {
        "item": "i_gpu",
@@ -522,9 +550,9 @@
        "requires": [
         "f_ssd"
        ],
-       "go": "B5",
+       "go": "T_gpu",
        "notYet": "Not yet: fit the SSD first. The graphics card covers its slot.",
-       "feedback": "Graphics card into the top PCIe x16 slot until the latch clicks, and screwed to the case."
+       "feedback": "Graphics card into the top PCIe x16 slot until the latch clicks, and screwed to the case. Let's shrink down and look."
       },
       {
        "item": "i_cables",
@@ -611,7 +639,7 @@
        ],
        "go": null,
        "notYet": "Not yet: CPU and RAM first. (Paste goes on just before the cooler.)",
-       "feedback": "A pea-sized dot of paste on the middle of the CPU. Now the cooler can go on."
+       "feedback": "Paste on. There's a question on the PC: how much paste is right?"
       },
       {
        "item": "i_cooler",
@@ -621,9 +649,9 @@
        "requires": [
         "f_paste"
        ],
-       "go": "B3",
+       "go": "T_cooler",
        "notYet": "Not yet: the cooler needs thermal paste on the CPU first, or the heat can't get across the gap.",
-       "feedback": "Cooler on, screwed down evenly, fan cable plugged into CPU_FAN."
+       "feedback": "Cooler on, screwed down evenly, fan cable plugged into CPU_FAN. Let's shrink down and look."
       },
       {
        "item": "i_ssd",
@@ -635,7 +663,7 @@
        ],
        "go": "B4",
        "notYet": "Not yet: CPU, RAM, paste and cooler first.",
-       "feedback": "The SSD slots into M.2_1 at an angle, then one small screw holds it down."
+       "feedback": "The SSD slots into M.2_1 at an angle, then one small screw holds it down. There's a question on the PC."
       },
       {
        "item": "i_gpu",
@@ -645,9 +673,9 @@
        "requires": [
         "f_ssd"
        ],
-       "go": "B5",
+       "go": "T_gpu",
        "notYet": "Not yet: fit the SSD first. The graphics card covers its slot.",
-       "feedback": "Graphics card into the top PCIe x16 slot until the latch clicks, and screwed to the case."
+       "feedback": "Graphics card into the top PCIe x16 slot until the latch clicks, and screwed to the case. Let's shrink down and look."
       },
       {
        "item": "i_cables",
@@ -696,6 +724,34 @@
    "endText": "",
    "markers": [
     {
+     "id": "q_ssd",
+     "label": "Why now?",
+     "text": "Why does the SSD go in before the graphics card?",
+     "options": [
+      {
+       "text": "The graphics card covers the SSD's slot",
+       "correct": true,
+       "feedback": "Yes: once the card is in, you can't reach the M.2 slot."
+      },
+      {
+       "text": "The SSD has to be powered on first",
+       "correct": false,
+       "feedback": "No: nothing is powered on yet. It's about space."
+      },
+      {
+       "text": "The CPU checks it first",
+       "correct": false,
+       "feedback": "Not this one: it's about getting your fingers to the slot."
+      }
+     ],
+     "set": "Why now?",
+     "yaw": -26.6,
+     "pitch": 0.5,
+     "after": "flag:f_ssd",
+     "retry": true,
+     "type": "question"
+    },
+    {
      "id": "m_pc_B4",
      "type": "use",
      "yaw": -10.6,
@@ -734,7 +790,7 @@
        ],
        "go": null,
        "notYet": "Not yet: CPU and RAM first. (Paste goes on just before the cooler.)",
-       "feedback": "A pea-sized dot of paste on the middle of the CPU. Now the cooler can go on."
+       "feedback": "Paste on. There's a question on the PC: how much paste is right?"
       },
       {
        "item": "i_cooler",
@@ -744,9 +800,9 @@
        "requires": [
         "f_paste"
        ],
-       "go": "B3",
+       "go": "T_cooler",
        "notYet": "Not yet: the cooler needs thermal paste on the CPU first, or the heat can't get across the gap.",
-       "feedback": "Cooler on, screwed down evenly, fan cable plugged into CPU_FAN."
+       "feedback": "Cooler on, screwed down evenly, fan cable plugged into CPU_FAN. Let's shrink down and look."
       },
       {
        "item": "i_ssd",
@@ -758,7 +814,7 @@
        ],
        "go": "B4",
        "notYet": "Not yet: CPU, RAM, paste and cooler first.",
-       "feedback": "The SSD slots into M.2_1 at an angle, then one small screw holds it down."
+       "feedback": "The SSD slots into M.2_1 at an angle, then one small screw holds it down. There's a question on the PC."
       },
       {
        "item": "i_gpu",
@@ -768,9 +824,9 @@
        "requires": [
         "f_ssd"
        ],
-       "go": "B5",
+       "go": "T_gpu",
        "notYet": "Not yet: fit the SSD first. The graphics card covers its slot.",
-       "feedback": "Graphics card into the top PCIe x16 slot until the latch clicks, and screwed to the case."
+       "feedback": "Graphics card into the top PCIe x16 slot until the latch clicks, and screwed to the case. Let's shrink down and look."
       },
       {
        "item": "i_cables",
@@ -857,7 +913,7 @@
        ],
        "go": null,
        "notYet": "Not yet: CPU and RAM first. (Paste goes on just before the cooler.)",
-       "feedback": "A pea-sized dot of paste on the middle of the CPU. Now the cooler can go on."
+       "feedback": "Paste on. There's a question on the PC: how much paste is right?"
       },
       {
        "item": "i_cooler",
@@ -867,9 +923,9 @@
        "requires": [
         "f_paste"
        ],
-       "go": "B3",
+       "go": "T_cooler",
        "notYet": "Not yet: the cooler needs thermal paste on the CPU first, or the heat can't get across the gap.",
-       "feedback": "Cooler on, screwed down evenly, fan cable plugged into CPU_FAN."
+       "feedback": "Cooler on, screwed down evenly, fan cable plugged into CPU_FAN. Let's shrink down and look."
       },
       {
        "item": "i_ssd",
@@ -881,7 +937,7 @@
        ],
        "go": "B4",
        "notYet": "Not yet: CPU, RAM, paste and cooler first.",
-       "feedback": "The SSD slots into M.2_1 at an angle, then one small screw holds it down."
+       "feedback": "The SSD slots into M.2_1 at an angle, then one small screw holds it down. There's a question on the PC."
       },
       {
        "item": "i_gpu",
@@ -891,9 +947,9 @@
        "requires": [
         "f_ssd"
        ],
-       "go": "B5",
+       "go": "T_gpu",
        "notYet": "Not yet: fit the SSD first. The graphics card covers its slot.",
-       "feedback": "Graphics card into the top PCIe x16 slot until the latch clicks, and screwed to the case."
+       "feedback": "Graphics card into the top PCIe x16 slot until the latch clicks, and screwed to the case. Let's shrink down and look."
       },
       {
        "item": "i_cables",
@@ -1218,6 +1274,134 @@
    ]
   },
   {
+   "id": "T_cooler",
+   "name": "The cooler",
+   "lib": "20261103-213957-tinypc-tour-t-cooler-the-coole",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "right",
+   "end": false,
+   "endText": "",
+   "intro": "Tiny again, behind the RAM. The tower in front of you is the CPU cooler, sitting on the CPU.",
+   "markers": [
+    {
+     "id": "i_fan",
+     "type": "info",
+     "yaw": -4.4,
+     "pitch": 16.4,
+     "label": "The fan",
+     "title": "Fan and fins",
+     "text": "Copper heat pipes carry the heat from the CPU up into dozens of thin metal fins. The fan pushes air through the fins and the heat goes with it."
+    },
+    {
+     "id": "q_heat",
+     "type": "question",
+     "yaw": -34.4,
+     "pitch": 3,
+     "label": "Question",
+     "retry": true,
+     "text": "Where does the CPU's heat end up?",
+     "options": [
+      {
+       "text": "In the air, blown out of the case by the fans",
+       "correct": true,
+       "feedback": "Yes: CPU to paste to cooler to fins to air, then out of the case."
+      },
+      {
+       "text": "Stored in the cooler",
+       "correct": false,
+       "feedback": "The cooler only passes it on: it would get hotter and hotter otherwise."
+      },
+      {
+       "text": "Turned back into electricity",
+       "correct": false,
+       "feedback": "No: it just warms the air."
+      }
+     ]
+    },
+    {
+     "id": "g_cooler_back",
+     "type": "go",
+     "yaw": 180,
+     "pitch": 0,
+     "label": "Back to full size",
+     "target": "B3",
+     "requires": [],
+     "code": ""
+    }
+   ]
+  },
+  {
+   "id": "T_gpu",
+   "name": "The graphics card",
+   "lib": "20261103-214107-tinypc-tour-t-gpu-the-graphics",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "right",
+   "end": false,
+   "endText": "",
+   "intro": "That wall in front of you is the graphics card. The SSD you fitted is hidden underneath it.",
+   "markers": [
+    {
+     "id": "i_gpu",
+     "type": "info",
+     "yaw": 0.4,
+     "pitch": 9.5,
+     "label": "Graphics card",
+     "title": "A computer in a computer",
+     "text": "The card has its own processor (the GPU), its own fast memory and its own fans, which face the other way. It gets data from the CPU through the PCIe slot and sends the picture to the monitor."
+    },
+    {
+     "id": "q_gpu",
+     "type": "question",
+     "yaw": -29.6,
+     "pitch": 3,
+     "label": "Question",
+     "retry": true,
+     "text": "A CPU has a few big cores; a GPU has thousands of small ones. Why does that suit drawing pictures?",
+     "options": [
+      {
+       "text": "Millions of pixels can be worked out at the same time",
+       "correct": true,
+       "feedback": "Yes: lots of simple jobs done in parallel. That's also why GPUs are used for AI."
+      },
+      {
+       "text": "Small cores are faster than big ones",
+       "correct": false,
+       "feedback": "No: each GPU core is slower. There are just far more of them."
+      },
+      {
+       "text": "The screen only needs one colour at a time",
+       "correct": false,
+       "feedback": "No: every pixel needs its own colour, many times a second."
+      }
+     ]
+    },
+    {
+     "id": "g_gpu_back",
+     "type": "go",
+     "yaw": 180,
+     "pitch": 0,
+     "label": "Back to full size",
+     "target": "B5",
+     "requires": [],
+     "code": ""
+    }
+   ]
+  },
+  {
    "id": "T_power",
    "name": "Power in",
    "lib": "20261103-171845-tinypc-tour-t-power-power-plug",
@@ -1417,6 +1601,7 @@
     {
      "id": "q_whats_wrong",
      "type": "question",
+     "set": "The RAM",
      "yaw": -33.4,
      "pitch": -8.8,
      "label": "What's wrong?",
@@ -1444,6 +1629,7 @@
     {
      "id": "q_safe",
      "type": "question",
+     "set": "The RAM",
      "yaw": 6.600000000000001,
      "pitch": 3,
      "label": "Fix it",

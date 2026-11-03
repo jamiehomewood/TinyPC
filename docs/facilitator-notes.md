@@ -18,8 +18,12 @@
 | 10–12 | **On the CPU** (tiny) | Standing on the CPU lid. Question: 3.6 GHz = ? | 3.6 billion ticks a second. |
 | 12–14 | **RAM slots** (tiny) | Which two slots? | **A2 and B2** (one per channel = dual channel). |
 | | **RAM fitted** (tiny) | "Have a good look at the clips…" | The planted fault: the stick in **B2 isn't fully in** (its clip is open; you can see its gold contacts). Don't give it away! |
-| 14–18 | Bench | Paste, then cooler (cooler before paste = refused), SSD, graphics card (graphics before SSD = refused: it covers the SSD's slot), power cables. Pressing power before the cables: nothing happens. | |
-| 18 | **Power in** (tiny) | The 24-pin, and the four **debug lights** (CPU, DRAM, VGA, BOOT). | Point the lights out: they'll matter in a minute. |
+| 14–15 | Bench | Paste (cooler before paste = refused). A question appears by the PC: **how much paste?** | A pea-sized dot. |
+| 15–16 | **The cooler** (tiny) | Behind the RAM, looking at the cooler tower and its fan. Question: where does the heat end up? | In the air, blown out of the case. The loose B2 stick is in the foreground: a second chance to spot it. Still don't give it away. |
+| 16–17 | Bench | SSD. A question appears by the PC: **why before the graphics card?** | The card covers the SSD's slot. (Trying the card first is refused for the same reason.) |
+| 17–18 | **The graphics card** (tiny) | The card stands like a wall; the SSD is hidden under it. Question: why thousands of small cores? | Millions of pixels worked out at the same time (in parallel). |
+| 18 | Bench | Power cables. Pressing power before the cables: nothing happens. | |
+| 18–19 | **Power in** (tiny) | The 24-pin, and the four **debug lights** (CPU, DRAM, VGA, BOOT). | Point the lights out: they'll matter in a minute. |
 | 19 | Bench → **Power button** | Fans spin… **three long beeps**. | |
 | 20 | **Something's wrong** (tiny) | Fans spinning, the **DRAM** light on. | DRAM = the memory. |
 | 21–23 | **The RAM** (tiny, running) | What's wrong? → Before pushing it in? | The B2 stick isn't home → **switch off and unplug first**. |

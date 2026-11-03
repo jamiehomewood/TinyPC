@@ -5,6 +5,8 @@ Writes a Room Builder spec for every room of the open-day tour (specs/tour/<room
   Inside the PC                   T_cpu    on the CPU, just fitted (step 1, switched off)
                                   T_ramq   beside the RAM slots, empty (step 1, off)
                                   T_ram    beside the RAM, sticks in, B2 not clicked home (step 2, off)
+                                  T_cooler behind the RAM, facing the cooler (step 3, off)
+                                  T_gpu    beside the graphics card (step 5, off)
                                   T_power  by the 24-pin, cables plugged in (step 6, off)
                                   F_dram   by the 24-pin, switched on, DRAM debug light lit (step 6, the fault)
                                   F_ram    beside the RAM, switched on, the loose stick (step 6, the fault)
@@ -28,12 +30,14 @@ import make_stop_specs as MS
 QUALITY = sys.argv[1] if len(sys.argv) > 1 else "standard"
 MS.SET = "v2on"                                     # (rotor seats: same parts as set 2)
 OUT = os.path.join(ROOT, "specs", "tour"); os.makedirs(OUT, exist_ok=True)
-STOP = {s["id"].split("_", 1)[1]: s for s in L.STOPS_V2}         # s1_arrival, s2_cpu, s3_ram
+STOP = {s["id"].split("_", 1)[1]: s for s in L.STOPS_V2 + L.STOPS_TOUR}   # s1_arrival, s2_cpu, s3_ram, s4_cooler, s5_gpu
 
 TINY = {
     "T_cpu":   ("s2_cpu", 1, False, "off", None, "On the CPU (just fitted)"),
     "T_ramq":  ("s3_ram", 1, False, "off", None, "The empty RAM slots"),
     "T_ram":   ("s3_ram", 2, False, "off", None, "RAM fitted"),
+    "T_cooler": ("s4_cooler", 3, False, "off", None, "The cooler fitted"),
+    "T_gpu":   ("s5_gpu", 5, False, "off", None, "The graphics card fitted"),
     "T_power": ("s1_arrival", 6, False, "off", None, "Power plugged in"),
     "F_dram":  ("s1_arrival", 6, False, "on", "dram", "Switched on: DRAM light"),
     "F_ram":   ("s3_ram", 6, False, "on", "dram", "Switched on: the RAM"),

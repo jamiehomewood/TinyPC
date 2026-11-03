@@ -1,0 +1,35 @@
+{
+  "id": "tpc_eps8",
+  "name": "8-pin CPU power, plugged in",
+  "file": "tpc_eps8.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "8-pin header with plug; bundle bends towards +y (the top edge).",
+  "scale": 1.0,
+  "polycount": 862,
+  "bbox_mm": [
+    -9.4,
+    9.4,
+    -5.0,
+    160.0,
+    0.0,
+    141.0
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

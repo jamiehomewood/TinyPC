@@ -1,0 +1,35 @@
+{
+  "id": "tpc_pc_tower",
+  "name": "PC tower, built, side off",
+  "file": "tpc_pc_tower.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "The TinyPC built, side panel off, open side facing -y, front +x. 430 x 225 x 556 mm.",
+  "scale": 1.0,
+  "polycount": 72322,
+  "bbox_mm": [
+    -22.0,
+    432.0,
+    -217.0,
+    11.4,
+    0.0,
+    556.0
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

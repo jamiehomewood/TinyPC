@@ -1,0 +1,35 @@
+{
+  "id": "tpc_fan_rotor_92",
+  "name": "Fan rotor 92 mm",
+  "file": "tpc_fan_rotor_92.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "Hub and 9 blades of a 92 mm fan, axis front-back; spun live by the tour.",
+  "scale": 1.0,
+  "polycount": 164,
+  "bbox_mm": [
+    -41.74,
+    41.76,
+    -10.0,
+    10.0,
+    -41.74,
+    41.76
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

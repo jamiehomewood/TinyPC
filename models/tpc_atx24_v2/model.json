@@ -1,0 +1,35 @@
+{
+  "id": "tpc_atx24_v2",
+  "name": "24-pin power, cable through the tray",
+  "file": "tpc_atx24_v2.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "24-pin header with plug; the sleeved bundle arches over and drops through a grommet 34 mm away (-y, the board's front edge at rot 90), into the case floor.",
+  "scale": 1.0,
+  "polycount": 1732,
+  "bbox_mm": [
+    -26.2,
+    26.2,
+    -49.09,
+    11.09,
+    -7.6,
+    83.09
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

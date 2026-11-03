@@ -1,0 +1,35 @@
+{
+  "id": "tpc_case_shell_v2_on",
+  "name": "PC case interior, on (no blades)",
+  "file": "tpc_case_shell_v2_on.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "Set 2 case lit, fan blades left out: the tour spins tpc_fan_rotor_92/120 over them.",
+  "scale": 1.0,
+  "polycount": 3666,
+  "bbox_mm": [
+    -450.0,
+    1150.0,
+    -750.0,
+    250.0,
+    -7.0,
+    1500.0
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

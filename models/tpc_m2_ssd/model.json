@@ -1,0 +1,35 @@
+{
+  "id": "tpc_m2_ssd",
+  "name": "M.2 SSD",
+  "file": "tpc_m2_ssd.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "M.2 2280 SSD in its slot with a generic label.",
+  "scale": 1.0,
+  "polycount": 86,
+  "bbox_mm": [
+    -43.0,
+    42.7,
+    -11.0,
+    11.0,
+    0.0,
+    4.2
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "tpc_eps8_v2",
+  "name": "8-pin CPU power, cable through the tray",
+  "file": "tpc_eps8_v2.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "8-pin header with plug; bundle arches over and drops through the tray towards +y.",
+  "scale": 1.0,
+  "polycount": 964,
+  "bbox_mm": [
+    -9.4,
+    9.4,
+    -5.0,
+    38.0,
+    -7.6,
+    76.0
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

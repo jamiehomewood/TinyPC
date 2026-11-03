@@ -1,0 +1,35 @@
+{
+  "id": "tpc_dimm_slot_open",
+  "name": "DIMM slot (clips open)",
+  "file": "tpc_dimm_slot_open.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "146 mm slot, clips open.",
+  "scale": 1.0,
+  "polycount": 1500,
+  "bbox_mm": [
+    -71.0,
+    71.0,
+    -3.15,
+    3.15,
+    0.0,
+    17.44
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

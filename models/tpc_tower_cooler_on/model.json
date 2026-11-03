@@ -1,0 +1,35 @@
+{
+  "id": "tpc_tower_cooler_on",
+  "name": "Tower cooler, on (no blades)",
+  "file": "tpc_tower_cooler_on.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "Cooler with its fan blades left out (spun live by the tour).",
+  "scale": 1.0,
+  "polycount": 1474,
+  "bbox_mm": [
+    -38.6,
+    50.0,
+    -62.5,
+    62.5,
+    0.0,
+    158.0
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

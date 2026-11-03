@@ -1,0 +1,35 @@
+{
+  "id": "tpc_pc_tower_fixed_on",
+  "name": "PC tower, built and running",
+  "file": "tpc_pc_tower_fixed_on.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "Finished open-day PC, RAM clicked home, power LED lit.",
+  "scale": 1.0,
+  "polycount": 67078,
+  "bbox_mm": [
+    -22.0,
+    432.0,
+    -217.0,
+    11.4,
+    0.0,
+    556.0
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

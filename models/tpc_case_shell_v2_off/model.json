@@ -1,0 +1,35 @@
+{
+  "id": "tpc_case_shell_v2_off",
+  "name": "PC case interior, switched off",
+  "file": "tpc_case_shell_v2_off.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "Set 2 case, fans still, RGB dark.",
+  "scale": 1.0,
+  "polycount": 3882,
+  "bbox_mm": [
+    -450.0,
+    1150.0,
+    -750.0,
+    250.0,
+    -7.0,
+    1500.0
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

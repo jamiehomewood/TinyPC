@@ -1,0 +1,35 @@
+{
+  "id": "tpc_chipset_heatsink",
+  "name": "Chipset heatsink",
+  "file": "tpc_chipset_heatsink.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "44 mm low heatsink.",
+  "scale": 1.0,
+  "polycount": 110,
+  "bbox_mm": [
+    -22.0,
+    22.0,
+    -22.0,
+    22.4,
+    0.0,
+    9.4
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

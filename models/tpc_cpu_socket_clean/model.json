@@ -1,0 +1,35 @@
+{
+  "id": "tpc_cpu_socket_clean",
+  "name": "CPU in socket, clean lid",
+  "file": "tpc_cpu_socket_clean.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "LGA socket with the CPU in, lid clean with generic etched markings (no paste).",
+  "scale": 1.0,
+  "polycount": 212,
+  "bbox_mm": [
+    -28.0,
+    35.5,
+    -33.3,
+    33.75,
+    0.0,
+    5.3
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "tpc_atx24",
+  "name": "24-pin power, plugged in",
+  "file": "tpc_atx24.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "24-pin header with plug; wires rise into a sleeved bundle bending towards -y (the board's front edge at rot 90).",
+  "scale": 1.0,
+  "polycount": 1630,
+  "bbox_mm": [
+    -26.2,
+    26.2,
+    -190.0,
+    11.09,
+    0.0,
+    158.59
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

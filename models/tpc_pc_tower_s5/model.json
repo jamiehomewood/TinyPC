@@ -1,0 +1,35 @@
+{
+  "id": "tpc_pc_tower_s5",
+  "name": "PC tower, build step 5",
+  "file": "tpc_pc_tower_s5.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "The open-day PC at build step 5 (board_layout.BUILD); switched off.",
+  "scale": 1.0,
+  "polycount": 64382,
+  "bbox_mm": [
+    -22.0,
+    432.0,
+    -217.0,
+    11.4,
+    0.0,
+    556.0
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

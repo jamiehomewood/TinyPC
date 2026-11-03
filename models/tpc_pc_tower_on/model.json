@@ -1,0 +1,35 @@
+{
+  "id": "tpc_pc_tower_on",
+  "name": "PC tower, built, switched on",
+  "file": "tpc_pc_tower_on.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "As tpc_pc_tower, power LED lit.",
+  "scale": 1.0,
+  "polycount": 70850,
+  "bbox_mm": [
+    -22.0,
+    432.0,
+    -217.0,
+    11.4,
+    0.0,
+    556.0
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

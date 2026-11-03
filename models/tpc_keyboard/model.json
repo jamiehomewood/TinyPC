@@ -1,0 +1,35 @@
+{
+  "id": "tpc_keyboard",
+  "name": "Keyboard",
+  "file": "tpc_keyboard.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "Full-size keyboard, front -y.",
+  "scale": 1.0,
+  "polycount": 1060,
+  "bbox_mm": [
+    -220.0,
+    220.0,
+    -68.0,
+    68.0,
+    0.0,
+    22.0
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

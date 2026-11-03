@@ -1,0 +1,44 @@
+{
+  "id": "20261103-103425-tinypc-2-on-the-cpu",
+  "name": "TinyPC 2 - On the CPU",
+  "created": "2026-11-03 10:34",
+  "style": "outdoor",
+  "lighting": "night",
+  "quality": "standard",
+  "resolution": "6144x3072",
+  "samples": 256,
+  "room": {
+    "preset": "igloo-main",
+    "width": 6.4,
+    "depth": 5.71,
+    "height": 2.244
+  },
+  "views": [
+    "centre"
+  ],
+  "render_seconds": 96,
+  "models": [
+    "tpc_atx24",
+    "tpc_board",
+    "tpc_cap_6x8",
+    "tpc_cap_8x10",
+    "tpc_case_shell",
+    "tpc_chipset_heatsink",
+    "tpc_cmos_battery",
+    "tpc_cpu_socket",
+    "tpc_dimm",
+    "tpc_dimm_slot",
+    "tpc_eps8",
+    "tpc_gpu",
+    "tpc_m2_ssd",
+    "tpc_pcie_x1",
+    "tpc_pcie_x16",
+    "tpc_rear_io",
+    "tpc_sata_ports",
+    "tpc_vrm_heatsink_l",
+    "tpc_vrm_heatsink_s"
+  ],
+  "credit_required": [],
+  "outside": null,
+  "notes": ""
+}

@@ -1,0 +1,35 @@
+{
+  "id": "tpc_pcie_x1",
+  "name": "PCIe x1 slot",
+  "file": "tpc_pcie_x1.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "x1 slot.",
+  "scale": 1.0,
+  "polycount": 410,
+  "bbox_mm": [
+    -12.5,
+    12.5,
+    -4.0,
+    4.0,
+    0.0,
+    11.0
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

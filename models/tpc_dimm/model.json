@@ -1,0 +1,35 @@
+{
+  "id": "tpc_dimm",
+  "name": "RAM stick (DDR5, RGB)",
+  "file": "tpc_dimm.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "133 mm stick with heat spreader, sticker and RGB bar (lit).",
+  "scale": 1.0,
+  "polycount": 1746,
+  "bbox_mm": [
+    -67.52,
+    67.52,
+    -3.8,
+    3.8,
+    0.0,
+    44.0
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "tpc_monitor_on",
+  "name": "Monitor (setup screen)",
+  "file": "tpc_monitor_on.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "24-inch monitor showing a generic firmware setup page.",
+  "scale": 1.0,
+  "polycount": 42,
+  "bbox_mm": [
+    -272.0,
+    272.0,
+    -80.0,
+    100.0,
+    0.0,
+    465.0
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "tpc_workbench",
+  "name": "Electronics workbench",
+  "file": "tpc_workbench.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "2 m bench, top 0.9 m, anti-static mat with earth lead, pegboard back with shelf, tools, wrist strap and LED light bar. Front faces -y; back against the wall.",
+  "scale": 1.0,
+  "polycount": 1486,
+  "bbox_mm": [
+    -1000.0,
+    1000.0,
+    -375.0,
+    382.48,
+    0.0,
+    1720.0
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

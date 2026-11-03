@@ -1,0 +1,6 @@
+config.json
+*.blend1
+__pycache__/
+_to_delete/
+Thumbs.db
+.DS_Store

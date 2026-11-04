@@ -76,6 +76,35 @@
     "From the power supply (PSU): the 24-pin cable powers the motherboard, and the 8-pin cable feeds the CPU's power circuits.",
     "The PSU turns mains electricity into the low voltages the parts need (12 V, 5 V, 3.3 V)."
    ]
+  },
+  {
+   "id": "i_mon_off",
+   "name": "The monitor (PC off)",
+   "model": "tpc_monitor",
+   "description": "",
+   "pages": [
+    "Black: the PC is switched off, so nothing is being sent to the screen yet."
+   ]
+  },
+  {
+   "id": "i_mon_fault",
+   "name": "The monitor: black screen",
+   "model": "tpc_monitor",
+   "description": "",
+   "pages": [
+    "Still black. The fans are spinning, but the PC stopped at the memory check, before it got as far as the graphics: it has nothing to show.",
+    "A black screen plus beeps is a clue: count the beeps and look for a debug light."
+   ]
+  },
+  {
+   "id": "i_mon_on",
+   "name": "The monitor: setup screen",
+   "model": "tpc_monitor_on",
+   "description": "",
+   "pages": [
+    "The setup screen (BIOS / UEFI): the PC passed its checks and found its parts.",
+    "It lists the CPU, the 32 GB of RAM and the 1 TB SSD. Next it would load the operating system from the SSD."
+   ]
   }
  ],
  "rooms": [
@@ -205,8 +234,8 @@
     {
      "id": "m_pc_B0",
      "type": "use",
-     "yaw": -10.6,
-     "pitch": 4.5,
+     "yaw": -18.9,
+     "pitch": 1.4,
      "label": "The PC",
      "text": "Fit the next part: pick it from your bag.",
      "accepts": [
@@ -296,16 +325,21 @@
     },
     {
      "id": "m_power_B0",
-     "type": "go",
+     "type": "info",
      "yaw": -5.3,
      "pitch": 10.6,
      "label": "Power button",
-     "target": "B6",
-     "requires": [
-      "f_power"
-     ],
-     "lockedText": "Nothing happens at all: no fans, no lights. Nothing can work until the power cables are in.",
-     "code": ""
+     "title": "Nothing happens",
+     "text": "No fans, no lights, no beeps: nothing at all. The PC can't get any power until the power cables are plugged in."
+    },
+    {
+     "id": "m_mon_B0",
+     "type": "item",
+     "item": "i_mon_off",
+     "take": false,
+     "yaw": 5.0,
+     "pitch": 1.4,
+     "label": "The monitor"
     }
    ],
    "intro": "Your team's job: build this PC and get it to start.\nThe parts are on the two benches. Pick each one up to find out what it does (it goes in your bag), then fit them into the PC, one at a time."
@@ -329,8 +363,8 @@
     {
      "id": "m_pc_B1",
      "type": "use",
-     "yaw": -10.6,
-     "pitch": 4.5,
+     "yaw": -18.9,
+     "pitch": 1.4,
      "label": "The PC",
      "text": "Fit the next part: pick it from your bag.",
      "accepts": [
@@ -420,16 +454,21 @@
     },
     {
      "id": "m_power_B1",
-     "type": "go",
+     "type": "info",
      "yaw": -5.3,
      "pitch": 10.6,
      "label": "Power button",
-     "target": "B6",
-     "requires": [
-      "f_power"
-     ],
-     "lockedText": "Nothing happens at all: no fans, no lights. Nothing can work until the power cables are in.",
-     "code": ""
+     "title": "Nothing happens",
+     "text": "No fans, no lights, no beeps: nothing at all. The PC can't get any power until the power cables are plugged in."
+    },
+    {
+     "id": "m_mon_B1",
+     "type": "item",
+     "item": "i_mon_off",
+     "take": false,
+     "yaw": 5.0,
+     "pitch": 1.4,
+     "label": "The monitor"
     }
    ]
   },
@@ -471,8 +510,8 @@
       }
      ],
      "set": "How much paste?",
-     "yaw": -26.6,
-     "pitch": 0.5,
+     "yaw": -34.9,
+     "pitch": -2.6,
      "after": "flag:f_paste",
      "retry": true,
      "type": "question"
@@ -480,8 +519,8 @@
     {
      "id": "m_pc_B2",
      "type": "use",
-     "yaw": -10.6,
-     "pitch": 4.5,
+     "yaw": -18.9,
+     "pitch": 1.4,
      "label": "The PC",
      "text": "Fit the next part: pick it from your bag.",
      "accepts": [
@@ -571,16 +610,21 @@
     },
     {
      "id": "m_power_B2",
-     "type": "go",
+     "type": "info",
      "yaw": -5.3,
      "pitch": 10.6,
      "label": "Power button",
-     "target": "B6",
-     "requires": [
-      "f_power"
-     ],
-     "lockedText": "Nothing happens at all: no fans, no lights. Nothing can work until the power cables are in.",
-     "code": ""
+     "title": "Nothing happens",
+     "text": "No fans, no lights, no beeps: nothing at all. The PC can't get any power until the power cables are plugged in."
+    },
+    {
+     "id": "m_mon_B2",
+     "type": "item",
+     "item": "i_mon_off",
+     "take": false,
+     "yaw": 5.0,
+     "pitch": 1.4,
+     "label": "The monitor"
     }
    ]
   },
@@ -603,8 +647,8 @@
     {
      "id": "m_pc_B3",
      "type": "use",
-     "yaw": -10.6,
-     "pitch": 4.5,
+     "yaw": -18.9,
+     "pitch": 1.4,
      "label": "The PC",
      "text": "Fit the next part: pick it from your bag.",
      "accepts": [
@@ -694,16 +738,21 @@
     },
     {
      "id": "m_power_B3",
-     "type": "go",
+     "type": "info",
      "yaw": -5.3,
      "pitch": 10.6,
      "label": "Power button",
-     "target": "B6",
-     "requires": [
-      "f_power"
-     ],
-     "lockedText": "Nothing happens at all: no fans, no lights. Nothing can work until the power cables are in.",
-     "code": ""
+     "title": "Nothing happens",
+     "text": "No fans, no lights, no beeps: nothing at all. The PC can't get any power until the power cables are plugged in."
+    },
+    {
+     "id": "m_mon_B3",
+     "type": "item",
+     "item": "i_mon_off",
+     "take": false,
+     "yaw": 5.0,
+     "pitch": 1.4,
+     "label": "The monitor"
     }
    ]
   },
@@ -745,8 +794,8 @@
       }
      ],
      "set": "Why now?",
-     "yaw": -26.6,
-     "pitch": 0.5,
+     "yaw": -34.9,
+     "pitch": -2.6,
      "after": "flag:f_ssd",
      "retry": true,
      "type": "question"
@@ -754,8 +803,8 @@
     {
      "id": "m_pc_B4",
      "type": "use",
-     "yaw": -10.6,
-     "pitch": 4.5,
+     "yaw": -18.9,
+     "pitch": 1.4,
      "label": "The PC",
      "text": "Fit the next part: pick it from your bag.",
      "accepts": [
@@ -845,16 +894,21 @@
     },
     {
      "id": "m_power_B4",
-     "type": "go",
+     "type": "info",
      "yaw": -5.3,
      "pitch": 10.6,
      "label": "Power button",
-     "target": "B6",
-     "requires": [
-      "f_power"
-     ],
-     "lockedText": "Nothing happens at all: no fans, no lights. Nothing can work until the power cables are in.",
-     "code": ""
+     "title": "Nothing happens",
+     "text": "No fans, no lights, no beeps: nothing at all. The PC can't get any power until the power cables are plugged in."
+    },
+    {
+     "id": "m_mon_B4",
+     "type": "item",
+     "item": "i_mon_off",
+     "take": false,
+     "yaw": 5.0,
+     "pitch": 1.4,
+     "label": "The monitor"
     }
    ]
   },
@@ -877,8 +931,8 @@
     {
      "id": "m_pc_B5",
      "type": "use",
-     "yaw": -10.6,
-     "pitch": 4.5,
+     "yaw": -18.9,
+     "pitch": 1.4,
      "label": "The PC",
      "text": "Fit the next part: pick it from your bag.",
      "accepts": [
@@ -968,16 +1022,21 @@
     },
     {
      "id": "m_power_B5",
-     "type": "go",
+     "type": "info",
      "yaw": -5.3,
      "pitch": 10.6,
      "label": "Power button",
-     "target": "B6",
-     "requires": [
-      "f_power"
-     ],
-     "lockedText": "Nothing happens at all: no fans, no lights. Nothing can work until the power cables are in.",
-     "code": ""
+     "title": "Nothing happens",
+     "text": "No fans, no lights, no beeps: nothing at all. The PC can't get any power until the power cables are plugged in."
+    },
+    {
+     "id": "m_mon_B5",
+     "type": "item",
+     "item": "i_mon_off",
+     "take": false,
+     "yaw": 5.0,
+     "pitch": 1.4,
+     "label": "The monitor"
     }
    ]
   },
@@ -1003,17 +1062,59 @@
      "yaw": -5.3,
      "pitch": 10.6,
      "label": "Power button",
-     "target": "S_on",
-     "requires": [
-      "f_ramclick"
-     ],
-     "lockedGo": {
-      "f_ramclick": "F_dram"
-     },
+     "target": "F_dram",
+     "requires": [],
      "code": ""
+    },
+    {
+     "id": "m_mon_B6",
+     "type": "item",
+     "item": "i_mon_off",
+     "take": false,
+     "yaw": 5.0,
+     "pitch": 1.4,
+     "label": "The monitor"
     }
    ],
    "intro": "Everything is in. Press the power button."
+  },
+  {
+   "id": "B6f",
+   "name": "The workbench: RAM fixed",
+   "lib": "20261103-170806-tinypc-tour-b6-power-cables-in",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "left",
+   "end": false,
+   "endText": "",
+   "markers": [
+    {
+     "id": "m_power_B6f",
+     "type": "go",
+     "yaw": -5.3,
+     "pitch": 10.6,
+     "label": "Power button",
+     "target": "S_on",
+     "requires": [],
+     "code": ""
+    },
+    {
+     "id": "m_mon_B6f",
+     "type": "item",
+     "item": "i_mon_off",
+     "take": false,
+     "yaw": 5.0,
+     "pitch": 1.4,
+     "label": "The monitor"
+    }
+   ],
+   "intro": "Stick pushed home, power back on at the wall. Press the power button again."
   },
   {
    "id": "B_on",
@@ -1033,6 +1134,15 @@
    "endText": "You built a working PC.\nCPU: runs the program. RAM: working memory. SSD: storage. GPU: the picture. Cooler: takes the heat away. Power supply: power for everything.",
    "intro": "",
    "markers": [
+    {
+     "id": "m_mon_B_on",
+     "type": "item",
+     "item": "i_mon_on",
+     "take": false,
+     "yaw": 5.0,
+     "pitch": 1.4,
+     "label": "The monitor"
+    },
     {
      "id": "q_sum1",
      "type": "question",
@@ -1207,6 +1317,42 @@
    "intro": "Four empty slots, clips open. You have two sticks.",
    "markers": [
     {
+     "id": "lbl_a1_T_ramq",
+     "type": "info",
+     "yaw": -42.9,
+     "pitch": -9.3,
+     "label": "A1",
+     "title": "Slot DIMM_A1",
+     "text": "Memory channel A, slot 1. Two channels (A and B) with two slots each: one stick per channel lets the CPU use both at once."
+    },
+    {
+     "id": "lbl_a2_T_ramq",
+     "type": "info",
+     "yaw": -34.2,
+     "pitch": -11.4,
+     "label": "A2",
+     "title": "Slot DIMM_A2",
+     "text": "Memory channel A, slot 2. Two channels (A and B) with two slots each: one stick per channel lets the CPU use both at once."
+    },
+    {
+     "id": "lbl_b1_T_ramq",
+     "type": "info",
+     "yaw": -21.1,
+     "pitch": -14.8,
+     "label": "B1",
+     "title": "Slot DIMM_B1",
+     "text": "Memory channel B, slot 1. Two channels (A and B) with two slots each: one stick per channel lets the CPU use both at once."
+    },
+    {
+     "id": "lbl_b2_T_ramq",
+     "type": "info",
+     "yaw": 0.0,
+     "pitch": -17.6,
+     "label": "B2",
+     "title": "Slot DIMM_B2",
+     "text": "Memory channel B, slot 2. Two channels (A and B) with two slots each: one stick per channel lets the CPU use both at once."
+    },
+    {
      "id": "q_slots",
      "type": "question",
      "yaw": -33.4,
@@ -1250,8 +1396,45 @@
    "cardWall": "right",
    "end": false,
    "endText": "",
+   "enterSound": "click",
    "intro": "Both sticks are in slots A2 and B2. Each one should be pushed down until both of its clips snap shut.",
    "markers": [
+    {
+     "id": "lbl_a1_T_ram",
+     "type": "info",
+     "yaw": -42.9,
+     "pitch": -9.3,
+     "label": "A1",
+     "title": "Slot DIMM_A1",
+     "text": "Memory channel A, slot 1. Two channels (A and B) with two slots each: one stick per channel lets the CPU use both at once."
+    },
+    {
+     "id": "lbl_a2_T_ram",
+     "type": "info",
+     "yaw": -34.2,
+     "pitch": -11.4,
+     "label": "A2",
+     "title": "Slot DIMM_A2",
+     "text": "Memory channel A, slot 2. Two channels (A and B) with two slots each: one stick per channel lets the CPU use both at once."
+    },
+    {
+     "id": "lbl_b1_T_ram",
+     "type": "info",
+     "yaw": -21.1,
+     "pitch": -14.8,
+     "label": "B1",
+     "title": "Slot DIMM_B1",
+     "text": "Memory channel B, slot 1. Two channels (A and B) with two slots each: one stick per channel lets the CPU use both at once."
+    },
+    {
+     "id": "lbl_b2_T_ram",
+     "type": "info",
+     "yaw": 0.0,
+     "pitch": -17.6,
+     "label": "B2",
+     "title": "Slot DIMM_B2",
+     "text": "Memory channel B, slot 2. Two channels (A and B) with two slots each: one stick per channel lets the CPU use both at once."
+    },
     {
      "id": "i_clips",
      "type": "info",
@@ -1531,6 +1714,15 @@
      "target": "F_ram",
      "requires": [],
      "code": ""
+    },
+    {
+     "id": "m_mon_F_dram",
+     "type": "item",
+     "item": "i_mon_fault",
+     "take": false,
+     "yaw": -95,
+     "pitch": 8,
+     "label": "What's on the screen?"
     }
    ]
   },
@@ -1599,6 +1791,42 @@
    "intro": "Look closely at both sticks and their clips.",
    "markers": [
     {
+     "id": "lbl_a1_F_ram",
+     "type": "info",
+     "yaw": -42.9,
+     "pitch": -9.3,
+     "label": "A1",
+     "title": "Slot DIMM_A1",
+     "text": "Memory channel A, slot 1. Two channels (A and B) with two slots each: one stick per channel lets the CPU use both at once."
+    },
+    {
+     "id": "lbl_a2_F_ram",
+     "type": "info",
+     "yaw": -34.2,
+     "pitch": -11.4,
+     "label": "A2",
+     "title": "Slot DIMM_A2",
+     "text": "Memory channel A, slot 2. Two channels (A and B) with two slots each: one stick per channel lets the CPU use both at once."
+    },
+    {
+     "id": "lbl_b1_F_ram",
+     "type": "info",
+     "yaw": -21.1,
+     "pitch": -14.8,
+     "label": "B1",
+     "title": "Slot DIMM_B1",
+     "text": "Memory channel B, slot 1. Two channels (A and B) with two slots each: one stick per channel lets the CPU use both at once."
+    },
+    {
+     "id": "lbl_b2_F_ram",
+     "type": "info",
+     "yaw": 0.0,
+     "pitch": -17.6,
+     "label": "B2",
+     "title": "Slot DIMM_B2",
+     "text": "Memory channel B, slot 2. Two channels (A and B) with two slots each: one stick per channel lets the CPU use both at once."
+    },
+    {
      "id": "q_whats_wrong",
      "type": "question",
      "set": "The RAM",
@@ -1650,6 +1878,15 @@
        "feedback": "No! That can damage the RAM or the board. Switch off first."
       }
      ]
+    },
+    {
+     "id": "m_mon_F_ram",
+     "type": "item",
+     "item": "i_mon_fault",
+     "take": false,
+     "yaw": -95,
+     "pitch": 8,
+     "label": "What's on the screen?"
     }
    ]
   },
@@ -1668,6 +1905,7 @@
    "cardWall": "right",
    "end": false,
    "endText": "",
+   "enterSound": "click",
    "intro": "Switched off, stick pushed down firmly: click, both clips shut.\nBack to full size and try the power again.",
    "markers": [
     {
@@ -1676,7 +1914,7 @@
      "yaw": 180,
      "pitch": 0,
      "label": "Back to full size",
-     "target": "B6",
+     "target": "B6f",
      "requires": [],
      "code": ""
     }
@@ -1765,6 +2003,15 @@
      "target": "B_on",
      "requires": [],
      "code": ""
+    },
+    {
+     "id": "m_mon_S_on",
+     "type": "item",
+     "item": "i_mon_on",
+     "take": false,
+     "yaw": -95,
+     "pitch": 8,
+     "label": "What's on the screen?"
     }
    ]
   }

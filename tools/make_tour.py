@@ -37,7 +37,20 @@ def lib(room):
     if not hits: raise SystemExit(f"No library entry called '{want}' yet: render the tour rooms first.")
     return sorted(hits)[-1]
 
+def lib_opt(room):
+    """As lib(), or None when the room hasn't been rendered yet (or has no spec): the tour then does without it."""
+    try: return lib(room)
+    except (SystemExit, OSError): return None
+
 def stop_of(room):
+    """The spec the room's picture was actually rendered from (the copy in its library entry), so hotspots line up with
+    the render in use even after specs/tour has moved on (e.g. a higher camera that hasn't been rendered yet)."""
+    lid = lib_opt(room)
+    if lid:
+        p = os.path.join(RB, "library", lid, "spec.json")
+        if os.path.exists(p):
+            sp = json.load(open(p, encoding="utf-8"))
+            if "tinypc" in sp: return sp
     return json.load(open(os.path.join(SPECS, room + ".json"), encoding="utf-8"))
 
 def board_point(room, bx, by, bz_mm):
@@ -59,9 +72,36 @@ def room_point(x, y, z, eye=1.12):
     """(yaw, pitch, dist) of a point in a normal-size room (the workbench), x east, y north, z up."""
     return round(math.degrees(math.atan2(x, y)), 1), round(math.degrees(math.atan2(z - eye, math.hypot(x, y))), 1), round(math.hypot(x, y), 3)
 
+def free_yaw(markers, cands, gap=25):
+    """The first candidate yaw at least `gap` degrees from every marker already in the room."""
+    d = lambda a, b: abs((a - b + 180) % 360 - 180)
+    for c in cands:
+        if all(d(c, mk["yaw"]) >= gap for mk in markers): return c
+    return cands[0]
+
+SLOT_ALONG = {"a1": 52, "a2": 18, "b1": -18, "b2": -52}     # mm along each slot from its middle: staggered, so the labels don't line up
+
+def slot_labels(room, up_mm=7.0):
+    """A1, A2, B1, B2 written on the four RAM slots (the board's own labels are too small to read from there). Seen from
+    beside the RAM the slots line up one behind another, so each label sits at a different point along its slot."""
+    out = []
+    for sl in ("a1", "a2", "b1", "b2"):
+        pt = next(q for q in L.all_parts() if q[0] == "dimm_slot_" + sl)
+        y, p = board_point(room, pt[2], pt[3] + SLOT_ALONG[sl], up_mm)
+        out.append({"id": f"lbl_{sl}_{room}", "type": "info", "yaw": y, "pitch": p, "label": sl.upper(), "title": f"Slot DIMM_{sl.upper()}",
+                    "text": f"Memory channel {sl[0].upper()}, slot {sl[1]}. Two channels (A and B) with two slots each: one stick per channel lets the CPU use both at once."})
+    return out
+
+def monitor_marker(room_id, item, markers, cands=(-95, -120, -70, 150, -150)):
+    """'The monitor' inside the PC (you can't see the real one from there): held up to show what's on the screen."""
+    return {"id": f"m_mon_{room_id}", "type": "item", "item": item, "take": False, "yaw": free_yaw(markers, list(cands)), "pitch": 8,
+            "label": "What's on the screen?"}
+
 def props(room):
     p = os.path.join(SPECS, room + ".props.json")
     return [{k: v for k, v in r.items() if not k.startswith("_")} for r in json.load(open(p, encoding="utf-8"))] if os.path.exists(p) else []
+
+PASTE_ROOM = None            # set in __main__: the library id of the paste room, once it's rendered
 
 # ------------------------------------------------------------------ the parts (items)
 ITEMS = [
@@ -89,6 +129,17 @@ ITEMS = [
      ["From the power supply (PSU): the 24-pin cable powers the motherboard, and the 8-pin cable feeds the CPU's power circuits.",
       "The PSU turns mains electricity into the low voltages the parts need (12 V, 5 V, 3.3 V)."]),
 ]
+# The monitor, held up to look at (look only, never goes in the bag): one item per thing the screen can show.
+MONITOR = [
+    ("i_mon_off", "The monitor (PC off)", "tpc_monitor",
+     ["Black: the PC is switched off, so nothing is being sent to the screen yet."]),
+    ("i_mon_fault", "The monitor: black screen", "tpc_monitor",
+     ["Still black. The fans are spinning, but the PC stopped at the memory check, before it got as far as the graphics: it has nothing to show.",
+      "A black screen plus beeps is a clue: count the beeps and look for a debug light."]),
+    ("i_mon_on", "The monitor: setup screen", "tpc_monitor_on",
+     ["The setup screen (BIOS / UEFI): the PC passed its checks and found its parts.",
+      "It lists the CPU, the 32 GB of RAM and the 1 TB SSD. Next it would load the operating system from the SSD."]),
+]
 ORDER = ["i_cpu", "i_ram", "i_paste", "i_cooler", "i_ssd", "i_gpu", "i_cables"]
 
 def pc_marker(mid, yaw, pitch):
@@ -98,8 +149,9 @@ def pc_marker(mid, yaw, pitch):
              feedback="Line up the little gold triangle with the socket's corner, drop the CPU in (no pushing!), lower the plate and latch the lever. Let's shrink down and look."),
         dict(item="i_ram", correct=True, consume=True, flag="f_ram", requires=["f_cpu"], go="T_ramq",
              notYet="Not yet: the CPU goes in first.", feedback="Before the RAM goes in, shrink down and pick the slots."),
-        dict(item="i_paste", correct=True, consume=True, flag="f_paste", requires=["f_ram"], go=None,
-             notYet="Not yet: CPU and RAM first. (Paste goes on just before the cooler.)", feedback="Paste on. There's a question on the PC: how much paste is right?"),
+        dict(item="i_paste", correct=True, consume=True, flag="f_paste", requires=["f_ram"], go="T_paste" if PASTE_ROOM else None,
+             notYet="Not yet: CPU and RAM first. (Paste goes on just before the cooler.)",
+             feedback="A little paste goes on the middle of the CPU. Let's shrink down and look." if PASTE_ROOM else "Paste on. There's a question on the PC: how much paste is right?"),
         dict(item="i_cooler", correct=True, consume=True, flag="f_cooler", requires=["f_paste"], go="T_cooler",
              notYet="Not yet: the cooler needs thermal paste on the CPU first, or the heat can't get across the gap.",
              feedback="Cooler on, screwed down evenly, fan cable plugged into CPU_FAN. Let's shrink down and look."),
@@ -132,7 +184,10 @@ BENCH_Q = {
 def bench_rooms():
     B = 2.855 + 0.8 - 0.375 - 0.02                      # bench centre (see specs/workbench)
     TOP = 0.9025
-    pc_y, pc_p, _ = room_point(-0.62, B + 0.05, TOP + 0.48)                  # upper left of the PC
+    # "The PC" stands just left of the case (the case spans x -0.57..-0.12 on the bench), not over it, so the parts
+    # going in can be seen (4 Nov: it hid the PC)
+    pc_y, pc_p, _ = room_point(-1.10, B - 0.05, TOP + 0.30)
+    mo_y, mo_p, _ = room_point(0.30, 3.40, TOP + 0.30)                        # middle of the monitor's screen
     pw_y, pw_p, _ = room_point(-0.3, B - 0.02, TOP + 0.48)                   # its top front corner (the power button)
     ex_y, ex_p, _ = room_point(3.4, -0.6, TOP + 0.95)
     E = 3.2 + 0.8 - 0.375 - 0.02                                             # right-hand bench centre (x); it runs along y
@@ -153,23 +208,32 @@ def bench_rooms():
                           "dist": dist, "h": TOP, "turn": round(yaw, 1), "size": 1, "show3d": True})
             m.append({"id": "m_example", "type": "info", "yaw": ex_y, "pitch": ex_p + 4, "label": "A finished PC",
                       "title": "What you're building", "text": "This one is finished and switched on. Yours has the same parts: a motherboard, CPU, RAM, cooler, SSD, graphics card and power."})
-        if n in BENCH_Q:
+        if n in BENCH_Q and not (n == 2 and PASTE_ROOM):       # the paste question moves into the paste room once it's rendered
             fl, q = BENCH_Q[n]
             m.append(dict(q, set=q["label"], yaw=round(pc_y - 16, 1), pitch=round(pc_p - 4, 1), after="flag:" + fl, retry=True, type="question"))
-        if n < 7:
-            if n < 6: m.append(pc_marker(f"m_pc_B{n}", pc_y, pc_p))
-            if n < 6:
-                m.append({"id": f"m_power_B{n}", "type": "go", "yaw": pw_y, "pitch": pw_p + 6, "label": "Power button", "target": "B6",
-                          "requires": ["f_power"], "lockedText": "Nothing happens at all: no fans, no lights. Nothing can work until the power cables are in.", "code": ""})
-            else:
-                m.append({"id": "m_power_B6", "type": "go", "yaw": pw_y, "pitch": pw_p + 6, "label": "Power button", "target": "S_on",
-                          "requires": ["f_ramclick"], "lockedGo": {"f_ramclick": "F_dram"}, "code": ""})
-                r["intro"] = "Everything is in. Press the power button."
+        # The power button can always be pressed (4 Nov): before the cables are in nothing happens; with the loose RAM
+        # stick it beeps (F_dram); once the stick is home it starts (S_on, from B6f). Never shown locked.
+        if n < 6:
+            m.append(pc_marker(f"m_pc_B{n}", pc_y, pc_p))
+            m.append({"id": f"m_power_B{n}", "type": "info", "yaw": pw_y, "pitch": pw_p + 6, "label": "Power button", "title": "Nothing happens",
+                      "text": "No fans, no lights, no beeps: nothing at all. The PC can't get any power until the power cables are plugged in."})
+        else:
+            m.append({"id": "m_power_B6", "type": "go", "yaw": pw_y, "pitch": pw_p + 6, "label": "Power button", "target": "F_dram", "requires": [], "code": ""})
+            r["intro"] = "Everything is in. Press the power button."
+        m.append({"id": f"m_mon_B{n}", "type": "item", "item": "i_mon_off", "take": False, "yaw": mo_y, "pitch": mo_p, "label": "The monitor"})
         rooms.append(r)
+    # B6 again, once the RAM stick is pushed home: same picture, and now the power button starts the PC
+    f = json.loads(json.dumps(rooms[-1]))
+    f.update(id="B6f", name="The workbench: RAM fixed", intro="Stick pushed home, power back on at the wall. Press the power button again.")
+    for mk in f["markers"]:
+        mk["id"] = mk["id"].replace("B6", "B6f")
+        if mk["type"] == "go" and mk["label"] == "Power button": mk["target"] = "S_on"
+    rooms.append(f)
     rooms.append({"id": "B_on", "name": "It works!", "lib": lib("B_on"), "view": "centre", "dims": DIMS, "cardWall": "left", "end": True,
                   "ambient": "fan",
                   "endText": "You built a working PC.\nCPU: runs the program. RAM: working memory. SSD: storage. GPU: the picture. Cooler: takes the heat away. Power supply: power for everything.",
                   "intro": "", "markers": [
+                      {"id": "m_mon_B_on", "type": "item", "item": "i_mon_on", "take": False, "yaw": mo_y, "pitch": mo_p, "label": "The monitor"},
                       {"id": "q_sum1", "type": "question", "set": "Summing up", "yaw": -90, "pitch": 5, "label": "Summing up", "retry": True,
                        "text": "Which part forgets everything when the power goes off?",
                        "options": [{"text": "The SSD", "correct": False, "feedback": "No: the SSD keeps your files with the power off."},
@@ -210,7 +274,7 @@ def tiny_rooms():
     sy, sp = part_point("T_ramq", "dimm_slot_b2", 7)
     R.append({"id": "T_ramq", "name": "The RAM slots", "lib": lib("T_ramq"), "view": "centre", "dims": DIMS, "cardWall": "right", "end": False, "endText": "",
               "intro": "Four empty slots, clips open. You have two sticks.",
-              "markers": [
+              "markers": slot_labels("T_ramq") + [
                   {"id": "q_slots", "type": "question", "yaw": sy, "pitch": sp + 6, "label": "Which slots?", "retry": True,
                    "text": "The labels on the board say DIMM_A1, A2, B1, B2 (A and B are two channels). Where do two sticks go?",
                    "options": [{"text": "A1 and A2", "correct": False, "feedback": "Both on channel A: the CPU could only use one channel. Try again."},
@@ -219,8 +283,9 @@ def tiny_rooms():
                                {"text": "B1 and B2", "correct": False, "feedback": "Both on channel B. Try again."}]}]})
     # ---- RAM fitted (one stick not quite home: the planted fault)
     R.append({"id": "T_ram", "name": "RAM fitted", "lib": lib("T_ram"), "view": "centre", "dims": DIMS, "cardWall": "right", "end": False, "endText": "",
+              "enterSound": "click",
               "intro": "Both sticks are in slots A2 and B2. Each one should be pushed down until both of its clips snap shut.",
-              "markers": [
+              "markers": slot_labels("T_ram") + [
                   {"id": "i_clips", "type": "info", "yaw": sy, "pitch": sp + 4, "label": "The clips", "title": "Clips",
                    "text": "The clips at each end of a slot snap shut when a stick is pushed fully home. Have a good look..."},
                   back("g_ram_back", "B2", 0 if abs(sy) > 90 else 180)]})
@@ -269,11 +334,12 @@ def tiny_rooms():
                   {"id": "i_dbg_on", "type": "info", "yaw": ly, "pitch": lp + 6, "label": "Debug lights", "title": "The DRAM light is on",
                    "text": "The board got stuck checking the memory (DRAM = the RAM). Three long beeps say the same thing."},
                   {"id": "g_to_ram", "type": "go", "yaw": ly - 35, "pitch": 0, "label": "Go and check the RAM", "target": "F_ram", "requires": [], "code": ""}]})
+    R[-1]["markers"].append(monitor_marker("F_dram", "i_mon_fault", R[-1]["markers"]))
     # ---- switched on: the loose stick
     fy, fp = part_point("F_ram", "dimm_slot_b2", 7)
     R.append({"id": "F_ram", "name": "The RAM", "lib": lib("F_ram"), "view": "centre", "dims": DIMS, "cardWall": "right", "end": False, "endText": "",
               "ambient": "fan", "props": props("F_ram"), "intro": "Look closely at both sticks and their clips.",
-              "markers": [
+              "markers": slot_labels("F_ram") + [
                   {"id": "q_whats_wrong", "type": "question", "set": "The RAM", "yaw": fy, "pitch": fp + 6, "label": "What's wrong?", "retry": True,
                    "text": "What's wrong here?",
                    "options": [{"text": "The stick in B2 isn't pushed all the way in: its clip is still open", "correct": True, "flag": "f_found",
@@ -285,9 +351,11 @@ def tiny_rooms():
                    "options": [{"text": "Switch off and unplug at the wall", "correct": True, "flag": "f_ramclick", "go": "R_fixed",
                                 "feedback": "Yes: never fit or move parts with the power on."},
                                {"text": "Nothing: push it in while it's running", "correct": False, "feedback": "No! That can damage the RAM or the board. Switch off first."}]}]})
+    R[-1]["markers"].append(monitor_marker("F_ram", "i_mon_fault", R[-1]["markers"]))
     R.append({"id": "R_fixed", "name": "Click!", "lib": lib("R_fixed"), "view": "centre", "dims": DIMS, "cardWall": "right", "end": False, "endText": "",
+              "enterSound": "click",
               "intro": "Switched off, stick pushed down firmly: click, both clips shut.\nBack to full size and try the power again.",
-              "markers": [back("g_fixed_back", "B6", 0 if abs(fy) > 90 else 180)]})
+              "markers": [back("g_fixed_back", "B6f", 0 if abs(fy) > 90 else 180)]})
     R.append({"id": "S_on", "name": "It's alive!", "lib": lib("S_on"), "view": "centre", "dims": DIMS, "cardWall": "right", "end": False, "endText": "",
               "ambient": "fan", "enterSound": "post:S", "props": props("S_on"),
               "intro": "One short beep: the start-up checks (the POST: power-on self-test) all passed.\nFans spinning, lights on, no debug light.",
@@ -295,10 +363,22 @@ def tiny_rooms():
                   {"id": "i_dbg_off", "type": "info", "yaw": ly, "pitch": lp + 6, "label": "Debug lights", "title": "All clear",
                    "text": "No light on: CPU, memory, graphics and boot device all passed."},
                   back("g_on_back", "B_on")]})
+    R[-1]["markers"].append(monitor_marker("S_on", "i_mon_on", R[-1]["markers"]))
+    # ---- the pea of paste on the CPU (only once it's rendered: until then the paste question stays on the bench)
+    if PASTE_ROOM:
+        py_, pp_ = board_point("T_paste", 92, 80, 2.0)
+        q = dict(BENCH_Q[2][1]); q.update(type="question", yaw=round(py_ - 25, 1), pitch=3, retry=True)
+        dot = {"id": "i_paste_dot", "type": "info", "yaw": py_, "pitch": pp_, "label": "The paste", "title": "A pea of paste",
+               "text": "About 5 mm across, in the middle of the lid. The cooler's flat copper base presses it out into a layer thinner than a hair."}
+        R.append({"id": "T_paste", "name": "Thermal paste", "lib": PASTE_ROOM, "view": "centre", "dims": DIMS, "cardWall": "right", "end": False, "endText": "",
+                  "intro": "Tiny again, on the CPU lid. That grey dome is the paste, squeezed out of the syringe. The cooler goes on next and squashes it flat.",
+                  "markers": [dot, q, back("g_paste_back", "B2", 180 if abs(py_) < 90 else 0)]})
     return R
 
 if __name__ == "__main__":
-    items = [{"id": i, "name": n, "model": m, "description": "", "pages": p} for i, n, m, p in ITEMS]
+    PASTE_ROOM = lib_opt("T_paste")
+    print("paste room:", PASTE_ROOM or "not rendered yet (paste question stays on the bench)")
+    items = [{"id": i, "name": n, "model": m, "description": "", "pages": p} for i, n, m, p in ITEMS + MONITOR]
     tour = {"version": 1, "id": TOUR_ID, "name": "TinyPC - build a PC (open day)", "start": "B0",
             "description": "Collect the parts, build the PC in order, shrink inside to see them fitted, then switch on, find the fault and fix it.",
             "items": items, "rooms": bench_rooms() + tiny_rooms()}

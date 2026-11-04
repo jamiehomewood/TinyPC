@@ -1,0 +1,35 @@
+{
+  "id": "tpc_core_hall",
+  "name": "Inside a core (backdrop)",
+  "file": "tpc_core_hall.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "14 m floor of standard cells and copper wiring. Room size: scale 1.",
+  "scale": 1.0,
+  "polycount": 2,
+  "bbox_mm": [
+    -7000.0,
+    7000.0,
+    -7000.0,
+    7000.0,
+    0.0,
+    0.0
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

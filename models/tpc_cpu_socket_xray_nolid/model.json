@@ -1,0 +1,35 @@
+{
+  "id": "tpc_cpu_socket_xray_nolid",
+  "name": "CPU chip X-ray, no lid",
+  "file": "tpc_cpu_socket_xray_nolid.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "The chip's X-ray map with the lid left out altogether (the running PC, seen as an X-ray).",
+  "scale": 1.0,
+  "polycount": 392,
+  "bbox_mm": [
+    -28.0,
+    28.0,
+    -32.0,
+    32.0,
+    0.0,
+    4.8
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

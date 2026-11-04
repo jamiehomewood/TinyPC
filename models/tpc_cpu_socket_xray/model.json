@@ -1,0 +1,35 @@
+{
+  "id": "tpc_cpu_socket_xray",
+  "name": "CPU lid peeled back, chip X-ray",
+  "file": "tpc_cpu_socket_xray.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "As tpc_cpu_socket_open, the chip's top drawn as an X-ray map of its circuits (cores, cache, memory controller, I/O).",
+  "scale": 1.0,
+  "polycount": 452,
+  "bbox_mm": [
+    -28.0,
+    28.0,
+    -32.0,
+    49.47,
+    0.0,
+    27.87
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

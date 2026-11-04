@@ -1,0 +1,52 @@
+{
+ "version": 1,
+ "name": "TinyPC tour - T_core - Inside a core",
+ "room": {
+  "preset": "igloo-main",
+  "width": 6.4,
+  "depth": 5.71,
+  "height": 2.244,
+  "eye": 1.12,
+  "projected": {
+   "walls": true,
+   "floor": true,
+   "ceiling": false
+  },
+  "type": "outdoor"
+ },
+ "style": "outdoor",
+ "lighting": "night",
+ "outside": {
+  "view": "custom",
+  "hdri": null
+ },
+ "features": [],
+ "items": [
+  {
+   "id": "hall",
+   "model": "tpc_core_hall",
+   "x": 0,
+   "y": 0,
+   "z": 0.002,
+   "rot": 0,
+   "scale": 1
+  }
+ ],
+ "views": [
+  {
+   "name": "centre",
+   "x": 0,
+   "y": 0,
+   "z": 1.122,
+   "yaw": 0
+  }
+ ],
+ "render": {
+  "quality": "standard",
+  "exposure": 0.0
+ },
+ "tinypc": {
+  "tour_room": "T_core",
+  "note": "Made by tools/make_tour_rooms.py."
+ }
+}

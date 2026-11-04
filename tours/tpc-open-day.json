@@ -25,7 +25,8 @@
     "RAM is the computer's working memory: the programs and data the CPU is using right now.",
     "It is fast, but it forgets everything when the power goes off (volatile).",
     "Two 16 GB sticks = 32 GB. Fitted in the right pair of slots, the CPU can use both at once (dual channel)."
-   ]
+   ],
+   "upright": true
   },
   {
    "id": "i_paste",
@@ -1034,6 +1035,16 @@
    "intro": "",
    "markers": [
     {
+     "id": "g_run",
+     "type": "go",
+     "yaw": -24.6,
+     "pitch": 8.5,
+     "label": "Watch the CPU work",
+     "target": "T_run",
+     "requires": [],
+     "code": ""
+    },
+    {
      "id": "q_sum1",
      "type": "question",
      "set": "Summing up",
@@ -1119,7 +1130,7 @@
   {
    "id": "T_cpu",
    "name": "Standing on the CPU",
-   "lib": "20261103-171738-tinypc-tour-t-cpu-on-the-cpu-j",
+   "lib": "20261104-155641-tinypc-tour-t-cpu-on-the-cpu-j",
    "view": "centre",
    "dims": {
     "w": 6.4,
@@ -1178,6 +1189,16 @@
      "text": "Those four long slots are for the RAM. The CPU talks to the RAM through hundreds of copper traces in the board."
     },
     {
+     "id": "g_delid",
+     "type": "go",
+     "yaw": 35,
+     "pitch": -25,
+     "label": "Look under the lid",
+     "target": "T_delid",
+     "requires": [],
+     "code": ""
+    },
+    {
      "id": "g_cpu_back",
      "type": "go",
      "yaw": 180,
@@ -1190,9 +1211,9 @@
    ]
   },
   {
-   "id": "T_ramq",
-   "name": "The RAM slots",
-   "lib": "20261103-172057-tinypc-tour-t-ramq-the-empty-r",
+   "id": "T_delid",
+   "name": "Under the lid",
+   "lib": "20261104-160625-tinypc-tour-t-delid-under-the-",
    "view": "centre",
    "dims": {
     "w": 6.4,
@@ -1204,16 +1225,838 @@
    "cardWall": "right",
    "end": false,
    "endText": "",
-   "intro": "Four empty slots, clips open. You have two sticks.",
+   "intro": "Imagine you could peel the metal lid back. (In real life this usually breaks the CPU.)\nThe flat slab in front of you is the actual chip.",
    "markers": [
+    {
+     "id": "i_chip",
+     "type": "info",
+     "yaw": 0.0,
+     "pitch": -8.9,
+     "label": "The chip",
+     "title": "The chip (the die)",
+     "text": "A slab of silicon 20 by 12 mm and less than 1 mm thick. It holds billions of transistors: tiny switches, each far smaller than a bacterium. Everything the CPU does happens in here."
+    },
+    {
+     "id": "i_solder",
+     "type": "info",
+     "yaw": 18.0,
+     "pitch": -13.9,
+     "label": "Solder",
+     "title": "Soldered to the lid",
+     "text": "The shiny layer is solder: it joined the chip to the lid, so heat flows straight out into the lid and then the cooler."
+    },
+    {
+     "id": "i_lidunder",
+     "type": "info",
+     "yaw": 0.0,
+     "pitch": 10.4,
+     "label": "Inside the lid",
+     "title": "Inside the lid",
+     "text": "The bright patch is where the lid was soldered to the chip. The black line round the edge is the glue that held it down."
+    },
+    {
+     "id": "i_substrate",
+     "type": "info",
+     "yaw": 47.0,
+     "pitch": -6.300000000000001,
+     "label": "The green board",
+     "title": "The CPU's own little circuit board",
+     "text": "The chip sits on its own small circuit board. Thousands of tiny connections under the chip spread out through it to the gold pads underneath, which touch the pins in the socket. The little capacitors smooth out the power."
+    },
+    {
+     "id": "g_onchip",
+     "type": "go",
+     "yaw": -25.0,
+     "pitch": -11.9,
+     "label": "Shrink onto the chip",
+     "target": "T_die",
+     "requires": [],
+     "code": ""
+    },
+    {
+     "id": "g_lidback",
+     "type": "go",
+     "yaw": 180,
+     "pitch": 0,
+     "label": "Put the lid back",
+     "target": "T_cpu",
+     "requires": [],
+     "code": ""
+    }
+   ]
+  },
+  {
+   "id": "T_die",
+   "name": "On the chip",
+   "lib": "20261104-160743-tinypc-tour-t-die-on-the-chip-",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "right",
+   "end": false,
+   "endText": "",
+   "hideBag": true,
+   "intro": "Smaller still: you're standing on the chip.\nThe circuits are really on its underside, facing down into the pads, so this floor shows them as if the silicon were see-through.",
+   "markers": [
+    {
+     "id": "i_core",
+     "type": "info",
+     "yaw": -43.0,
+     "pitch": -23.2,
+     "label": "A core",
+     "title": "8 cores",
+     "text": "Each core is a complete processor: it fetches an instruction, decodes it and carries it out. With 8 cores the CPU can run 8 jobs at the same time."
+    },
+    {
+     "id": "i_l3",
+     "type": "info",
+     "yaw": 72.0,
+     "pitch": -41.6,
+     "label": "Cache",
+     "title": "Cache: memory on the chip",
+     "text": "The regular blue grids are cache: very fast memory right next to the cores. The big band in the middle (L3) is shared by all 8. Each core also has its own smaller, even faster caches (L1 and L2)."
+    },
+    {
+     "id": "i_mc",
+     "type": "info",
+     "yaw": 84.4,
+     "pitch": -14.6,
+     "label": "Memory controller",
+     "title": "The memory controller",
+     "text": "This part talks to the RAM you fitted, on two channels (A and B). That's why one stick in each channel was faster."
+    },
+    {
+     "id": "i_io",
+     "type": "info",
+     "yaw": -180.0,
+     "pitch": -23.7,
+     "label": "PCIe + I/O",
+     "title": "PCIe and input/output",
+     "text": "The connections to the rest of the PC: the graphics card and the SSD talk to the CPU through PCIe lanes from here."
+    },
+    {
+     "id": "q_chip1",
+     "type": "question",
+     "set": "The chip",
+     "yaw": -130.1,
+     "pitch": -20,
+     "label": "The chip",
+     "retry": true,
+     "text": "Why keep cache on the chip when the RAM is just next door?",
+     "options": [
+      {
+       "text": "Fetching from the RAM takes far longer than from the cache",
+       "correct": true,
+       "feedback": "Yes: getting data from the RAM can take a hundred times longer, so the CPU keeps what it's using right next to the cores."
+      },
+      {
+       "text": "The cache holds more than the RAM",
+       "correct": false,
+       "feedback": "No: the cache is tiny (tens of MB) next to the RAM (32 GB). It's about speed."
+      },
+      {
+       "text": "The RAM is only for the graphics card",
+       "correct": false,
+       "feedback": "No: the RAM is the CPU's working memory."
+      }
+     ]
+    },
+    {
+     "id": "q_chip2",
+     "type": "question",
+     "set": "The chip",
+     "yaw": -130.1,
+     "pitch": -20,
+     "label": "The chip",
+     "retry": true,
+     "text": "8 cores means the CPU...",
+     "options": [
+      {
+       "text": "can work on 8 jobs at the same time",
+       "correct": true,
+       "feedback": "Yes. A program only goes faster if its work can be split up between the cores."
+      },
+      {
+       "text": "is 8 times faster at everything",
+       "correct": false,
+       "feedback": "Only if the work can be split into 8. Many jobs can't."
+      },
+      {
+       "text": "has 8 times as much memory",
+       "correct": false,
+       "feedback": "No: cores do the work; memory is the cache and the RAM."
+      }
+     ]
+    },
+    {
+     "id": "g_die_back",
+     "type": "go",
+     "yaw": 180,
+     "pitch": 0,
+     "label": "Back to full size",
+     "target": "B1",
+     "requires": [],
+     "code": ""
+    }
+   ]
+  },
+  {
+   "id": "T_run",
+   "name": "The chip at work",
+   "lib": "20261104-160509-tinypc-tour-t-run-the-chip-at-",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "left",
+   "end": false,
+   "endText": "",
+   "ambient": "fan",
+   "hideBag": true,
+   "intro": "The finished PC, switched on, seen as an X-ray: no lid, no cooler. The RAM you fitted is off to the right.\nEach of the 8 cores is running programs right now. Go inside core 4 to see how.",
+   "markers": [
+    {
+     "id": "g_core",
+     "type": "go",
+     "yaw": 51.3,
+     "pitch": -16.0,
+     "label": "Go inside core 4",
+     "target": "T_core",
+     "requires": [],
+     "code": ""
+    },
+    {
+     "id": "g_run_back",
+     "type": "go",
+     "yaw": 180,
+     "pitch": 0,
+     "label": "Back to full size",
+     "target": "B_on",
+     "requires": [],
+     "code": ""
+    }
+   ]
+  },
+  {
+   "id": "T_core",
+   "name": "Inside a core",
+   "lib": "20261104-164841-tinypc-tour-t-core-inside-a-co",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "back",
+   "end": false,
+   "endText": "",
+   "ambient": "fan",
+   "hideBag": true,
+   "sim": {
+    "boxes": [
+     {
+      "id": "CU",
+      "label": "CONTROL UNIT (decodes)",
+      "yaw": -42,
+      "h": 1.68,
+      "w": 1.15,
+      "hh": 0.5,
+      "color": "#c69cff",
+      "dist": 2.5
+     },
+     {
+      "id": "PC",
+      "label": "PC (program counter)",
+      "yaw": -12,
+      "h": 1.72,
+      "w": 0.95,
+      "hh": 0.45,
+      "dist": 2.5
+     },
+     {
+      "id": "MAR",
+      "label": "MAR (memory address)",
+      "yaw": 18,
+      "h": 1.72,
+      "w": 0.95,
+      "hh": 0.45,
+      "dist": 2.5
+     },
+     {
+      "id": "CIR",
+      "label": "CIR (current instruction)",
+      "yaw": -12,
+      "h": 1.12,
+      "w": 0.95,
+      "hh": 0.45,
+      "dist": 2.5
+     },
+     {
+      "id": "MDR",
+      "label": "MDR (memory data)",
+      "yaw": 18,
+      "h": 1.12,
+      "w": 0.95,
+      "hh": 0.45,
+      "dist": 2.5
+     },
+     {
+      "id": "ALU",
+      "label": "ALU (arithmetic logic unit)",
+      "yaw": -42,
+      "h": 1.08,
+      "w": 1.15,
+      "hh": 0.5,
+      "color": "#ff9f6b",
+      "dist": 2.5
+     },
+     {
+      "id": "ACC",
+      "label": "ACC (accumulator)",
+      "yaw": -42,
+      "h": 0.5,
+      "w": 1.15,
+      "hh": 0.42,
+      "color": "#ff9f6b",
+      "dist": 2.5
+     },
+     {
+      "id": "RAM",
+      "label": "RAM (main memory)",
+      "yaw": 62,
+      "h": 1.2,
+      "w": 1.25,
+      "hh": 1.55,
+      "color": "#7fe39a",
+      "dist": 2.5
+     },
+     {
+      "id": "PANEL",
+      "kind": "panel",
+      "yaw": -100,
+      "h": 1.3,
+      "w": 2.3,
+      "hh": 1.1,
+      "dist": 2.6
+     }
+    ],
+    "buses": [
+     [
+      "PC",
+      "MAR"
+     ],
+     [
+      "MAR",
+      "RAM"
+     ],
+     [
+      "RAM",
+      "MDR"
+     ],
+     [
+      "MDR",
+      "CIR"
+     ],
+     [
+      "CIR",
+      "CU"
+     ],
+     [
+      "CU",
+      "ALU"
+     ],
+     [
+      "ALU",
+      "ACC"
+     ],
+     [
+      "MDR",
+      "ALU"
+     ]
+    ],
+    "init": {
+     "PC": "100",
+     "MAR": "\u2013",
+     "MDR": "\u2013",
+     "CIR": "\u2013",
+     "CU": "\u2013",
+     "ALU": "\u2013",
+     "ACC": "0",
+     "RAM": "100  LOAD 200\n101  ADD 201\n102  STORE 202\n\n200  3\n201  4\n202  0"
+    },
+    "states": [
+     {
+      "title": "A program in memory",
+      "hi": [
+       "RAM",
+       "PC"
+      ],
+      "text": "The RAM (right) holds a 3-line program at addresses 100 to 102, and its numbers at 200 to 202. The PC holds 100: the address of the first instruction. Tap Next step.",
+      "moves": []
+     },
+     {
+      "title": "FETCH (1 of 3)",
+      "hi": [
+       "PC",
+       "MAR"
+      ],
+      "text": "The address in the PC (100) is copied into the MAR, the memory address register. It tells the RAM which address we want.",
+      "moves": [
+       {
+        "from": "PC",
+        "to": "MAR",
+        "text": "100",
+        "set": {
+         "MAR": "100",
+         "RAM": ">100  LOAD 200\n101  ADD 201\n102  STORE 202\n\n200  3\n201  4\n202  0"
+        }
+       }
+      ]
+     },
+     {
+      "title": "FETCH (2 of 3)",
+      "hi": [
+       "RAM",
+       "MDR"
+      ],
+      "text": "The RAM sends back what's stored at 100, along the data bus, into the MDR (memory data register): the instruction LOAD 200.",
+      "moves": [
+       {
+        "from": "RAM",
+        "to": "MDR",
+        "text": "LOAD 200",
+        "set": {
+         "MDR": "LOAD 200"
+        }
+       }
+      ]
+     },
+     {
+      "title": "FETCH (3 of 3)",
+      "hi": [
+       "CIR",
+       "PC"
+      ],
+      "text": "The instruction is copied into the CIR (current instruction register), and the PC goes up by 1 to 101, ready for the next one.",
+      "moves": [
+       {
+        "from": "MDR",
+        "to": "CIR",
+        "text": "LOAD 200",
+        "set": {
+         "CIR": "LOAD 200"
+        }
+       }
+      ],
+      "set": {
+       "PC": "101"
+      }
+     },
+     {
+      "title": "DECODE",
+      "hi": [
+       "CU",
+       "CIR"
+      ],
+      "text": "The control unit decodes the instruction. LOAD 200 means: copy the number stored at address 200 into the accumulator.",
+      "moves": [
+       {
+        "from": "CIR",
+        "to": "CU",
+        "text": "LOAD 200",
+        "set": {
+         "CU": "LOAD\nfrom 200 \u2192 ACC"
+        }
+       }
+      ]
+     },
+     {
+      "title": "EXECUTE",
+      "hi": [
+       "MAR",
+       "MDR",
+       "ACC"
+      ],
+      "text": "Execute: address 200 goes into the MAR, the RAM sends back 3, and the 3 goes into the ACC (accumulator).",
+      "moves": [
+       {
+        "from": "CIR",
+        "to": "MAR",
+        "text": "200",
+        "set": {
+         "MAR": "200",
+         "RAM": "100  LOAD 200\n101  ADD 201\n102  STORE 202\n\n>200  3\n201  4\n202  0"
+        }
+       },
+       {
+        "from": "RAM",
+        "to": "MDR",
+        "text": "3",
+        "set": {
+         "MDR": "3"
+        }
+       },
+       {
+        "from": "MDR",
+        "to": "ACC",
+        "text": "3",
+        "set": {
+         "ACC": "3"
+        }
+       }
+      ]
+     },
+     {
+      "title": "FETCH",
+      "hi": [
+       "PC",
+       "MAR",
+       "MDR",
+       "CIR"
+      ],
+      "text": "Next cycle. The same three fetch moves: PC \u2192 MAR (101), RAM \u2192 MDR, MDR \u2192 CIR. The PC goes up to 102.",
+      "moves": [
+       {
+        "from": "PC",
+        "to": "MAR",
+        "text": "101",
+        "set": {
+         "MAR": "101",
+         "RAM": "100  LOAD 200\n>101  ADD 201\n102  STORE 202\n\n200  3\n201  4\n202  0"
+        }
+       },
+       {
+        "from": "RAM",
+        "to": "MDR",
+        "text": "ADD 201",
+        "set": {
+         "MDR": "ADD 201"
+        }
+       },
+       {
+        "from": "MDR",
+        "to": "CIR",
+        "text": "ADD 201",
+        "set": {
+         "CIR": "ADD 201"
+        }
+       }
+      ],
+      "set": {
+       "PC": "102"
+      }
+     },
+     {
+      "title": "DECODE",
+      "hi": [
+       "CU",
+       "CIR"
+      ],
+      "text": "ADD 201 means: add the number stored at address 201 to whatever is in the accumulator.",
+      "moves": [
+       {
+        "from": "CIR",
+        "to": "CU",
+        "text": "ADD 201",
+        "set": {
+         "CU": "ADD\nACC + 201"
+        }
+       }
+      ]
+     },
+     {
+      "title": "EXECUTE",
+      "hi": [
+       "ALU",
+       "ACC"
+      ],
+      "text": "The 4 comes in from address 201. The ALU (arithmetic logic unit) adds it to the accumulator: 3 + 4 = 7.",
+      "moves": [
+       {
+        "from": "CIR",
+        "to": "MAR",
+        "text": "201",
+        "set": {
+         "MAR": "201",
+         "RAM": "100  LOAD 200\n101  ADD 201\n102  STORE 202\n\n200  3\n>201  4\n202  0"
+        }
+       },
+       {
+        "from": "RAM",
+        "to": "MDR",
+        "text": "4",
+        "set": {
+         "MDR": "4"
+        }
+       },
+       {
+        "from": "MDR",
+        "to": "ALU",
+        "text": "4",
+        "set": {
+         "ALU": "? + 4"
+        }
+       },
+       {
+        "from": "ACC",
+        "to": "ALU",
+        "text": "3",
+        "set": {
+         "ALU": "3 + 4"
+        }
+       },
+       {
+        "from": "ALU",
+        "to": "ACC",
+        "text": "7",
+        "set": {
+         "ALU": "3 + 4 = 7",
+         "ACC": "7"
+        }
+       }
+      ]
+     },
+     {
+      "title": "FETCH",
+      "hi": [
+       "PC",
+       "MAR",
+       "MDR",
+       "CIR"
+      ],
+      "text": "Next cycle. The same three fetch moves: PC \u2192 MAR (102), RAM \u2192 MDR, MDR \u2192 CIR. The PC goes up to 103.",
+      "moves": [
+       {
+        "from": "PC",
+        "to": "MAR",
+        "text": "102",
+        "set": {
+         "MAR": "102",
+         "RAM": "100  LOAD 200\n101  ADD 201\n>102  STORE 202\n\n200  3\n201  4\n202  0"
+        }
+       },
+       {
+        "from": "RAM",
+        "to": "MDR",
+        "text": "STORE 202",
+        "set": {
+         "MDR": "STORE 202"
+        }
+       },
+       {
+        "from": "MDR",
+        "to": "CIR",
+        "text": "STORE 202",
+        "set": {
+         "CIR": "STORE 202"
+        }
+       }
+      ],
+      "set": {
+       "PC": "103"
+      }
+     },
+     {
+      "title": "DECODE",
+      "hi": [
+       "CU",
+       "CIR"
+      ],
+      "text": "STORE 202 means: copy the accumulator back into the RAM, at address 202.",
+      "moves": [
+       {
+        "from": "CIR",
+        "to": "CU",
+        "text": "STORE 202",
+        "set": {
+         "CU": "STORE\nACC \u2192 202"
+        }
+       }
+      ]
+     },
+     {
+      "title": "EXECUTE: done",
+      "hi": [
+       "RAM"
+      ],
+      "text": "The answer goes back to the RAM: address 202 now holds 7. That's the whole program. A real core does billions of these cycles every second.",
+      "moves": [
+       {
+        "from": "CIR",
+        "to": "MAR",
+        "text": "202",
+        "set": {
+         "MAR": "202",
+         "RAM": "100  LOAD 200\n101  ADD 201\n102  STORE 202\n\n200  3\n201  4\n>202  0"
+        }
+       },
+       {
+        "from": "ACC",
+        "to": "MDR",
+        "text": "7",
+        "set": {
+         "MDR": "7"
+        }
+       },
+       {
+        "from": "MDR",
+        "to": "RAM",
+        "text": "7",
+        "set": {
+         "RAM": "100  LOAD 200\n101  ADD 201\n102  STORE 202\n\n200  3\n201  4\n>202  7"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "intro": "You're inside core 4. In front of you: its registers (tiny, very fast stores), the control unit and the ALU. On the right: the RAM.\nTap \"Next step\" (on the left) to run a 3-line program.",
+   "markers": [
+    {
+     "id": "s_next",
+     "type": "info",
+     "sim": "next",
+     "yaw": -100,
+     "pitch": -15,
+     "label": "Next step"
+    },
+    {
+     "id": "s_auto",
+     "type": "info",
+     "sim": "auto",
+     "yaw": -124,
+     "pitch": -15,
+     "label": "Play it all"
+    },
+    {
+     "id": "s_reset",
+     "type": "info",
+     "sim": "reset",
+     "yaw": -76,
+     "pitch": -15,
+     "label": "Start again"
+    },
+    {
+     "id": "q_cycle",
+     "type": "question",
+     "yaw": 150,
+     "pitch": 3,
+     "label": "Question",
+     "retry": true,
+     "text": "This CPU runs at 3.6 GHz. Roughly how often does each core go round the fetch-decode-execute cycle?",
+     "options": [
+      {
+       "text": "Billions of times a second",
+       "correct": true,
+       "feedback": "Yes: roughly one instruction per clock tick (modern cores manage several), 3.6 billion ticks a second, on each of the 8 cores."
+      },
+      {
+       "text": "Thousands of times a second",
+       "correct": false,
+       "feedback": "Far more: giga = billion."
+      },
+      {
+       "text": "Once a second",
+       "correct": false,
+       "feedback": "Much, much faster than that."
+      }
+     ]
+    },
+    {
+     "id": "g_core_back",
+     "type": "go",
+     "yaw": 180,
+     "pitch": 0,
+     "label": "Back to full size",
+     "target": "B_on",
+     "requires": [],
+     "code": ""
+    }
+   ]
+  },
+  {
+   "id": "T_ramq",
+   "name": "The RAM slots",
+   "lib": "20261104-155516-tinypc-tour-t-ramq-the-empty-r",
+   "view": "centre",
+   "dims": {
+    "w": 6.4,
+    "d": 5.71,
+    "h": 2.244,
+    "eye": 1.12,
+    "preset": "igloo-main"
+   },
+   "cardWall": "right",
+   "end": false,
+   "endText": "",
+   "intro": "Four empty slots, clips open. You have two sticks.\nCheck the board's manual before you choose.",
+   "markers": [
+    {
+     "id": "i_slot_a1",
+     "type": "info",
+     "yaw": -42.0,
+     "pitch": -6.4,
+     "label": "A1",
+     "title": "Slot DIMM_A1",
+     "text": "Channel A, slot 1. (The label is printed on the board at the end of the slot.)"
+    },
+    {
+     "id": "i_slot_a2",
+     "type": "info",
+     "yaw": -29.8,
+     "pitch": -8.9,
+     "label": "A2",
+     "title": "Slot DIMM_A2",
+     "text": "Channel A, slot 2. (The label is printed on the board at the end of the slot.)"
+    },
+    {
+     "id": "i_slot_b1",
+     "type": "info",
+     "yaw": -18.2,
+     "pitch": -12.1,
+     "label": "B1",
+     "title": "Slot DIMM_B1",
+     "text": "Channel B, slot 1. (The label is printed on the board at the end of the slot.)"
+    },
+    {
+     "id": "i_slot_b2",
+     "type": "info",
+     "yaw": -5.8,
+     "pitch": -14.5,
+     "label": "B2",
+     "title": "Slot DIMM_B2",
+     "text": "Channel B, slot 2. (The label is printed on the board at the end of the slot.)"
+    },
+    {
+     "id": "i_manual",
+     "type": "info",
+     "yaw": 45,
+     "pitch": 2,
+     "label": "The manual",
+     "title": "From the motherboard's manual",
+     "text": "Four memory slots in two channels: A1 and A2 are channel A, B1 and B2 are channel B.\nThe CPU's memory controller uses both channels at the same time. So with two sticks, put one in each channel (dual channel): about twice as fast as both on one channel."
+    },
     {
      "id": "q_slots",
      "type": "question",
-     "yaw": -33.4,
-     "pitch": -8.8,
+     "set": "Which slots?",
+     "after": "opened:i_manual",
+     "yaw": 20,
+     "pitch": 2,
      "label": "Which slots?",
      "retry": true,
-     "text": "The labels on the board say DIMM_A1, A2, B1, B2 (A and B are two channels). Where do two sticks go?",
+     "text": "Where do your two sticks go?",
      "options": [
       {
        "text": "A1 and A2",
@@ -1224,7 +2067,7 @@
        "text": "A2 and B2",
        "correct": true,
        "go": "T_ram",
-       "feedback": "Yes: one on each channel (dual channel), in the slots the board's manual recommends. Pushing them in now..."
+       "feedback": "Yes: one in each channel (dual channel), and slot 2 of each is the pair the manual recommends. Pushing them in now..."
       },
       {
        "text": "B1 and B2",
@@ -1238,7 +2081,7 @@
   {
    "id": "T_ram",
    "name": "RAM fitted",
-   "lib": "20261103-171951-tinypc-tour-t-ram-ram-fitted",
+   "lib": "20261104-155101-tinypc-tour-t-ram-ram-fitted",
    "view": "centre",
    "dims": {
     "w": 6.4,
@@ -1276,7 +2119,7 @@
   {
    "id": "T_cooler",
    "name": "The cooler",
-   "lib": "20261103-213957-tinypc-tour-t-cooler-the-coole",
+   "lib": "20261104-155755-tinypc-tour-t-cooler-the-coole",
    "view": "centre",
    "dims": {
     "w": 6.4,
@@ -1340,7 +2183,7 @@
   {
    "id": "T_gpu",
    "name": "The graphics card",
-   "lib": "20261103-214107-tinypc-tour-t-gpu-the-graphics",
+   "lib": "20261104-155910-tinypc-tour-t-gpu-the-graphics",
    "view": "centre",
    "dims": {
     "w": 6.4,
@@ -1404,7 +2247,7 @@
   {
    "id": "T_power",
    "name": "Power in",
-   "lib": "20261103-171845-tinypc-tour-t-power-power-plug",
+   "lib": "20261104-160025-tinypc-tour-t-power-power-plug",
    "view": "centre",
    "dims": {
     "w": 6.4,
@@ -1451,7 +2294,7 @@
   {
    "id": "F_dram",
    "name": "Something's wrong",
-   "lib": "20261103-171229-tinypc-tour-f-dram-switched-on",
+   "lib": "20261104-160159-tinypc-tour-f-dram-switched-on",
    "view": "centre",
    "dims": {
     "w": 6.4,
@@ -1537,7 +2380,7 @@
   {
    "id": "F_ram",
    "name": "The RAM",
-   "lib": "20261103-171355-tinypc-tour-f-ram-switched-on-",
+   "lib": "20261104-155240-tinypc-tour-f-ram-switched-on-",
    "view": "centre",
    "dims": {
     "w": 6.4,
@@ -1656,7 +2499,7 @@
   {
    "id": "R_fixed",
    "name": "Click!",
-   "lib": "20261103-171502-tinypc-tour-r-fixed-ram-pushed",
+   "lib": "20261104-155400-tinypc-tour-r-fixed-ram-pushed",
    "view": "centre",
    "dims": {
     "w": 6.4,
@@ -1685,7 +2528,7 @@
   {
    "id": "S_on",
    "name": "It's alive!",
-   "lib": "20261103-171626-tinypc-tour-s-on-switched-on-a",
+   "lib": "20261104-160333-tinypc-tour-s-on-switched-on-a",
    "view": "centre",
    "dims": {
     "w": 6.4,

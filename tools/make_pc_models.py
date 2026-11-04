@@ -349,13 +349,18 @@ def dimm_slot(m, open_clips=False):
     for i in range(70):
         x = -61 + i * 1.75
         for s_ in (-1, 1): b.box(x, s_ * 1.0 - 0.15 * s_, 1.2, x + 0.5, s_ * 1.0, 4.5, m["gold"])
-    for s_ in (-1, 1):                                                         # clips
+    # clips (latches), light grey so they show against the black stick. In each end's frame +x points away from the slot's
+    # middle. Shut: the lever stands upright and its hook reaches in over the end of the stick. Open: the lever swings
+    # outwards (away from the stick) about its foot, hook clear.
+    clip = mat("Clip_light_grey", (0.62, 0.63, 0.65), 0.45)
+    for s_ in (-1, 1):
         T = Tr(s_ * 68, 0, 0) @ R(0 if s_ > 0 else 180)
         b.box(-5, -3.15, 0, 3, 3.15, 6.0, m["black_plastic"], T)
-        ang = -35 if open_clips else 0
-        Tc = T @ Tr(-1, 0, 6) @ R(ang, "Y")
-        b.box(-2, -2.6, 0, 2, 2.6, 9.0, m["grey_plastic"], Tc)
-        b.box(-2, -2.6, 9.0, 5, 2.6, 10.5, m["grey_plastic"], Tc)
+        ang = 40 if open_clips else 0
+        Tc = T @ Tr(2.5, 0, 3.0) @ R(ang, "Y") @ Tr(-2.5, 0, -3.0)          # pivot at the lever's outer foot
+        b.box(1.0, -2.6, 3.0, 4.0, 2.6, 17.0, clip, Tc)                         # the lever
+        b.box(-1.8, -2.6, 13.5, 1.0, 2.6, 17.0, clip, Tc)                       # its hook, over the stick's end when shut
+        b.box(4.0, -2.0, 12.0, 6.5, 2.0, 17.0, clip, Tc)                        # the thumb tab on the outside
     b.build("dimm_slot", bevel=0.25)
 
 def vrm_heatsink(m, length):
@@ -587,6 +592,73 @@ def cpu(m):
         b.box(x, 17.2 if i < 7 else -17.8, 1.1, x + 1.0, 17.7 if i < 7 else -17.3, 1.6, m["ceramic_cap"])
     b.build("cpu", bevel=0.2)
 
+def glow_tex_mat(name, path, strength, rough=0.35):
+    """An image texture that also glows a little (the X-ray die map has to read in the dark case)."""
+    m = tex_mat(name, path, rough=rough)
+    nt = m.node_tree; b = next(n for n in nt.nodes if n.type == "BSDF_PRINCIPLED")
+    t = next(n for n in nt.nodes if n.type == "TEX_IMAGE")
+    k = "Emission Color" if "Emission Color" in b.inputs else "Emission"
+    nt.links.new(t.outputs["Color"], b.inputs[k]); b.inputs["Emission Strength"].default_value = strength
+    return m
+
+LID_ANGLE = -145.0                       # degrees the peeled lid is turned back about its hinge (the +y edge)
+def cpu_socket_open(m, xray=False, lid=True):
+    """The CPU in its socket with the lid (heat spreader) peeled back over the +y edge, as if it could be: the green
+    substrate, the 20 x 12 mm silicon chip with its solder (xray=False), or the chip's circuits drawn on its top as an
+    X-ray map (xray=True). No load plate or lever, so nothing stands up round the edge. Substrate top 4.0 mm, chip top
+    4.8 mm (solder 4.9)."""
+    b = MB()
+    b.box(-28, -32, 0, 28, 32, 2.6, m["black_plastic"])                      # socket body
+    sub = tex_mat("CPU_substrate_tex", os.path.join(TEX, "cpu_substrate.png"), rough=0.5)
+    b.box(-24, -27, 2.6, 24, 27, 4.0, mat("CPU_substrate", (0.06, 0.2, 0.1), 0.45), mtop=sub, top_uv=[(0, 0), (1, 0), (1, 1), (0, 1)])
+    glue = mat("Lid_sealant", (0.02, 0.02, 0.02), 0.7)
+    for x0, y0, x1, y1 in ((-18.75, -18.75, 18.75, -17.6), (-18.75, 17.6, 18.75, 18.75), (-18.75, -17.6, -17.6, 17.6), (17.6, -17.6, 18.75, 17.6)):
+        b.box(x0, y0, 4.0, x1, y1, 4.1, glue)                                # where the lid was glued down
+    for i in range(6):                                                       # small capacitors either side of the chip
+        for sx in (-1, 1):
+            y = -5 + i * 2.0
+            b.box(sx * 14.5 - 0.5, y - 0.25, 4.0, sx * 14.5 + 0.5, y + 0.25, 4.5, m["ceramic_cap"])
+            b.box(sx * 14.5 - 0.7, y - 0.25, 4.0, sx * 14.5 - 0.5, y + 0.25, 4.5, m["solder"])
+            b.box(sx * 14.5 + 0.5, y - 0.25, 4.0, sx * 14.5 + 0.7, y + 0.25, 4.5, m["solder"])
+    b.box(-10.4, -6.4, 4.0, 10.4, 6.4, 4.15, mat("Underfill", (0.12, 0.08, 0.05), 0.6))      # underfill round the chip's base
+    sil = mat("Silicon_back", (0.09, 0.09, 0.11), 0.18, 0.6)
+    if xray:
+        top = glow_tex_mat("Die_map_xray", os.path.join(TEX, "die_map.png"), 0.9)
+        b.box(-10, -6, 4.0, 10, 6, 4.8, sil, mtop=top, top_uv=[(0, 0), (1, 0), (1, 1), (0, 1)])
+    else:
+        b.box(-10, -6, 4.0, 10, 6, 4.8, sil)
+        b.box(-9.7, -5.7, 4.8, 9.7, 5.7, 4.88, mat("Solder_TIM", (0.86, 0.87, 0.88), 0.55, 0.3))   # solder that joined it to the lid
+        rng = random.Random(5)
+        for _ in range(40):
+            x, y = rng.uniform(-9, 9), rng.uniform(-5, 5); r = rng.uniform(0.3, 1.1)
+            b.cyl(r, 4.88, 4.88 + rng.uniform(0.02, 0.06), mat("Solder_TIM", (0.86, 0.87, 0.88), 0.55, 0.3), Tr(x, y, 0), seg=14, r_top=r * 0.8)
+    b.build("cpu_open", bevel=0.05)
+    if not lid: return                                                       # the running PC's X-ray: no lid at all
+    # the lid, built closed (underside at 4.9, top 5.3, rim down to 4.0) then turned back about its +y edge
+    L = MB()
+    under = tex_mat("Lid_underside", os.path.join(TEX, "lid_underside.png"), rough=0.4, metal=0.9)
+    outer = tex_mat("CPU_lid", os.path.join(TEX, "cpu_lid.png"), rough=0.42, metal=0.9)
+    h = 18.75
+    L.face([(-h, -h, 5.3), (h, -h, 5.3), (h, h, 5.3), (-h, h, 5.3)], outer, uv=[(0, 0), (1, 0), (1, 1), (0, 1)])
+    L.face([(-h, h, 4.9), (h, h, 4.9), (h, -h, 4.9), (-h, -h, 4.9)], under, uv=[(0, 1), (1, 1), (1, 0), (0, 0)])
+    for x0, y0, x1, y1 in ((-h, -h, h, -h + 1.4), (-h, h - 1.4, h, h), (-h, -h + 1.4, -h + 1.4, h - 1.4), (h - 1.4, -h + 1.4, h, h - 1.4)):
+        L.box(x0, y0, 4.0, x1, y1, 4.9, m["nickel"], skip_bottom=False)                  # the rim that sat on the substrate
+    for q in (((-h, -h, 4.9), (h, -h, 4.9), (h, -h, 5.3), (-h, -h, 5.3)), ((h, -h, 4.9), (h, h, 4.9), (h, h, 5.3), (h, -h, 5.3)),
+              ((h, h, 4.9), (-h, h, 4.9), (-h, h, 5.3), (h, h, 5.3)), ((-h, h, 4.9), (-h, -h, 4.9), (-h, -h, 5.3), (-h, h, 5.3))):
+        L.face(q, m["nickel"])
+    lid = L.build("lid_peeled")
+    hinge = Vector((0, h * MM, 5.3 * MM))
+    lid.matrix_world = Matrix.Translation(hinge) @ Matrix.Rotation(math.radians(LID_ANGLE), 4, "X") @ Matrix.Translation(-hinge)
+
+def core_hall(m):
+    """Backdrop for "Inside a core": a 14 m floor of standard-cell rows and copper wiring (tex/core_floor.png, glowing a
+    little); nothing standing, so the live register diagram has the walls to itself. Built at real room size (scale 1); the register diagram is drawn
+    live over it by the tour player."""
+    b = MB(); H = 7000.0
+    fl = glow_tex_mat("Core_floor", os.path.join(TEX, "core_floor.png"), 0.35, rough=0.6)
+    b.face([(-H, -H, 0), (H, -H, 0), (H, H, 0), (-H, H, 0)], fl, uv=[(0, 0), (1, 0), (1, 1), (0, 1)])
+    b.build("core_hall")
+
 def paste_syringe(m):
     b = MB()
     b.cyl(5, 0, 70, mat("Syringe_clear", (0.85, 0.87, 0.9), 0.15), Tr(0, 0, 5) @ R(90, "Y"), seg=24)
@@ -735,6 +807,10 @@ MODELS = {
     "tpc_eps8_v2": ("8-pin CPU power, cable through the tray", lambda m: power_plug(m, 8, 2, 120, (0, 1), ["yellow", "black"], drop_at=30), "8-pin header with plug; bundle arches over and drops through the tray towards +y."),
     "tpc_cpu_socket_clean": ("CPU in socket, clean lid", lambda m: cpu_socket(m, clean=True), "LGA socket with the CPU in, lid clean with generic etched markings (no paste)."),
     "tpc_cpu_socket_empty": ("CPU socket, empty, open", cpu_socket_empty, "Socket with no CPU: spring-pin field showing, load plate and lever up."),
+    "tpc_cpu_socket_open": ("CPU with its lid peeled back", cpu_socket_open, "CPU in the socket, lid turned back over the +y edge: substrate, chip with its solder. Substrate top 4.0 mm, chip top 4.8 mm."),
+    "tpc_cpu_socket_xray": ("CPU lid peeled back, chip X-ray", lambda m: cpu_socket_open(m, xray=True), "As tpc_cpu_socket_open, the chip's top drawn as an X-ray map of its circuits (cores, cache, memory controller, I/O)."),
+    "tpc_cpu_socket_xray_nolid": ("CPU chip X-ray, no lid", lambda m: cpu_socket_open(m, xray=True, lid=False), "The chip's X-ray map with the lid left out altogether (the running PC, seen as an X-ray)."),
+    "tpc_core_hall": ("Inside a core (backdrop)", core_hall, "14 m floor of standard cells and copper wiring. Room size: scale 1."),
     "tpc_cpu": ("CPU (loose)", cpu, "Loose CPU, 45 x 37.5 mm: gold pads underneath, generic etched lid."),
     "tpc_paste_syringe": ("Thermal paste syringe", paste_syringe, "Small syringe of grey thermal paste, lying flat."),
     "tpc_pc_tower": ("PC tower, built, side off", lambda m: pc_tower(m, True, False), "The TinyPC built, side panel off, open side facing -y, front +x. 430 x 225 x 556 mm."),

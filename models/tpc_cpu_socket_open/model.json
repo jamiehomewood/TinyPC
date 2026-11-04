@@ -1,0 +1,35 @@
+{
+  "id": "tpc_cpu_socket_open",
+  "name": "CPU with its lid peeled back",
+  "file": "tpc_cpu_socket_open.glb",
+  "thumb": "thumb.png",
+  "category": "pc",
+  "styles": [
+    "outdoor"
+  ],
+  "tags": [
+    "pc",
+    "tinypc",
+    "computer"
+  ],
+  "status": "untested",
+  "notes": "CPU in the socket, lid turned back over the +y edge: substrate, chip with its solder. Substrate top 4.0 mm, chip top 4.8 mm.",
+  "scale": 1.0,
+  "polycount": 2062,
+  "bbox_mm": [
+    -28.0,
+    28.0,
+    -32.0,
+    49.47,
+    0.0,
+    27.87
+  ],
+  "licence": {
+    "source": "TinyPC",
+    "author": "Own model (made for TinyPC)",
+    "licence": "Own work",
+    "licence_url": "",
+    "url": "",
+    "credit_required": false
+  }
+}

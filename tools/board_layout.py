@@ -111,6 +111,11 @@ for _st in STOPS_V2OFF + STOPS_V2ON: _st["title"] = _st["title"] + (" (off)" if 
 STOPS_TOUR = [
     dict(id="tpc2_s4_cooler", title="Behind the RAM, facing the cooler", x=296.0, y=28.0, k=25, omit=[], floor_z=0.0, yaw=251, exposure=0.4),
     dict(id="tpc2_s5_gpu",    title="Beside the graphics card", x=260.0, y=178.0, k=35, omit=[], floor_z=0.0, yaw=247, exposure=0.4),
+    # under the CPU's lid (peeled back towards the board's top edge = the Front wall): on the CPU's own circuit board,
+    # 13.5 mm in front of the chip; then standing on the chip itself (the X-ray map)
+    dict(id="tpc2_s6_delid",  title="Under the CPU's lid", x=92.0, y=113.5, k=300, omit=["cooler"], floor_z=4.0, yaw=0, stand_on="socket", exposure=1.0),
+    dict(id="tpc2_s8_run",    title="On the chip, running (X-ray)", x=92.0, y=100.0, k=500, omit=["cooler"], floor_z=4.8, yaw=0, stand_on="socket", exposure=0.6),
+    dict(id="tpc2_s7_die",    title="On the chip (X-ray)", x=92.0, y=100.0, k=500, omit=["cooler"], floor_z=4.8, yaw=0, stand_on="socket", exposure=0.6),
 ]
 # Case fans for the live rotors (case/board model coordinates, mm: x, y = -board y, z above the board's underside),
 # and part fans relative to the part's anchor: (size, centre, axis)

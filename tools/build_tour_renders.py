@@ -23,7 +23,8 @@ ON_ROOMS = ["F_dram", "F_ram", "S_on"]
 MODELS = (["tpc_board", "tpc_board_off", "tpc_board_dbg_dram", "tpc_board_dbg_cpu", "tpc_board_dbg_vga", "tpc_board_dbg_boot",
            "tpc_cpu_socket_clean", "tpc_cpu_socket_empty", "tpc_dimm_slot_open", "tpc_dimm", "tpc_dimm_off", "tpc_tower_cooler",
            "tpc_tower_cooler_on", "tpc_gpu", "tpc_gpu_on", "tpc_case_shell_v2_on", "tpc_case_shell_v2_off",
-           "tpc_atx24_v2", "tpc_eps8_v2", "tpc_monitor", "tpc_monitor_on", "tpc_pc_tower_on", "tpc_pc_tower_fixed_on"]
+           "tpc_atx24_v2", "tpc_eps8_v2", "tpc_monitor", "tpc_monitor_on", "tpc_pc_tower_on", "tpc_pc_tower_fixed_on",
+           "tpc_cpu_socket_open", "tpc_cpu_socket_xray", "tpc_cpu_socket_xray_nolid", "tpc_case_shell_v2_on_000000", "tpc_core_hall"]
           + [f"tpc_pc_tower_s{n}" for n in range(7)])
 
 def log(*a):

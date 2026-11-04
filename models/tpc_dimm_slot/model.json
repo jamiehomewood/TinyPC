@@ -15,14 +15,14 @@
   "status": "untested",
   "notes": "146 mm slot, clips shut.",
   "scale": 1.0,
-  "polycount": 1500,
+  "polycount": 1520,
   "bbox_mm": [
-    -72.0,
-    72.0,
+    -74.5,
+    74.5,
     -3.15,
     3.15,
     0.0,
-    16.5
+    17.05
   ],
   "licence": {
     "source": "TinyPC",

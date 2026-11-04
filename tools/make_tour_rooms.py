@@ -5,6 +5,9 @@ Writes a Room Builder spec for every room of the open-day tour (specs/tour/<room
   Inside the PC                   T_cpu    on the CPU, just fitted (step 1, switched off)
                                   T_ramq   beside the RAM slots, empty (step 1, off)
                                   T_ram    beside the RAM, sticks in, B2 not clicked home (step 2, off)
+                                  T_delid  on the CPU with its lid peeled back (step 1, off)
+                                  T_die    standing on the chip, drawn as an X-ray map (step 1, off)
+                                  T_run    the finished PC running, the chip as an X-ray (no lid, no cooler)
                                   T_cooler behind the RAM, facing the cooler (step 3, off)
                                   T_gpu    beside the graphics card (step 5, off)
                                   T_power  by the 24-pin, cables plugged in (step 6, off)
@@ -36,6 +39,12 @@ TINY = {
     "T_cpu":   ("s2_cpu", 1, False, "off", None, "On the CPU (just fitted)"),
     "T_ramq":  ("s3_ram", 1, False, "off", None, "The empty RAM slots"),
     "T_ram":   ("s3_ram", 2, False, "off", None, "RAM fitted"),
+    "T_delid":  ("s6_delid", 1, False, "off", None, "Under the CPU's lid", {"socket": "tpc_cpu_socket_open"}),
+    "T_die":    ("s7_die", 1, False, "off", None, "On the chip (X-ray)", {"socket": "tpc_cpu_socket_xray"}),
+    # the finished PC running, seen as an X-ray (no lid, no cooler): the fetch-decode-execute animation plays here.
+    # Case fans keep their blades (mask 000000: no live rotors at this scale), graphics card with its blades.
+    "T_run":    ("s8_run", 6, True, "on", None, "The chip at work (X-ray)",
+                 {"socket": "tpc_cpu_socket_xray_nolid", "gpu": "tpc_gpu", "case": "tpc_case_shell_v2_on_000000"}),
     "T_cooler": ("s4_cooler", 3, False, "off", None, "The cooler fitted"),
     "T_gpu":   ("s5_gpu", 5, False, "off", None, "The graphics card fitted"),
     "T_power": ("s1_arrival", 6, False, "off", None, "Power plugged in"),
@@ -45,9 +54,10 @@ TINY = {
     "S_on":    ("s1_arrival", 6, True, "on", None, "Switched on: all well"),
 }
 
-def tiny_spec(room, stop_key, step, fixed, power, dbg, title):
+def tiny_spec(room, stop_key, step, fixed, power, dbg, title, swap=None):
     st = copy.deepcopy(STOP[stop_key])
     omit, models, seat = L.build_state(step, fixed)
+    models.update(swap or {})
     st["omit"] = sorted(set(st["omit"]) | omit)
     k = st["k"] / 1000.0
     kept = None
@@ -61,6 +71,7 @@ def tiny_spec(room, stop_key, step, fixed, power, dbg, title):
     if power == "off": case = "tpc_case_shell_v2_off"
     elif kept is None: case = "tpc_case_shell_v2_on"
     else: case = "tpc_case_shell_v2_on_" + "".join("1" if f"case{i}" in kept else "0" for i in range(len(L.FANS_V2)))
+    case = (swap or {}).get("case", case)
     add("case", case, 0, 0, 0, 0.0)
     add("board", "tpc_board_off" if power == "off" else ("tpc_board_dbg_" + dbg if dbg else "tpc_board"), 0, 0, 0, 0.0)
     for pid, model, x, y, rot, w, d, h in L.all_parts():
@@ -69,6 +80,7 @@ def tiny_spec(room, stop_key, step, fixed, power, dbg, title):
         if power == "off" and model == "tpc_dimm": model = "tpc_dimm_off"
         if power == "on" and pid == "cooler": model = "tpc_tower_cooler_on" if (kept is None or "cooler0" in kept) else "tpc_tower_cooler"
         if power == "on" and pid == "gpu": model = "tpc_gpu_on" if (kept is None or {"gpu0", "gpu1"} <= kept) else "tpc_gpu"
+        model = (swap or {}).get(pid, model)
         base = seat.get(pid, MS.seat_of(model))
         add(pid, model, x, y, rot, L.BOARD_T + base)
     eye_z = 0.002 + (MS.TRAY_BELOW_BOARD + L.BOARD_T + st["floor_z"]) * k + MS.EYE
@@ -85,6 +97,18 @@ def tiny_spec(room, stop_key, step, fixed, power, dbg, title):
         with open(os.path.join(OUT, room + ".props.all.json"), "w", encoding="utf-8") as fh: json.dump(MS.rotors(st, eye_z), fh, indent=1)
     return eye_z, kept
 
+def core_spec(room, title):
+    """Inside a core: the tpc_core_hall backdrop at room size; the register diagram is live (the tour player draws it)."""
+    spec = {"version": 1, "name": f"TinyPC tour - {room} - {title}",
+            "room": {"preset": "igloo-main", "width": 6.4, "depth": 5.71, "height": 2.244, "eye": MS.EYE,
+                     "projected": {"walls": True, "floor": True, "ceiling": False}, "type": "outdoor"},
+            "style": "outdoor", "lighting": "night", "outside": {"view": "custom", "hdri": None}, "features": [],
+            "items": [{"id": "hall", "model": "tpc_core_hall", "x": 0, "y": 0, "z": 0.002, "rot": 0, "scale": 1}],
+            "views": [{"name": "centre", "x": 0, "y": 0, "z": MS.EYE + 0.002, "yaw": 0}],
+            "render": {"quality": QUALITY, "exposure": 0.0},
+            "tinypc": {"tour_room": room, "note": "Made by tools/make_tour_rooms.py."}}
+    with open(os.path.join(OUT, room + ".json"), "w", encoding="utf-8") as fh: json.dump(spec, fh, indent=1)
+
 def bench_spec(room, pc, monitor, title):
     s = json.load(open(os.path.join(ROOT, "specs", "workbench", "tpc_workbench.json"), encoding="utf-8"))
     s["name"] = f"TinyPC tour - {room} - {title}"
@@ -99,6 +123,7 @@ if __name__ == "__main__":
     titles = ["Empty case", "CPU fitted", "RAM fitted", "Cooler fitted", "SSD fitted", "Graphics card fitted", "Power cables in"]
     for n in range(7): bench_spec(f"B{n}", f"tpc_pc_tower_s{n}", "tpc_monitor", titles[n])
     bench_spec("B_on", "tpc_pc_tower_fixed_on", "tpc_monitor_on", "Running")
+    core_spec("T_core", "Inside a core")
     for room, args in TINY.items():
         eye, kept = tiny_spec(room, *args)
         print(f"{room:8s} eye {eye:.3f}" + (f"  rotors kept {sorted(kept)}" if kept is not None else ("  (rotors: not checked yet)" if args[3] == "on" else "")))

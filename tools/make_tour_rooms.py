@@ -12,6 +12,7 @@ Writes a Room Builder spec for every room of the open-day tour (specs/tour/<room
                                   F_ram    beside the RAM, switched on, the loose stick (step 6, the fault)
                                   R_fixed  beside the RAM, switched off, stick pushed home (fixed)
                                   S_on     by the 24-pin, switched on, all well (fixed)
+                                  T_paste  on the CPU, a pea of thermal paste on the lid (step 2, off)
 
     python tools/make_tour_rooms.py [quality]           (draft | standard; default standard)
 
@@ -43,11 +44,19 @@ TINY = {
     "F_ram":   ("s3_ram", 6, False, "on", "dram", "Switched on: the RAM"),
     "R_fixed": ("s3_ram", 6, True, "off", None, "RAM pushed home"),
     "S_on":    ("s1_arrival", 6, True, "on", None, "Switched on: all well"),
+    "T_paste": ("s2_cpu", 2, False, "off", None, "Paste on the CPU"),
 }
+# Per-room changes (4 Nov 2026, Jamie's first run in the room):
+# LIFT: raise the camera (metres in the room) so you look down on the parts: the RAM slots and their labels, the cooler
+# and its fan, the graphics card. The board then reads as further below you (you're a little taller).
+LIFT = {"T_ramq": 0.5, "T_ram": 0.5, "F_ram": 0.5, "R_fixed": 0.5, "T_cooler": 0.5, "T_gpu": 0.5}
+# MODELS: a part shown as a different model in one room (the pea of paste on the CPU, before the cooler goes on).
+ROOM_MODELS = {"T_paste": {"socket": "tpc_cpu_socket_paste"}}
 
 def tiny_spec(room, stop_key, step, fixed, power, dbg, title):
     st = copy.deepcopy(STOP[stop_key])
     omit, models, seat = L.build_state(step, fixed)
+    models.update(ROOM_MODELS.get(room, {}))
     st["omit"] = sorted(set(st["omit"]) | omit)
     k = st["k"] / 1000.0
     kept = None
@@ -71,7 +80,7 @@ def tiny_spec(room, stop_key, step, fixed, power, dbg, title):
         if power == "on" and pid == "gpu": model = "tpc_gpu_on" if (kept is None or {"gpu0", "gpu1"} <= kept) else "tpc_gpu"
         base = seat.get(pid, MS.seat_of(model))
         add(pid, model, x, y, rot, L.BOARD_T + base)
-    eye_z = 0.002 + (MS.TRAY_BELOW_BOARD + L.BOARD_T + st["floor_z"]) * k + MS.EYE
+    eye_z = 0.002 + (MS.TRAY_BELOW_BOARD + L.BOARD_T + st["floor_z"]) * k + MS.EYE + LIFT.get(room, 0.0)
     spec = {"version": 1, "name": f"TinyPC tour - {room} - {title}",
             "room": {"preset": "igloo-main", "width": 6.4, "depth": 5.71, "height": 2.244, "eye": MS.EYE,
                      "projected": {"walls": True, "floor": True, "ceiling": False}, "type": "outdoor"},
@@ -100,6 +109,9 @@ if __name__ == "__main__":
     for n in range(7): bench_spec(f"B{n}", f"tpc_pc_tower_s{n}", "tpc_monitor", titles[n])
     bench_spec("B_on", "tpc_pc_tower_fixed_on", "tpc_monitor_on", "Running")
     for room, args in TINY.items():
+        need = [m for m in ROOM_MODELS.get(room, {}).values() if not os.path.exists(os.path.join(ROOT, "models", m, "model.json"))]
+        if need:
+            print(f"{room:8s} skipped: build {', '.join(need)} first (tools/make_pc_models.py)"); continue
         eye, kept = tiny_spec(room, *args)
         print(f"{room:8s} eye {eye:.3f}" + (f"  rotors kept {sorted(kept)}" if kept is not None else ("  (rotors: not checked yet)" if args[3] == "on" else "")))
     print("wrote", OUT)

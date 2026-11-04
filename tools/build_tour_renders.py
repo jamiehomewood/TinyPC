@@ -7,6 +7,14 @@ Room Builder and Blender:
     py -3 tools\\build_tour_renders.py library     specs at standard quality, queued on Room Builder's server (it must be
                                                   running, port 8030): the renders land in its library as "TinyPC tour - ..."
 
+    py -3 tools\\build_tour_renders.py update [rooms]
+                                                  Re-renders just some rooms (default: the 4 Nov changes: the paste room and
+                                                  the higher camera in the RAM, cooler and graphics-card stops). Applies the
+                                                  click patch to Room Builder if it isn't there, builds the paste model, checks
+                                                  the fan rotors of switched-on rooms on a draft, queues the rooms at standard
+                                                  quality, waits for them, rewrites the tour and copies the new renders and the
+                                                  tour into this repo. Room Builder's server must be running. About 30 minutes.
+
 Copies models into Room Builder's catalogue (copy only, never deletes). Progress goes to _work\\tour\\build_log.txt.
 """
 import glob, json, os, shutil, subprocess, sys, time, urllib.request
@@ -74,5 +82,53 @@ def library():
                                      data=json.dumps({"spec": spec, "quality": "standard", "name": spec["name"]}).encode())
         log("queued", r, json.load(urllib.request.urlopen(req, timeout=20)).get("id"))
 
+UPDATE_ROOMS = ["T_paste", "T_ramq", "T_ram", "F_ram", "R_fixed", "T_cooler", "T_gpu"]
+NEW_MODELS = ["tpc_cpu_socket_paste"]
+
+def update(rooms_):
+    start = time.strftime("%Y%m%d-%H%M%S")
+    run([PY, os.path.join(ROOT, "tools", "engine_patch_2026-11-04.py"), RB])              # the RAM click (skips if done)
+    build_models(NEW_MODELS)
+    run([PY, os.path.join(ROOT, "tools", "make_tour_rooms.py"), "draft"])
+    on = [r for r in rooms_ if r in ON_ROOMS]
+    for r in on:                                              # camera moved: which fan rotors can be seen now
+        render(r)
+        eye = json.load(open(os.path.join(SPECS, r + ".json"), encoding="utf-8"))["views"][0]["z"]
+        run([BLENDER, "-b", os.path.join(WORK, r, "room.blend"), "-P", os.path.join(ROOT, "tools", "check_rotors.py"), "--",
+             os.path.join(SPECS, r + ".props.all.json"), str(eye)])
+    run([PY, os.path.join(ROOT, "tools", "make_tour_rooms.py"), "standard"])
+    cases = sorted({it["model"] for r in on for it in json.load(open(os.path.join(SPECS, r + ".json"), encoding="utf-8"))["items"]
+                    if it["model"].startswith("tpc_case_shell_v2_on_") and not os.path.isdir(os.path.join(RB, "catalogue", "models", it["model"]))})
+    if cases: build_models(cases)
+    names = {}
+    for r in list(rooms_):
+        sp = os.path.join(SPECS, r + ".json")
+        if not os.path.exists(sp):
+            log("SKIPPED", r, "- no spec (its model didn't build? see the log above)"); rooms_.remove(r); continue
+        spec = json.load(open(sp, encoding="utf-8")); names[spec["name"]] = r
+        req = urllib.request.Request(f"http://localhost:{cfg.get('port', 8030)}/api/render", method="POST", headers={"Content-Type": "application/json"},
+                                     data=json.dumps({"spec": spec, "quality": "standard", "name": spec["name"]}).encode())
+        log("queued", r, json.load(urllib.request.urlopen(req, timeout=20)).get("id"))
+    done, t0 = {}, time.time()
+    while len(done) < len(names) and time.time() - t0 < 3 * 3600:            # wait for each one to land in the library
+        time.sleep(20)
+        for mp in glob.glob(os.path.join(RB, "library", "*", "meta.json")):
+            d = os.path.dirname(mp); lid = os.path.basename(d)
+            if lid < start or lid in done.values(): continue
+            try: nm = json.load(open(mp, encoding="utf-8")).get("name")
+            except Exception: continue
+            if nm in names and names[nm] not in done and glob.glob(os.path.join(d, "view_*.jpg")):
+                done[names[nm]] = lid; log("rendered", names[nm], lid, f"({len(done)} of {len(names)})")
+    if len(done) < len(names): log("still waiting for:", ", ".join(r for r in rooms_ if r not in done), "- run make_tour.py once they're in")
+    run([PY, os.path.join(ROOT, "tools", "make_tour.py"), RB])
+    for lid in done.values():                                 # keep the repo's copy of the library up to date
+        shutil.copytree(os.path.join(RB, "library", lid), os.path.join(ROOT, "renders", "library", lid), dirs_exist_ok=True,
+                        ignore=shutil.ignore_patterns("*.blend", "*.blend1", "*.exr", "view_*.png"))
+    for m in NEW_MODELS:
+        if os.path.isdir(os.path.join(ROOT, "models", m)): log("model ready:", m)
+    log("update done:", ", ".join(f"{r} {l}" for r, l in done.items()))
+
 if __name__ == "__main__":
-    {"drafts": drafts, "library": library}[sys.argv[1] if len(sys.argv) > 1 else "drafts"]()
+    mode = sys.argv[1] if len(sys.argv) > 1 else "drafts"
+    if mode == "update": update(sys.argv[2:] or UPDATE_ROOMS)
+    else: {"drafts": drafts, "library": library}[mode]()

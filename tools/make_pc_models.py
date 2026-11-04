@@ -259,6 +259,18 @@ def cpu_socket(m, clean=False):
         pm.cyl(rr, 5.3, 5.3 + th, m["paste"], Tr(x, y, 0), seg=28, r_top=rr * 0.92)
     pm.build("paste")
 
+def cpu_socket_paste(m):
+    """The clean CPU in its socket with a pea-sized dot of thermal paste in the middle of the lid (as squeezed out, before
+    the cooler goes on): a smooth dome 5 mm across and 1.7 mm high, with the little peak where the syringe lifted off."""
+    cpu_socket(m, clean=True)
+    pm = MB(); R, H, n = 2.5, 1.7, 10
+    for i in range(n):
+        z0, z1 = H * i / n, H * (i + 1) / n
+        r0 = R * math.sqrt(max(0.0, 1 - (z0 / H) ** 2)); r1 = R * math.sqrt(max(0.03, 1 - (z1 / H) ** 2))
+        pm.cyl(r0, 5.3 + z0, 5.3 + z1, m["paste"], Tr(0, 0, 0), seg=40, r_top=r1)
+    pm.cyl(0.4, 5.3 + H - 0.05, 5.3 + H + 0.35, m["paste"], Tr(0.25, 0.15, 0), seg=16, r_top=0.06)
+    pm.build("paste")
+
 def tower_cooler(m):
     """Single tower cooler: copper base on the CPU, four heat pipes, 56 aluminium fins, 120 mm fan on the +x side."""
     b = MB()
@@ -734,6 +746,7 @@ MODELS = {
     "tpc_case_shell": ("PC case interior", case_shell, "Case round the board (board coordinates): tray, panels, fans, PSU shroud, daylight panel."),
     "tpc_eps8_v2": ("8-pin CPU power, cable through the tray", lambda m: power_plug(m, 8, 2, 120, (0, 1), ["yellow", "black"], drop_at=30), "8-pin header with plug; bundle arches over and drops through the tray towards +y."),
     "tpc_cpu_socket_clean": ("CPU in socket, clean lid", lambda m: cpu_socket(m, clean=True), "LGA socket with the CPU in, lid clean with generic etched markings (no paste)."),
+    "tpc_cpu_socket_paste": ("CPU in socket, pea of paste", cpu_socket_paste, "Clean CPU lid with a pea-sized dot of thermal paste in the middle (5 mm, 1.7 mm high). Lid top 5.3 mm."),
     "tpc_cpu_socket_empty": ("CPU socket, empty, open", cpu_socket_empty, "Socket with no CPU: spring-pin field showing, load plate and lever up."),
     "tpc_cpu": ("CPU (loose)", cpu, "Loose CPU, 45 x 37.5 mm: gold pads underneath, generic etched lid."),
     "tpc_paste_syringe": ("Thermal paste syringe", paste_syringe, "Small syringe of grey thermal paste, lying flat."),
